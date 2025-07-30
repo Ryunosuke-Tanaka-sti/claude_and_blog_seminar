@@ -98,7 +98,7 @@ style: |
 
 <div>
 
-![](../assets/profile.png)
+![](./assets/profile.png)
 
 </div>
 
