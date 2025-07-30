@@ -1,0 +1,411 @@
+/* @theme canyon-custom */
+@import "default";
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4");
+
+.area {
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent);
+}
+
+/* General Components */
+:root {
+  font-family: Bahnschrift, "DIN Alternate", "Meiryo UI", sans-serif;
+  --main: #d4ed00;
+  --secondary: #333333;
+  --accent: #00bcd4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+section {
+  position: relative;
+  background-color: #ffffff;
+  font-size: 2rem;
+  padding: 96px 32px 42px 32px;
+  color: #333333;
+}
+
+h1:nth-of-type(1) {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  font-size: 52px;
+  color: #333333;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1.5px var(--main);
+  padding: 0 32px;
+  background-color: rgba(212, 237, 0, 0.1);
+}
+
+h1:nth-of-type(1)::before {
+  content: "";
+  width: 64px;
+  height: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 32px;
+  background-color: var(--main);
+}
+
+h1:nth-of-type(1)::after {
+  content: "";
+  position: fixed;
+  bottom: 42px;
+  left: 0;
+  width: 100%;
+  border-bottom: solid 1.5px var(--main);
+}
+
+section::before {
+  font-size: 54px;
+  content: attr(data-marpit-pagination);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 8px;
+  right: 24px;
+  width: 50px;
+  height: 92px;
+  z-index: 50;
+  color: #333333;
+  font-weight: bolder;
+}
+
+section::after {
+  font-size: 18px;
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 42px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bolder;
+  background-color: #333333;
+  color: #d4ed00;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h2 {
+  color: #333333;
+  font-weight: bold;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  color: var(--secondary);
+}
+
+/* twoColumns */
+section.twoColumns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+section.twoColumns > div {
+  width: 50%;
+  padding-top: 32px;
+}
+
+section.twoColumns > div:nth-of-type(1) {
+  border-right: solid 1.5px var(--main);
+  padding-right: 32px;
+}
+
+section.twoColumns > div:nth-of-type(2) {
+  padding-left: 32px;
+}
+
+section.twoColumns > div > * + * {
+  margin-top: 16px;
+}
+
+/* Title Page */
+section.title::before,
+section.title::after,
+section.subTitle::before {
+  display: none;
+}
+
+section.title,
+section.subTitle {
+  background-color: #333333;
+  color: #d4ed00;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+section.title > h1,
+section.subTitle > h1 {
+  font-size: 62px;
+  color: #d4ed00;
+  padding: 32px 80px !important;
+  position: relative;
+  height: auto;
+  border-bottom: solid 1.5px #d4ed00;
+}
+
+section.title > h1::after {
+  display: none;
+}
+
+section.title > h1::before,
+section.subTitle > h1::before {
+  content: "";
+  width: 64px;
+  height: 8px;
+  position: absolute;
+  bottom: 0px;
+  left: 80px;
+  background-color: #d4ed00;
+}
+
+section.title > h1 + *,
+section.subTitle > h1 + * {
+  margin-top: 32px;
+}
+
+section.title > *,
+section.subTitle > * {
+  padding-left: 192px;
+}
+
+/* Overriding Settings */
+section.grayPage > h1:nth-of-type(1),
+section.grayPage::before {
+  color: var(--secondary);
+}
+
+section.grayPage > h1:nth-of-type(1)::before,
+section.grayPage::after {
+  background-color: var(--secondary);
+}
+
+section.grayPage > h1:nth-of-type(1),
+section.grayPage > h1:nth-of-type(1)::after,
+section.grayPage > h1:nth-of-type(1)::before,
+section.grayPage.twoColumns > div:nth-of-type(1) {
+  border-color: var(--secondary);
+}
+
+section.subTitle {
+  background-color: var(--secondary);
+}
+
+section.title > h2,
+section.subTitle > h2 {
+  color: #d4ed00;
+}
+
+section.subTitle::after {
+  background-color: #333333;
+  color: #d4ed00;
+}
+
+section.subTitle > h1:nth-of-type(1)::after {
+  content: "";
+  position: fixed;
+  bottom: 42px;
+  left: 0;
+  width: 100%;
+  border-bottom: solid 1.5px #d4ed00;
+}
+
+/* Specific Components */
+.katex {
+  font: normal 1.05em KaTeX_Main, "Times New Roman", serif;
+}
+
+.box {
+  padding: 16px 16px 16px 32px;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.box::before {
+  content: "";
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.box > h2:nth-of-type(1) {
+  color: inherit;
+}
+
+.blue {
+  background-color: #f0f7d8;
+}
+
+.blue::before {
+  background-color: #d4ed00;
+}
+
+.blue > h2:nth-of-type(1) {
+  color: #d4ed00;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.blue strong {
+  color: #d4ed00;
+  text-decoration: underline;
+}
+
+.green {
+  background-color: #dbecdc;
+}
+
+.green::before {
+  background-color: #01ad09;
+}
+
+.green > h2:nth-of-type(1) {
+  color: #01ad09;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.green strong {
+  color: #01ad09;
+  text-decoration: underline;
+}
+
+.yellow {
+  background-color: #f5f0c6;
+}
+
+.yellow::before {
+  background-color: #b47800;
+}
+
+.yellow > h2:nth-of-type(1) {
+  color: #b47800;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.yellow strong {
+  color: #b47800;
+  text-decoration: underline;
+}
+
+.red {
+  background-color: #f0dce3;
+}
+
+.red::before {
+  background-color: #ad0140;
+}
+
+.red > h2:nth-of-type(1) {
+  color: #ad0140;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.red strong {
+  color: #ad0140;
+  text-decoration: underline;
+}
+
+.downarrow {
+  width: 30px;
+  display: block;
+  margin-left: 50px;
+  background: var(--main);
+  height: calc(tan(60deg) * 30px / 2);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: rotate(180deg);
+}
+
+.uparrow {
+  width: 30px;
+  display: block;
+  margin-left: 50px;
+  background: var(--main);
+  height: calc(tan(60deg) * 30px / 2);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.tag {
+  display: inline-block;
+  color: #333333;
+  padding: 16px 32px;
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+.main {
+  background-color: #333333;
+  color: #d4ed00;
+}
+
+.accent {
+  background-color: var(--accent);
+  color: white;
+}
+
+code {
+  background-color: rgba(212, 237, 0, 0.15);
+  color: #333333;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+mark {
+  padding: 8px;
+  background-color: var(--accent);
+  color: #333333;
+}
+
+ul {
+  padding: 0 32px;
+}
+
+img[alt~="border"] {
+  border: solid 1px black;
+}
+
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+pre {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 1.5rem;
+  background-color: #f5f5f5;
+  color: #333333;
+  border: 1px solid #ddd;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>なぜ音声入力なのか？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 p-6 font-sans">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">なぜ音声入力なのか？</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- 従来の執筆の問題点 -->
+            <div class="bg-red-50 border-l-4 border-red-400 rounded-lg p-6 shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-100 rounded-full p-3 mr-4">
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-red-800">従来の執筆の問題</h3>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">⌨️</div>
+                        <div>
+                            <h4 class="font-semibold text-red-700">タイピング速度の限界</h4>
+                            <p class="text-red-600 text-sm">60-80 文字/分が限界</p>
+                            <div class="mt-2 bg-red-200 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">🧠</div>
+                        <div>
+                            <h4 class="font-semibold text-red-700">思考の流れが途切れる</h4>
+                            <p class="text-red-600 text-sm">キーボード入力に集中して思考が分散</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">💪</div>
+                        <div>
+                            <h4 class="font-semibold text-red-700">長時間執筆による疲労</h4>
+                            <p class="text-red-600 text-sm">手首・肩・首への負担</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">📝</div>
+                        <div>
+                            <h4 class="font-semibold text-red-700">構成を考えながら書く難しさ</h4>
+                            <p class="text-red-600 text-sm">マルチタスクによる効率低下</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 音声入力のメリット -->
+            <div class="bg-green-50 border-l-4 border-green-400 rounded-lg p-6 shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 rounded-full p-3 mr-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-800">音声入力のメリット</h3>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">🗣️</div>
+                        <div>
+                            <h4 class="font-semibold text-green-700">話す速度で入力</h4>
+                            <p class="text-green-600 text-sm">150-200 文字/分の高速入力</p>
+                            <div class="mt-2 bg-green-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">💭</div>
+                        <div>
+                            <h4 class="font-semibold text-green-700">自然な思考の流れを維持</h4>
+                            <p class="text-green-600 text-sm">考えながら話すことで思考が途切れない</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">🖐️</div>
+                        <div>
+                            <h4 class="font-semibold text-green-700">手の疲労ゼロ</h4>
+                            <p class="text-green-600 text-sm">長時間でも身体的負担なし</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl mr-3">🎯</div>
+                        <div>
+                            <h4 class="font-semibold text-green-700">アイデア出しに集中</h4>
+                            <p class="text-green-600 text-sm">入力方法を気にせず内容に専念</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 速度比較チャート -->
+        <div class="mt-12 bg-white rounded-lg shadow-lg p-8">
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">入力速度の比較</h3>
+            
+            <div class="space-y-6">
+                <div class="flex items-center">
+                    <div class="w-32 text-right pr-4 font-semibold">タイピング</div>
+                    <div class="flex-1 bg-gray-200 rounded-full h-8 relative">
+                        <div class="bg-red-500 h-8 rounded-full flex items-center justify-end pr-4 text-white font-bold" style="width: 40%">
+                            60-80文字/分
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-32 text-right pr-4 font-semibold">音声入力</div>
+                    <div class="flex-1 bg-gray-200 rounded-full h-8 relative">
+                        <div class="bg-green-500 h-8 rounded-full flex items-center justify-end pr-4 text-white font-bold" style="width: 85%">
+                            150-200文字/分
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <div class="inline-flex items-center bg-blue-100 rounded-full px-6 py-3">
+                    <span class="text-2xl mr-2">🚀</span>
+                    <span class="text-blue-800 font-bold text-lg">約2.5倍の速度向上！</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- パラダイムシフト -->
+        <div class="mt-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg p-8 text-white text-center">
+            <h3 class="text-2xl font-bold mb-4">パラダイムシフト</h3>
+            <div class="flex items-center justify-center space-x-8">
+                <div class="text-center">
+                    <div class="text-4xl mb-2">✍️</div>
+                    <div class="text-lg font-semibold">「書く」</div>
+                </div>
+                <div class="text-4xl">→</div>
+                <div class="text-center">
+                    <div class="text-4xl mb-2">🗣️</div>
+                    <div class="text-lg font-semibold">「話す」</div>
+                </div>
+            </div>
+            <p class="mt-4 text-lg opacity-90">思考速度での執筆を実現</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+    "cSpell.words": [
+        "marp"
+    ],
+    "markdownlint.config": {
+        "MD033": false,
+        "MD036": false,
+        "MD025": false,
+        "MD001": false,
+        "MD045": false,
+        "MD024": false,
+        "MD022": false,
+        "MD032": false,
+        "MD031": false,
+        "MD040": false,
+        "MD034": false,
+        "MD047": false,
+        "MD009": false
+    },
+    "markdown.marp.themes": [
+        "https://raw.githubusercontent.com/Jzurde/canyon/refs/heads/main/themes/canyon.css",
+        "./seminar/theme/canyon-custom.css"
+    ],
+    "markdown.marp.html": "all"
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>従来の手法との比較</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 min-h-screen flex items-center justify-center font-sans overflow-hidden">
+    
+    <!-- メインコンテナ -->
+    <div class="w-full max-w-7xl mx-auto px-8">
+        
+        <!-- タイトル -->
+        <div class="text-center mb-12">
+            <h1 class="text-6xl font-bold text-white mb-4">従来 vs 音声入力</h1>
+            <p class="text-2xl text-blue-200">執筆方法の革命的変化</p>
+        </div>
+
+        <!-- メイン比較エリア -->
+        <div class="grid grid-cols-2 gap-16 mb-12">
+            
+            <!-- 従来の手法 -->
+            <div class="bg-red-500/20 backdrop-blur-sm border border-red-400/30 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300">
+                <div class="text-center mb-8">
+                    <div class="text-8xl mb-4">⌨️</div>
+                    <h2 class="text-4xl font-bold text-red-300 mb-2">従来の手法</h2>
+                    <p class="text-xl text-red-200">タイピング中心の執筆</p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">🐌</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">速度制限</h3>
+                            <p class="text-red-200">60-80文字/分が上限</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">🧠</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">思考の分散</h3>
+                            <p class="text-red-200">キーボード操作に集中</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">😫</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">身体的疲労</h3>
+                            <p class="text-red-200">手首・肩・首の負担</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">⏰</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">時間消費</h3>
+                            <p class="text-red-200">12時間の執筆時間</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 音声入力 -->
+            <div class="bg-green-500/20 backdrop-blur-sm border border-green-400/30 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300">
+                <div class="text-center mb-8">
+                    <div class="text-8xl mb-4">🎙️</div>
+                    <h2 class="text-4xl font-bold text-green-300 mb-2">音声入力</h2>
+                    <p class="text-xl text-green-200">思考速度の執筆</p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">🚀</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">高速入力</h3>
+                            <p class="text-green-200">150-200文字/分</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">💭</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">思考の流れ</h3>
+                            <p class="text-green-200">自然な発想を維持</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">🌟</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">疲労ゼロ</h3>
+                            <p class="text-green-200">身体的負担なし</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="text-3xl mr-4">⚡</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">時短実現</h3>
+                            <p class="text-green-200">1時間で完成</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 速度比較メーター -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">入力速度の比較</h3>
+            
+            <div class="grid grid-cols-2 gap-12">
+                <!-- タイピング -->
+                <div class="text-center">
+                    <h4 class="text-2xl font-semibold text-red-300 mb-4">タイピング</h4>
+                    <div class="relative w-48 h-48 mx-auto">
+                        <svg class="transform -rotate-90 w-48 h-48">
+                            <circle cx="96" cy="96" r="88" stroke="currentColor" stroke-width="8" fill="transparent" class="text-gray-600"/>
+                            <circle cx="96" cy="96" r="88" stroke="currentColor" stroke-width="8" fill="transparent" 
+                                    stroke-dasharray="553" stroke-dashoffset="331" class="text-red-400"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-white">40%</div>
+                                <div class="text-red-300">効率性</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-white mt-4">60-80文字/分</p>
+                </div>
+                
+                <!-- 音声入力 -->
+                <div class="text-center">
+                    <h4 class="text-2xl font-semibold text-green-300 mb-4">音声入力</h4>
+                    <div class="relative w-48 h-48 mx-auto">
+                        <svg class="transform -rotate-90 w-48 h-48">
+                            <circle cx="96" cy="96" r="88" stroke="currentColor" stroke-width="8" fill="transparent" class="text-gray-600"/>
+                            <circle cx="96" cy="96" r="88" stroke="currentColor" stroke-width="8" fill="transparent" 
+                                    stroke-dasharray="553" stroke-dashoffset="83" class="text-green-400"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-white">85%</div>
+                                <div class="text-green-300">効率性</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-white mt-4">150-200文字/分</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結論 -->
+        <div class="text-center">
+            <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-8 inline-block">
+                <div class="flex items-center justify-center space-x-6">
+                    <div class="text-6xl">🚀</div>
+                    <div class="text-white">
+                        <h3 class="text-4xl font-bold mb-2">2.5倍の速度向上</h3>
+                        <p class="text-2xl">思考速度での執筆を実現</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "name": "Claude Agent",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+    "workspaceFolder": "/home/node/workspace",
+    "remoteUser": "node",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "marp-team.marp-vscode"
+            ],
+            "settings": {}
+        },
+        "features": {}
+    },
+    "postCreateCommand": "npm install -g npm@11.5.1 @anthropic-ai/claude-code @marp-team/marp-cli",
+    "updateRemoteUserUID": true,
+    "mounts": [
+        "source=${localEnv:HOME}/.claude,target=/home/node/.claude,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.claude.json,target=/home/node/.claude.json,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder},target=/home/node/workspace,type=bind,consistency=cached"
+    ]
+}

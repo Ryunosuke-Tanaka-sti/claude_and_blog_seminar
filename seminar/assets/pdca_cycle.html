@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDCA サイクル</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white min-h-screen p-8 font-sans">
+    
+    <div class="max-w-5xl mx-auto">
+        
+        <!-- PDCA サイクル図 -->
+        <div class="relative flex items-center justify-center min-h-96">
+            
+            <!-- 中央のサイクル矢印 -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <svg width="400" height="400" viewBox="0 0 400 400" class="transform rotate-45">
+                    <!-- 外側の円（背景） -->
+                    <circle cx="200" cy="200" r="180" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+                    
+                    <!-- 矢印付きの円弧 -->
+                    <path d="M 200 20 A 180 180 0 1 1 199 20" 
+                          fill="none" 
+                          stroke="#6366f1" 
+                          stroke-width="8" 
+                          stroke-dasharray="10,5"
+                          stroke-linecap="round"/>
+                    
+                    <!-- 矢印 -->
+                    <polygon points="190,25 210,25 200,5" fill="#6366f1"/>
+                </svg>
+            </div>
+
+            <!-- Plan (上) -->
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4">
+                <div class="bg-blue-500 text-white rounded-2xl p-6 w-48 shadow-xl text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl font-bold">P</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Plan</h3>
+                    <div class="text-sm space-y-2">
+                        <p>• 執筆テーマ設定</p>
+                        <p>• 読者ペルソナ明確化</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Do (右) -->
+            <div class="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2">
+                <div class="bg-green-500 text-white rounded-2xl p-6 w-48 shadow-xl text-center">
+                    <div class="w-16 h-16 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl font-bold">D</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Do</h3>
+                    <div class="text-sm space-y-2">
+                        <p>• 音声入力→AI補正</p>
+                        <p>• テンプレート活用</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Check (下) -->
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-4">
+                <div class="bg-orange-500 text-white rounded-2xl p-6 w-48 shadow-xl text-center">
+                    <div class="w-16 h-16 bg-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl font-bold">C</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Check</h3>
+                    <div class="text-sm space-y-2">
+                        <p>• AI評価結果分析</p>
+                        <p>• 読者FB収集</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action (左) -->
+            <div class="absolute left-0 top-1/2 transform -translate-x-4 -translate-y-1/2">
+                <div class="bg-red-500 text-white rounded-2xl p-6 w-48 shadow-xl text-center">
+                    <div class="w-16 h-16 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl font-bold">A</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Action</h3>
+                    <div class="text-sm space-y-2">
+                        <p>• プロンプト改善</p>
+                        <p>• ワークフロー最適化</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中央のテキスト -->
+            <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center shadow-lg border-4 border-indigo-500 z-10">
+                <div class="text-center">
+                    <div class="text-lg font-bold text-indigo-600">PDCA</div>
+                    <div class="text-xs text-gray-600">サイクル</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成功のための5つのポイント</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen p-8 font-sans">
+    
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- タイトル -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">成功のための5つのポイント</h1>
+            <p class="text-xl text-gray-600">AI活用ブログ執筆を成功に導く重要な要素</p>
+        </div>
+
+        <!-- 5つのポイントをカード形式で配置 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            
+            <!-- ポイント1: ゴール設定 -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-blue-500 hover:shadow-xl transition-shadow duration-300">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">🎯</div>
+                    <h2 class="text-2xl font-bold text-blue-600 mb-2">明確なゴール設定</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">記事の目的を最初に決める</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">読者ペルソナを意識</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ポイント2: タイムボックス -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-orange-500 hover:shadow-xl transition-shadow duration-300">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">⏱️</div>
+                    <h2 class="text-2xl font-bold text-orange-600 mb-2">タイムボックスの徹底</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">各フェーズに時間制限</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">完璧より完成を優先</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ポイント3: 振り返り -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-green-500 hover:shadow-xl transition-shadow duration-300">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">🔄</div>
+                    <h2 class="text-2xl font-bold text-green-600 mb-2">定期的な振り返り</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">文体抽出の更新</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">プロンプトの改善</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ポイント4: テンプレート -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-purple-500 hover:shadow-xl transition-shadow duration-300 md:col-start-1 lg:col-start-2">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">📝</div>
+                    <h2 class="text-2xl font-bold text-purple-600 mb-2">テンプレートの活用</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">よく使うプロンプトを保存</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">記事構成のパターン化</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ポイント5: 実践 -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-red-500 hover:shadow-xl transition-shadow duration-300 md:col-start-2 lg:col-start-3">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">🚀</div>
+                    <h2 class="text-2xl font-bold text-red-600 mb-2">実践あるのみ</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">週1本から始める</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <p class="text-gray-700">徐々にスピードアップ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中央の矢印とフロー -->
+        <div class="flex items-center justify-center mb-12">
+            <div class="flex items-center space-x-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full px-8 py-4 text-white">
+                <span class="text-2xl">🎯</span>
+                <span class="text-2xl">→</span>
+                <span class="text-2xl">⏱️</span>
+                <span class="text-2xl">→</span>
+                <span class="text-2xl">🔄</span>
+                <span class="text-2xl">→</span>
+                <span class="text-2xl">📝</span>
+                <span class="text-2xl">→</span>
+                <span class="text-2xl">🚀</span>
+            </div>
+        </div>
+
+        <!-- 成功への道筋 -->
+        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-8 text-center text-white">
+            <div class="flex items-center justify-center space-x-6">
+                <div class="text-6xl">✨</div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-2">継続的な改善で効率アップ</h3>
+                    <p class="text-xl opacity-90">5つのポイントを意識することで、AI活用ブログ執筆が確実に成功します</p>
+                </div>
+                <div class="text-6xl">🎉</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
