@@ -5,7 +5,9 @@
       "Bash(cat:*)",
       "Bash(ls:*)",
       "Bash(grep:*)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:primer.style)",
+      "Bash(marp:*)"
     ],
     "deny": []
   }

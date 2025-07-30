@@ -58,3 +58,49 @@ The `seminar/` directory contains a complete 45-minute workshop structure:
 - All techniques should be tested and validated with actual time savings
 - Content should be accessible to AI beginners while providing value to intermediate users
 - Prompt templates must work with free-tier Claude access when possible
+
+## Development Workflow
+
+### Presentation Generation with Marp
+This repository uses Marp (Markdown Presentation Ecosystem) to generate HTML presentations from Markdown files:
+
+```bash
+# Build specific presentation
+npm run build:notion
+
+# Manual build commands for other presentations
+marp seminar/claude_seminar_slides.md --html --theme ./seminar/theme/canyon-custom.css --output ./src/claude_seminar_slides.html
+marp seminar/claude_seminar_slides.md --html --theme ./seminar/theme/github-dark.css --output ./src/claude_seminar_slides_dark.html
+```
+
+### Available Themes
+- `canyon-custom.css` - Original bright theme with yellow/cyan accents
+- `github-dark.css` - GitHub-inspired dark theme with modern styling
+
+### Marp Configuration Structure
+All presentation files use YAML frontmatter with:
+- `marp: true` - Enable Marp processing
+- `theme: [theme-name]` - Reference to CSS theme file
+- `paginate: true` - Add page numbers
+- `size: 16:9` - Widescreen format
+- Custom CSS in `style:` block for per-presentation adjustments
+
+## Architecture Notes
+
+### Seminar Content Architecture
+The seminar materials follow a layered approach:
+1. **Content Layer** (`*.md`) - Markdown source with Marp syntax
+2. **Theme Layer** (`theme/*.css`) - Visual styling and component definitions
+3. **Asset Layer** (`assets/`) - Images, SVG icons, and interactive HTML components
+4. **Output Layer** (`src/`, `docs/`) - Generated HTML presentations
+
+### Documentation Cross-References
+Most documentation files in `doc/` directories reference published blog posts via URLs in the format:
+- Pattern: `https://tech-lab.sios.jp/archives/{post-id}`
+- These serve as external validation and detailed explanations of techniques
+
+### Multi-Language Considerations
+- Primary content is in Japanese targeting Japanese technical bloggers
+- File paths and directory names use Japanese characters (UTF-8)
+- English README.md provides international accessibility
+- Presentation themes support both Latin and Japanese typography

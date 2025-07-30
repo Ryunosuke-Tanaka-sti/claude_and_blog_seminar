@@ -100,7 +100,7 @@ style: |
 
 <div>
 
-![](./assets/profile.png)
+![](../assets/profile.png)
 
 </div>
 
@@ -149,7 +149,7 @@ style: |
 
 # 統合ワークフローの全体像
 
-![contain auto center](./assets/全体フェーズ.svg)
+![contain auto center](../assets/全体フェーズ.svg)
 
 <div class="highlight" style="margin-top: 20px;">
 12時間かかっていた執筆作業が、3つのフェーズで体系化され1時間に短縮！
@@ -231,7 +231,7 @@ MCP後: Claude ⇔ Notion（直接操作）
 
 # なぜ音声入力なのか？
 
-![bg contain 90%](./assets/従来の手法との比較.svg)
+![bg contain 90%](../assets/従来の手法との比較.svg)
 
 ---
 
@@ -744,7 +744,7 @@ AIの指摘を参考に、人間が最終判断
 
 # 成功のための 5 つのポイント
 
-![contain center](./assets/5つのポイント.svg)
+![contain center](../assets/5つのポイント.svg)
 
 ---
 
@@ -790,7 +790,7 @@ AIの指摘を参考に、人間が最終判断
 
 # 継続的な改善サイクル
 
-![bg contain 70%](./assets/PDCA.svg)
+![bg contain 70%](../assets/PDCA.svg)
 
 ---
 
@@ -850,8 +850,8 @@ AIの指摘を参考に、人間が最終判断
 
 **本日の内容はすべてブログで公開されています。**
 
-![](./assets/QR_blog.png)
-![](./assets/blog_logo.webp)
+![](../assets/QR_blog.png)
+![](../assets/blog_logo.webp)
 
 ---
 

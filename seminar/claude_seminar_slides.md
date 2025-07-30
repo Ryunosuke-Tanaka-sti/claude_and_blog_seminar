@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: canyon
+theme: github-dark
 paginate: true
 size: 16:9
 style: |
@@ -17,21 +17,55 @@ style: |
     text-align: center;
   }
   .demo {
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
+    background: var(--gh-bg-secondary, #161b22);
+    border: 2px solid var(--gh-border-default, #30363d);
     border-radius: 8px;
     padding: 20px;
     margin: 0 0;
+    color: var(--gh-text-primary, #f0f6fc);
   }
 
   th, td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--gh-border-default, #30363d);
     padding: 12px;
     text-align: center;
+    color: var(--gh-text-primary, #f0f6fc);
   }
   th {
-    background-color: #f5f5f5;
-    font-weight: bold;
+    background-color: var(--gh-bg-tertiary, #21262d);
+    font-weight: 600;
+  }
+  td {
+    background-color: var(--gh-bg-secondary, #161b22);
+  }
+  
+  code {
+    background-color: var(--gh-bg-secondary, #161b22);
+    color: var(--gh-text-primary, #f0f6fc);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Source Code Pro', 'SFMono-Regular', Consolas, monospace;
+    border: 1px solid var(--gh-border-default, #30363d);
+  }
+  
+  pre {
+    background-color: var(--gh-bg-canvas-inset, #010409);
+    color: var(--gh-text-primary, #f0f6fc);
+    border: 1px solid var(--gh-border-default, #30363d);
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+  }
+  
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  
+  /* ページ番号（右上の数字）を非表示 */
+  section::before {
+    display: none;
   }
 ---
 
@@ -64,7 +98,7 @@ style: |
 
 <div>
 
-![](./assets/profile.png)
+![](../assets/profile.png)
 
 </div>
 

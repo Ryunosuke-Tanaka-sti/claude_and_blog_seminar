@@ -19,7 +19,8 @@
     },
     "markdown.marp.themes": [
         "https://raw.githubusercontent.com/Jzurde/canyon/refs/heads/main/themes/canyon.css",
-        "./seminar/theme/canyon-custom.css"
+        "./theme/canyon-custom.css",
+        "./theme/github-dark.css"
     ],
     "markdown.marp.html": "all"
 }
