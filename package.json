@@ -1,6 +1,39 @@
 {
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Claudeを活用した技術ブログ執筆のテクニックやワークフローを体系的にまとめたドキュメントリポジトリです。",
+  "homepage": "https://github.com/Ryunosuke-Tanaka-sti/claude_and_blog_seminar#readme",
+  "bugs": {
+    "url": "https://github.com/Ryunosuke-Tanaka-sti/claude_and_blog_seminar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryunosuke-Tanaka-sti/claude_and_blog_seminar.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "build:claude": "marp seminar/claude_seminar_slides.md --html --theme ./theme/github-dark.css --output ./docs/claude_seminar_slides.html",
-    "build:notion": "marp seminar/notion_and_claude_blog_write.md --html --theme ./theme/canyon-custom.css --output ./docs/notion_and_claude_blog_write.html"
+    "build:notion": "marp seminar/notion_and_claude_blog_write.md --html --theme ./theme/canyon-custom.css --output ./docs/notion_and_claude_blog_write.html",
+    "scraper": "tsx src/scraper.ts",
+    "scraper:build": "tsc",
+    "scraper:run": "node dist/scraper.js"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.22.35",
+    "axios": "^1.11.0",
+    "cheerio": "^1.1.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/node-fetch": "^2.6.13",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
   }
 }

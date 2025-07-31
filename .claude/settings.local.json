@@ -7,7 +7,10 @@
       "Bash(grep:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:primer.style)",
-      "Bash(marp:*)"
+      "Bash(marp:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run scraper:*)",
+      "Bash(URL=https://tech-lab.sios.jp/archives/48397 npm run scraper)"
     ],
     "deny": []
   }

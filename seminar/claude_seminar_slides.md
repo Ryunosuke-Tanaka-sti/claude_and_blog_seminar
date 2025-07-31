@@ -612,13 +612,88 @@ Goal：初心者でもわかるようにコード内にコメント多めで
 
 <!-- _class: subTitle-->
 
+# NotionMCP でコピペ作業を削減
+
+---
+
+# NotionMCP とは？コピペ削減の革命
+
+<!-- _class: twoColumns-->
+
+<div>
+
+## 従来の問題点
+
+<div class="box red">
+
+- 📝 **Claude → Notion への手動コピペ**
+- ⏰ **作業の中断とコンテキストスイッチ**
+- 🔄 **フォーマット調整の手間**
+- 💻 **複数タブ間の移動**
+
+**課題：** 1記事で10回以上のコピペ
+
+</div>
+
+</div>
+
+<div>
+
+## NotionMCP による解決
+
+<div class="box blue">
+
+- 🔗 **Claude から Notion を操作**
+- ⚡ **リアルタイムでの情報同期**
+- 🎯 **作業の中断なし**
+
+**改善** 開くのはClaudeだけ
+
+</div>
+
+</div>
+
+---
+
+# NotionMCP 活用の具体例
+
+<!-- _class: twoColumns-->
+
+<div>
+
+### Before（従来の方法）
+1. Claude でタイトル生成　コピペ
+2. Claude で図表作成　コピペ
+3. Claude で品質チェック
+
+
+**改善点を手動反映**
+
+</div>
+
+<div>
+
+### After（NotionMCP使用）
+1. Claude が Notion にタイトル追加
+2. Claude が Notion に図表埋め込み
+3. Claude が Notion で改善点を反映
+
+**改善点が自動で反映**
+
+</div>
+
+
+---
+
+<!-- _class: subTitle-->
+
 # まとめ
 
 ---
 
 # 本日の振り返り
 
-## 習得した 3 つのテクニック
+## 本日の3つのテクニック
 
 1. 🎯 **ブログコンテンツベースの SEO タイトル生成**
 

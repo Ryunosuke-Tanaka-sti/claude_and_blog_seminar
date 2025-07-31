@@ -6,11 +6,11 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "marp-team.marp-vscode"
+                "marp-team.marp-vscode",
+                "ms-vscode.live-server"
             ],
             "settings": {}
-        },
-        "features": {}
+        }
     },
     "postCreateCommand": "npm install -g npm@11.5.1 @anthropic-ai/claude-code @marp-team/marp-cli",
     "updateRemoteUserUID": true,
