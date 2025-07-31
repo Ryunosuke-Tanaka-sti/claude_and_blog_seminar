@@ -83,18 +83,17 @@ style: |
 
 <div>
 
-**フロントエンドエンジニア・AI 活用**
+### フロントエンドエンジニア・AI 活用
 
-**追加領域**
-
-- Figma 連携による デザインシステム構築
+- Figma による デザイン構築
 - 社内業務改善 AI システム開発
-
-**執筆実績**
-
 - 3 年弱で技術記事 165 本執筆
 
-🔗 **GitHub**: [github.com](https://github.com/Ryunosuke-Tanaka-sti)
+### 本日の資料
+
+🔗 [**GitHub**](https://github.com/Ryunosuke-Tanaka-sti/claude_and_blog_seminar)
+🔗 [**登壇資料**](https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/)
+
 
 </div>
 
@@ -130,7 +129,7 @@ style: |
 ## 従来 vs AI 活用の比較
 
 <style scoped>
-  table { table-layout: fixed; width: 100%; display:table; font-size: 18px; }
+  table { table-layout: fixed; width: 100%; display:table; font-size: 24px; }
 </style>
 
 | フェーズ         | 従来の方法             | AI 活用後            | 削減率 |
@@ -203,7 +202,7 @@ MCP後: Claude ⇔ Notion（直接操作）
 ---
 
 <style scoped>
-  table { table-layout: fixed; width: 100%; display:table; font-size: 20px; }
+  table { table-layout: fixed; width: 100%; display:table; font-size: 24px; }
 </style>
 
 # 2 つの接続方式
@@ -501,7 +500,7 @@ Notion ページ ID [xxx] の内容を、以下の文体で統一してくださ
 
 ---
 
-# 高度な文体補正テクニック　プロジェクトナレッジの活用
+# プロジェクトナレッジの活用
 
 ### 文体ガイドラインの登録
 
@@ -796,9 +795,13 @@ AIの指摘を参考に、人間が最終判断
 
 # よくあるトラブルと対策
 
+<!-- _class: twoColumns-->
+
+<div>
+
 ## Q1: Notion MCP が動作しない
 
-- Node.js v18 以上がインストールされているか
+- Node.js v18 以上
 - 設定ファイルの JSON が正しいか
 - API キーが有効か
 
@@ -807,18 +810,22 @@ AIの指摘を参考に、人間が最終判断
 - 専門用語は事前に辞書登録
 - ゆっくり明瞭に発音
 - 段落ごとに区切って入力
-- 高いマイクを買いましょう
 
----
+</div>
 
-# よくあるトラブルと対策
+<div>
 
 ## Q3: AI の出力が期待と違う
 
 - Goal/Plan/Tips の構造を使用
 - 制約条件を明確に記述
+- 使いながらチューニング
+
+
+</div>
 
 ---
+
 
 <!-- _class: subTitle-->
 
@@ -879,10 +886,6 @@ AIの指摘を参考に、人間が最終判断
 
 # さらなる発展
 
-## 上級者向けの活用法
-
-<div class="success">
-
 ### 🚀 Integration 版への移行
 
 - チーム共有時のセキュリティ強化
@@ -897,8 +900,6 @@ AIの指摘を参考に、人間が最終判断
 
 - 執筆時間の可視化
 - AI 利用率のトラッキング
-
-</div>
 
 ---
 

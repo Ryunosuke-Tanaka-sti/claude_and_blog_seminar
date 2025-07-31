@@ -81,18 +81,18 @@ style: |
 
 <div>
 
+
 **フロントエンドエンジニア・AI 活用**
 
-**追加領域**
-
-- Figma 連携による デザインシステム構築
+- Figma による デザイン構築
 - 社内業務改善 AI システム開発
-
-**執筆実績**
-
 - 3 年弱で技術記事 165 本執筆
 
-🔗 **GitHub**: [github.com](https://github.com/Ryunosuke-Tanaka-sti)
+**本日の資料**
+
+🔗 [**GitHub**:Ryunosuke-Tanaka-sti](https://github.com/Ryunosuke-Tanaka-sti/claude_and_blog_seminar)
+🔗 [**登壇資料**](https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/)
+
 
 </div>
 
@@ -161,7 +161,7 @@ style: |
 
 <!-- _class: subTitle-->
 
-# 実演 1：ブログコンテンツからタイトルを生成
+# 実演 1：コンテンツからタイトルを生成
 
 ---
 
@@ -411,7 +411,7 @@ flowchart TD
 
 <!-- _class: subTitle-->
 
-# 実演 3：AI を第一読者にした品質チェック
+# 実演 3：AI を第一読者にする
 
 ---
 
@@ -516,7 +516,7 @@ flowchart TD
 
 <!-- _class: subTitle-->
 
-# Claude 暴走を制御する 3 つのテクニック
+# Claude暴走を制御する 3 つのTips
 
 ---
 
@@ -717,7 +717,7 @@ Goal：初心者でもわかるようにコード内にコメント多めで
   話し言葉をベースにした親しみやすい文章
 
 <div class="highlight">
-試験的取り組みとして導入中！まとまったらブログで詳細公開予定
+ブログでまとまっているので興味がある方は声をかけてね！
 </div>
 
 ---
