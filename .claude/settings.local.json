@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
       "Bash(find:*)",
@@ -10,7 +11,10 @@
       "Bash(marp:*)",
       "Bash(npm install:*)",
       "Bash(npm run scraper:*)",
-      "Bash(URL=https://tech-lab.sios.jp/archives/48397 npm run scraper)"
+      "Bash(URL=https://tech-lab.sios.jp/archives/48397 npm run scraper)",
+      "Bash(URL=https://tech-lab.sios.jp/archives/48479 npm run scraper)",
+      "Bash(URL=https://tech-lab.sios.jp/archives/48538 npm run scraper)",
+      "Bash(URL=https://tech-lab.sios.jp/archives/48406 npm run scraper)"
     ],
     "deny": []
   }

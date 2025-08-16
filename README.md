@@ -71,6 +71,8 @@ npm run scraper:run
 - **執筆後評価** ([48196](https://tech-lab.sios.jp/archives/48196)) - AIによる品質チェック・評価手法
 - **校閲・文体統一** ([48406](https://tech-lab.sios.jp/archives/48406)) - 文体統一と校正の自動化
 - **音声認識執筆** ([48431](https://tech-lab.sios.jp/archives/48431)) - 音声入力を活用した執筆手法
+- **登壇資料作成** ([48479](https://tech-lab.sios.jp/archives/48479)) - Claude×Marpで80時間を11時間に短縮した方法
+- **アウトライン生成** ([48538](https://tech-lab.sios.jp/archives/48538)) - 対話型vs抽出型の実践比較
 
 ### `/seminar/` - セミナー資料
 

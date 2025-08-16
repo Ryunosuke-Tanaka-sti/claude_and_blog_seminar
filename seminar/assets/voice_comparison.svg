@@ -1,0 +1,105 @@
+<svg width="1000" height="400" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4757;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5DADE2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BCD4;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="400" fill="#f8f9fa" rx="10"/>
+  
+  <!-- Title -->
+  <text x="500" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">
+    従来の執筆 vs 音声執筆の革命的違い
+  </text>
+  
+  <!-- VS Circle -->
+  <circle cx="500" cy="200" r="30" fill="#FFD700" stroke="#FFA500" stroke-width="3"/>
+  <text x="500" y="210" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">VS</text>
+  
+  <!-- 従来の執筆（左側） -->
+  <g>
+    <!-- Header -->
+    <rect x="50" y="60" width="380" height="50" rx="10" fill="url(#redGrad)" filter="url(#shadow)"/>
+    <text x="240" y="90" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      ⌨️ 従来のキーボード入力
+    </text>
+    
+    <!-- Items -->
+    <g>
+      <!-- 入力速度 -->
+      <rect x="70" y="130" width="340" height="40" rx="5" fill="#FFEBEE" stroke="#FF4757" stroke-width="2"/>
+      <text x="90" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">入力速度</text>
+      <text x="90" y="160" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF4757">50-80文字/分</text>
+      <text x="380" y="155" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🐌</text>
+      
+      <!-- 思考の流れ -->
+      <rect x="70" y="180" width="340" height="40" rx="5" fill="#FFEBEE" stroke="#FF4757" stroke-width="2"/>
+      <text x="90" y="195" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">思考の流れ</text>
+      <text x="90" y="210" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF4757">タイピングで中断</text>
+      <text x="380" y="205" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">⚡</text>
+      
+      <!-- 場所の制約 -->
+      <rect x="70" y="230" width="340" height="40" rx="5" fill="#FFEBEE" stroke="#FF4757" stroke-width="2"/>
+      <text x="90" y="245" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">場所の制約</text>
+      <text x="90" y="260" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF4757">PC前に固定</text>
+      <text x="380" y="255" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🔒</text>
+      
+      <!-- 疲労度 -->
+      <rect x="70" y="280" width="340" height="40" rx="5" fill="#FFEBEE" stroke="#FF4757" stroke-width="2"/>
+      <text x="90" y="295" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">疲労度</text>
+      <text x="90" y="310" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF4757">肩こり・眼精疲労</text>
+      <text x="380" y="305" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">😵</text>
+    </g>
+  </g>
+  
+  <!-- 音声執筆（右側） -->
+  <g>
+    <!-- Header -->
+    <rect x="570" y="60" width="380" height="50" rx="10" fill="url(#greenGrad)" filter="url(#shadow)"/>
+    <text x="760" y="90" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      🎙️ 音声入力
+    </text>
+    
+    <!-- Items -->
+    <g>
+      <!-- 入力速度 -->
+      <rect x="590" y="130" width="340" height="40" rx="5" fill="#E8F8F5" stroke="#00BCD4" stroke-width="2"/>
+      <text x="610" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">入力速度</text>
+      <text x="610" y="160" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00BCD4">150-200文字/分</text>
+      <text x="900" y="155" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🚀</text>
+      
+      <!-- 思考の流れ -->
+      <rect x="590" y="180" width="340" height="40" rx="5" fill="#E8F8F5" stroke="#00BCD4" stroke-width="2"/>
+      <text x="610" y="195" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">思考の流れ</text>
+      <text x="610" y="210" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00BCD4">思考速度で連続</text>
+      <text x="900" y="205" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">💭</text>
+      
+      <!-- 場所の制約 -->
+      <rect x="590" y="230" width="340" height="40" rx="5" fill="#E8F8F5" stroke="#00BCD4" stroke-width="2"/>
+      <text x="610" y="245" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">場所の制約</text>
+      <text x="610" y="260" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00BCD4">どこでも執筆可能</text>
+      <text x="900" y="255" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🌍</text>
+      
+      <!-- 疲労度 -->
+      <rect x="590" y="280" width="340" height="40" rx="5" fill="#E8F8F5" stroke="#00BCD4" stroke-width="2"/>
+      <text x="610" y="295" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">疲労度</text>
+      <text x="610" y="310" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00BCD4">最小限</text>
+      <text x="900" y="305" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">😊</text>
+    </g>
+  </g>
+  
+  <!-- Result banner -->
+  <rect x="100" y="340" width="800" height="50" rx="25" fill="#4CAF50" filter="url(#shadow)"/>
+  <text x="500" y="370" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+    🎯 結果：執筆時間3倍短縮 ＋ アイデアの質向上 🎯
+  </text>
+</svg>
