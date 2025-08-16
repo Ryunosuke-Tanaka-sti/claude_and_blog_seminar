@@ -175,6 +175,56 @@
             height: 24px;
             opacity: 0.7;
         }
+
+        .qr-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .qr-section h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .qr-section p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-container {
+            display: inline-block;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+        }
+
+        .qr-container img {
+            display: block;
+            max-width: 200px;
+            height: auto;
+        }
+
+        .qr-url {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #667eea;
+            word-break: break-all;
+        }
+
+        .qr-url a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .qr-url a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -243,6 +293,19 @@
                 </div>
                 <span class="cta-button">スライドを見る</span>
             </a>
+        </div>
+
+        <div class="qr-section">
+            <h2>📱 スマートフォンでアクセス</h2>
+            <p>QRコードを読み取って、スライドや資料にアクセスできます</p>
+            <div class="qr-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" alt="QR Code">
+            </div>
+            <div class="qr-url">
+                <a href="https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" target="_blank">
+                    https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/
+                </a>
+            </div>
         </div>
 
         <div class="footer">
