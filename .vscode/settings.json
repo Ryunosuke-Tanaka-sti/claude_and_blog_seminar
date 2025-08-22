@@ -22,5 +22,5 @@
         "./theme/canyon-custom.css",
         "./theme/github-dark.css"
     ],
-    "markdown.marp.html": "all"
+    "markdown.marp.html": "all",
 }

@@ -18,10 +18,12 @@
     "doc": "docs"
   },
   "scripts": {
+    "build": "npm run build:all",
+    "build:all": "npm run build:claude && npm run build:notion && npm run build:blog-reason && npm run build:voice",
     "build:claude": "marp seminar/claude_seminar_slides.md --html --theme ./theme/github-dark.css --output ./docs/claude_seminar_slides.html",
-    "build:one": "marp seminar/claude_seminar_slides.md --theme ./theme/github-dark.css --output ./docs/claude_seminar_slides.pdf",
     "build:notion": "marp seminar/notion_and_claude_blog_write.md --html --theme ./theme/canyon-custom.css --output ./docs/notion_and_claude_blog_write.html",
     "build:blog-reason": "marp seminar/blog_reason_lt_slides.md --html --theme ./theme/github-dark.css --output ./docs/blog_reason_lt_slides.html",
+    "build:voice": "marp seminar/voice_writing_seminar.md --html --theme ./theme/github-dark.css --output ./docs/voice_writing_seminar.html",
     "scraper": "tsx src/scraper.ts",
     "scraper:build": "tsc",
     "scraper:run": "node dist/scraper.js"

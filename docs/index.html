@@ -5,332 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude AI活用技術セミナー - 登壇資料ハブ</title>
     <meta name="description" content="Claude AIを活用した技術ブログ執筆とワークフロー革新に関する登壇資料をまとめたハブページです。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Custom gradient backgrounds that can't be done with Tailwind utilities */
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-
+        .gradient-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        /* Better font rendering */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: "palt" 1;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .presentations {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .presentation-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .presentation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .presentation-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-            line-height: 1.3;
-        }
-
-        .presentation-card .meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .presentation-card .description {
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .presentation-card .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tag {
-            background: #e2e8f0;
-            color: #4a5568;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateX(2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .cta-button::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover::after {
-            transform: translateX(3px);
-        }
-
-        .footer {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .footer p {
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .presentations {
-                grid-template-columns: 1fr;
-            }
-
-            .presentation-card {
-                padding: 1.5rem;
-            }
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-            opacity: 0.7;
-        }
-
-        .qr-section {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .qr-section h2 {
-            color: #2d3748;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .qr-section p {
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-        }
-
-        .qr-container {
-            display: inline-block;
-            padding: 1rem;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-        }
-
-        .qr-container img {
-            display: block;
-            max-width: 200px;
-            height: auto;
-        }
-
-        .qr-url {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #667eea;
-            word-break: break-all;
-        }
-
-        .qr-url a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .qr-url a:hover {
-            text-decoration: underline;
+        /* Prevent text spacing issues */
+        h1, h2, h3, p {
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Claude AI活用技術セミナー</h1>
-            <p>登壇資料ハブページ - Claude AIを活用した技術ブログ執筆とワークフロー革新</p>
+<body class="min-h-screen gradient-bg font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12 text-white">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 drop-shadow-lg">
+                Claude AI活用技術セミナー
+            </h1>
+            <p class="text-lg sm:text-xl opacity-95 max-w-2xl mx-auto leading-relaxed">
+                登壇資料ハブページ - Claude AIを活用した技術ブログ執筆とワークフロー革新
+            </p>
         </div>
 
-        <div class="presentations">
-            <a href="claude_seminar_slides.html" class="presentation-card">
-                <h2>今日から使える Claude 活用で技術ブログ執筆を 3 倍速に</h2>
-                <div class="meta">
-                    <span>🎯 基本編</span>
-                    <span>⏱️ 45分</span>
-                    <span>📊 実演付き</span>
+        <!-- Presentation Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+            <!-- Card 1: Claude基礎セミナー -->
+            <a href="claude_seminar_slides.html" class="group block bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+                <div class="flex flex-col h-full min-h-[380px]">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
+                        今日から使えるClaude活用で技術ブログ執筆を3倍速に
+                    </h2>
+                    
+                    <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
+                        <span class="flex items-center">🎯 基本編</span>
+                        <span class="flex items-center">⏱️ 45分</span>
+                        <span class="flex items-center">📊 実演付き</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
+                        Claude AIを活用した技術ブログ執筆の基本的なワークフローを学べる入門セミナーです。タイトル生成、図表作成の自動化、AI品質チェックなど、今日から使える実践的なテクニックを実演を交えて紹介します。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Claude基礎</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">ブログ執筆</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">図表作成</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">品質チェック</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">プロンプト制御</span>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
+                            スライドを見る
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="description">
-                    Claude AIを活用した技術ブログ執筆の基本的なワークフローを学べる入門セミナーです。タイトル生成、図表作成の自動化、AI品質チェックなど、今日から使える実践的なテクニックを実演を交えて紹介します。
-                </div>
-                <div class="tags">
-                    <span class="tag">Claude基礎</span>
-                    <span class="tag">ブログ執筆</span>
-                    <span class="tag">図表作成</span>
-                    <span class="tag">品質チェック</span>
-                    <span class="tag">プロンプト制御</span>
-                </div>
-                <span class="cta-button">スライドを見る</span>
             </a>
 
-            <a href="notion_and_claude_blog_write.html" class="presentation-card">
-                <h2>Notion MCP × 音声認識 × Claude で実現する次世代ブログ執筆環境</h2>
-                <div class="meta">
-                    <span>🚀 応用編</span>
-                    <span>⏱️ 45分</span>
-                    <span class="tag">ハンズオン</span>
+            <!-- Card 2: Notion MCP セミナー -->
+            <a href="notion_and_claude_blog_write.html" class="group block bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+                <div class="flex flex-col h-full min-h-[380px]">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
+                        Notion MCP×音声認識×Claudeで実現する次世代ブログ執筆環境
+                    </h2>
+                    
+                    <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
+                        <span class="flex items-center">🚀 応用編</span>
+                        <span class="flex items-center">⏱️ 45分</span>
+                        <span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs font-medium">ハンズオン</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
+                        Notion MCPと音声認識を組み合わせた革新的なブログ執筆環境の構築方法を解説します。思考速度での執筆を実現し、Claudeによる高度な文体補正、SEO最適化まで包括的にカバーした上級者向けセミナーです。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Notion MCP</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">音声認識</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">文体補正</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">SEO最適化</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">統合環境</span>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
+                            スライドを見る
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="description">
-                    Notion MCPと音声認識を組み合わせた革新的なブログ執筆環境の構築方法を解説します。思考速度での執筆を実現し、Claude による高度な文体補正、SEO最適化まで包括的にカバーした上級者向けセミナーです。
-                </div>
-                <div class="tags">
-                    <span class="tag">Notion MCP</span>
-                    <span class="tag">音声認識</span>
-                    <span class="tag">文体補正</span>
-                    <span class="tag">SEO最適化</span>
-                    <span class="tag">統合環境</span>
-                </div>
-                <span class="cta-button">スライドを見る</span>
             </a>
 
-            <a href="blog_reason_lt_slides.html" class="presentation-card">
-                <h2>なぜ僕はブログを書くのか</h2>
-                <div class="meta">
-                    <span>💭 LT</span>
-                    <span>⏱️ 5分</span>
-                    <span>📝 体験談</span>
+            <!-- Card 3: LT -->
+            <a href="blog_reason_lt_slides.html" class="group block bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+                <div class="flex flex-col h-full min-h-[380px]">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
+                        なぜ僕はブログを書くのか
+                    </h2>
+                    
+                    <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
+                        <span class="flex items-center">💭 LT</span>
+                        <span class="flex items-center">⏱️ 5分</span>
+                        <span class="flex items-center">📝 体験談</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
+                        エンジニアとブログの距離感について語るライトニングトーク。「極力やらなくていいことはやりたくない」エンジニアがなぜブログを書き続けるのか、ノー校閲の環境で生まれる本音と実践的なメリットを紹介します。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">モチベーション</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">情報発信</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">社内文化</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">実体験</span>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
+                            スライドを見る
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="description">
-                    エンジニアとブログの距離感について語るライトニングトーク。「極力やらなくていいことはやりたくない」エンジニアがなぜブログを書き続けるのか、ノー校閲の環境で生まれる本音と実践的なメリットを紹介します。
-                </div>
-                <div class="tags">
-                    <span class="tag">モチベーション</span>
-                    <span class="tag">情報発信</span>
-                    <span class="tag">社内文化</span>
-                    <span class="tag">実体験</span>
-                </div>
-                <span class="cta-button">スライドを見る</span>
             </a>
 
-            <a href="voice_writing_seminar.html" class="presentation-card">
-                <h2>音声認識×AI文体補正で実現する技術ブログ執筆の革新</h2>
-                <div class="meta">
-                    <span>🎙️ 実践編</span>
-                    <span>⏱️ 45分</span>
-                    <span>🚀 革新的手法</span>
+            <!-- Card 4: 音声認識セミナー -->
+            <a href="voice_writing_seminar.html" class="group block bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+                <div class="flex flex-col h-full min-h-[380px]">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
+                        音声認識×AI文体補正で実現する技術ブログ執筆の革新
+                    </h2>
+                    
+                    <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
+                        <span class="flex items-center">🎙️ 実践編</span>
+                        <span class="flex items-center">⏱️ 45分</span>
+                        <span class="flex items-center">🚀 革新的手法</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
+                        音声認識とAI文体補正を組み合わせた革新的な技術ブログ執筆手法を実演形式で解説。従来12時間かかっていた執筆作業を1時間に短縮する具体的なワークフローと、AI第一読者システムによる品質保証まで包括的にカバーします。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">音声認識</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">AI文体補正</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">執筆効率化</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">AI評価</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">実演付き</span>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
+                            スライドを見る
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="description">
-                    音声認識とAI文体補正を組み合わせた革新的な技術ブログ執筆手法を実演形式で解説。従来12時間かかっていた執筆作業を1時間に短縮する具体的なワークフローと、AI第一読者システムによる品質保証まで包括的にカバーします。
-                </div>
-                <div class="tags">
-                    <span class="tag">音声認識</span>
-                    <span class="tag">AI文体補正</span>
-                    <span class="tag">執筆効率化</span>
-                    <span class="tag">AI評価</span>
-                    <span class="tag">実演付き</span>
-                </div>
-                <span class="cta-button">スライドを見る</span>
             </a>
         </div>
 
-        <div class="qr-section">
-            <h2>📱 スマートフォンでアクセス</h2>
-            <p>QRコードを読み取って、スライドや資料にアクセスできます</p>
-            <div class="qr-container">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" alt="QR Code">
+        <!-- QR Code Section -->
+        <div class="bg-white rounded-2xl p-8 mb-8 shadow-xl text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📱 スマートフォンでアクセス</h2>
+            <p class="text-gray-600 mb-6">QRコードを読み取って、スライドや資料にアクセスできます</p>
+            
+            <div class="inline-block p-4 bg-white border-2 border-gray-200 rounded-xl">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" 
+                     alt="QR Code" 
+                     class="block w-48 h-48">
             </div>
-            <div class="qr-url">
-                <a href="https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" target="_blank">
+            
+            <div class="mt-4">
+                <a href="https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" 
+                   target="_blank"
+                   class="text-purple-600 hover:text-purple-700 hover:underline text-sm break-all">
                     https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/
                 </a>
             </div>
         </div>
 
-        <div class="footer">
-            <p>これらの資料は、Claude AIを活用した効率的な技術ブログ執筆のノウハウを体系化したものです。</p>
-            <p>実践的なプロンプトテンプレートや設定方法も含まれているため、セミナー後すぐに活用いただけます。</p>
+        <!-- Footer -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 text-white text-center">
+            <p class="mb-3 opacity-90 leading-relaxed">
+                これらの資料は、Claude AIを活用した効率的な技術ブログ執筆のノウハウを体系化したものです。
+            </p>
+            <p class="opacity-90 leading-relaxed">
+                実践的なプロンプトテンプレートや設定方法も含まれているため、セミナー後すぐに活用いただけます。
+            </p>
         </div>
     </div>
 </body>
