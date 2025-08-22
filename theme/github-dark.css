@@ -189,9 +189,18 @@ section.subTitle {
   padding: 0 !important;
 }
 
-section.title > h1,
-section.subTitle > h1 {
+section.title > h1 {
   font-size: 62px;
+  color: var(--gh-text-primary);
+  padding: 32px 80px !important;
+  position: relative;
+  height: auto;
+  border-bottom: solid 2px var(--gh-accent-emphasis);
+  font-weight: 700;
+}
+
+section.subTitle > h1 {
+  font-size: 48px;
   color: var(--gh-text-primary);
   padding: 32px 80px !important;
   position: relative;
@@ -541,4 +550,138 @@ strong {
 em {
   color: var(--gh-text-secondary);
   font-style: italic;
+}
+
+/* Image Layout Classes */
+section.imageCenter {
+  /* padding: 60px 40px 40px 40px; */
+  background-color: var(--gh-bg-primary);
+}
+
+section.imageCenter h1 {
+  margin: 0 0 40px 0;
+  color: var(--gh-text-primary);
+  text-align: center;
+  font-size: 1.8em;
+}
+
+section.imageCenter h2 {
+  margin: 0 0 40px 0;
+  color: var(--gh-text-secondary);
+  text-align: center;
+  font-size: 1.2em;
+}
+
+section.imageCenter img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+section.imageFull {
+  padding: 0;
+  background-color: var(--gh-bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.imageFull img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+section.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 40px;
+  background-color: var(--gh-bg-primary);
+  align-content: center;
+}
+
+section.imageGrid h1,
+section.imageGrid h2 {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--gh-text-primary);
+}
+
+section.imageGrid img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+section.imageGallery {
+  padding: 40px;
+  background-color: var(--gh-bg-primary);
+}
+
+section.imageGallery h1,
+section.imageGallery h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--gh-text-primary);
+}
+
+section.imageGallery div {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+section.imageGallery img {
+  max-width: 45%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+section.imageGallery img:hover {
+  transform: scale(1.05);
+}
+
+section.imageSide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 40px;
+  align-items: center;
+  background-color: var(--gh-bg-primary);
+}
+
+section.imageSide > *:first-child {
+  padding-right: 20px;
+}
+
+section.imageSide img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+section.imageSide h1,
+section.imageSide h2 {
+  color: var(--gh-text-primary);
+  margin-bottom: 20px;
+}
+
+section.imageSide p,
+section.imageSide ul,
+section.imageSide ol {
+  color: var(--gh-text-secondary);
+  line-height: 1.8;
 }
