@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.2)"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1280" height="640" fill="transparent" rx="5"/>
+  
+  <!-- Left Section: ワークフロー -->
+  <rect x="80" y="20" width="480" height="580" rx="20" fill="#1a202c" stroke="#00BCD4" stroke-width="4" filter="url(#shadow)"/>
+  <text x="320" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#00BCD4">ワークフロー</text>
+  
+  <!-- Step 1 -->
+  <rect x="120" y="80" width="400" height="80" rx="10" fill="#2d3748" stroke="#00BCD4" stroke-width="2"/>
+  <text x="140" y="105" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#00BCD4" letter-spacing="2px">STEP 1</text>
+  <text x="140" y="130" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#e2e8f0">音声入力</text>
+  <text x="140" y="148" font-family="Arial, sans-serif" font-size="16" fill="#a0aec0">思考をそのまま録音・アイデアダンプ</text>
+  <text x="470" y="125" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#4CAF50">3分</text>
+  
+  <!-- Step 2 -->
+  <rect x="120" y="180" width="400" height="80" rx="10" fill="#2d3748" stroke="#00BCD4" stroke-width="2"/>
+  <text x="140" y="205" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#00BCD4" letter-spacing="2px">STEP 2</text>
+  <text x="140" y="230" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#e2e8f0">アウトライン抽出</text>
+  <text x="140" y="248" font-family="Arial, sans-serif" font-size="16" fill="#a0aec0">Claudeが音声から構造化・章立て</text>
+  <text x="450" y="225" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#4CAF50">30秒</text>
+  
+  <!-- Step 3 -->
+  <rect x="120" y="280" width="400" height="80" rx="10" fill="#2d3748" stroke="#00BCD4" stroke-width="2"/>
+  <text x="140" y="305" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#00BCD4" letter-spacing="2px">STEP 3</text>
+  <text x="140" y="330" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#e2e8f0">音声執筆</text>
+  <text x="140" y="348" font-family="Arial, sans-serif" font-size="16" fill="#a0aec0">構成に沿って章ごとに詳しく話す</text>
+  <text x="470" y="325" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#4CAF50">5分</text>
+  
+  <!-- Step 4 & 5 -->
+  <rect x="120" y="380" width="400" height="80" rx="10" fill="#2d3748" stroke="#00BCD4" stroke-width="2"/>
+  <text x="140" y="405" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#00BCD4" letter-spacing="2px">STEP 4 &amp; 5</text>
+  <text x="140" y="430" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#e2e8f0">AI補正→完成</text>
+  <text x="140" y="448" font-family="Arial, sans-serif" font-size="16" fill="#a0aec0">Notion AI基本補正→Claude文体統一</text>
+  <text x="450" y="425" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#4CAF50">1.5分</text>
+  
+  <!-- Total Time -->
+  <rect x="120" y="480" width="400" height="50" rx="10" fill="#4CAF50" stroke="#4CAF50" stroke-width="2"/>
+  <text x="320" y="515" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">合計: 約9分30秒</text>
+  
+  <!-- Right Section: 結果と効果 -->
+  <rect x="720" y="20" width="480" height="580" rx="20" fill="#1a202c" stroke="#F44336" stroke-width="4" filter="url(#shadow)"/>
+  <text x="960" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#F44336">結果と効果</text>
+  
+  <!-- Time Results -->
+  <rect x="760" y="80" width="400" height="100" rx="10" fill="#2d3748" stroke="#F44336" stroke-width="2"/>
+  <text x="960" y="110" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#F44336">時間効果</text>
+  <text x="960" y="145" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#e2e8f0">約9分30秒</text>
+  <text x="960" y="170" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#a0aec0">従来12時間から95%短縮</text>
+  
+  <!-- Quality Results -->
+  <rect x="760" y="200" width="400" height="130" rx="10" fill="#2d3748" stroke="#4CAF50" stroke-width="2"/>
+  <text x="960" y="230" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#4CAF50">品質効果</text>
+  <text x="780" y="260" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4CAF50">✓ 思考速度での執筆</text>
+  <text x="780" y="285" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4CAF50">✓ 自然な文章表現</text>
+  <text x="780" y="310" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4CAF50">✓ アイデアの深掘り・発展</text>
+  
+  <!-- Productivity Results -->
+  <rect x="760" y="350" width="400" height="130" rx="10" fill="#2d3748" stroke="#2196F3" stroke-width="2"/>
+  <text x="960" y="380" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2196F3">生産性効果</text>
+  <text x="780" y="410" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2196F3">✓ 場所を選ばない執筆</text>
+  <text x="780" y="435" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2196F3">✓ 疲労感の大幅軽減</text>
+  <text x="780" y="460" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2196F3">✓ 継続的な執筆習慣</text>
+  
+  <!-- Innovation Banner -->
+  <rect x="760" y="500" width="400" height="50" rx="10" fill="#FFC107" stroke="#FFC107" stroke-width="2"/>
+  <text x="960" y="535" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a202c">革新的な執筆体験</text>
+</svg>

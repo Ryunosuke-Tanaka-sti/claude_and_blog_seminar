@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beforeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8E53;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="afterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#44A08D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="timeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1280" height="640" fill="transparent"/>
+  
+  <!-- Title -->
+  <text x="640" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#2c3e50">完成した記事の品質</text>
+  
+  <!-- Before Section -->
+  <g>
+    <!-- Before Card -->
+    <rect x="80" y="80" width="480" height="400" rx="15" fill="url(#beforeGrad)" opacity="0.9" filter="url(#glow)"/>
+    <rect x="90" y="90" width="460" height="380" rx="10" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- Before Title -->
+    <circle cx="320" cy="130" r="25" fill="#FF6B6B"/>
+    <text x="320" y="138" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">Before</text>
+    <text x="320" y="165" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#2c3e50">音声入力直後</text>
+    
+    <!-- Before Issues -->
+    <text x="110" y="200" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FF6B6B">⚠️ 問題点</text>
+    
+    <rect x="110" y="210" width="420" height="50" rx="5" fill="#ffebee" stroke="#FF6B6B" stroke-width="1"/>
+    <text x="120" y="232" font-family="Arial, sans-serif" font-size="16" fill="#c62828">❌ 構造が不明確</text>
+    <text x="120" y="248" font-family="Arial, sans-serif" font-size="14" fill="#666">見出し不足、文章の流れが散漫</text>
+    
+    <rect x="110" y="270" width="420" height="50" rx="5" fill="#ffebee" stroke="#FF6B6B" stroke-width="1"/>
+    <text x="120" y="292" font-family="Arial, sans-serif" font-size="16" fill="#c62828">❌ 技術用語の曖昧さ</text>
+    <text x="120" y="308" font-family="Arial, sans-serif" font-size="14" fill="#666">コード例なし、説明が不正確</text>
+    
+    <rect x="110" y="330" width="420" height="50" rx="5" fill="#ffebee" stroke="#FF6B6B" stroke-width="1"/>
+    <text x="120" y="352" font-family="Arial, sans-serif" font-size="16" fill="#c62828">❌ 文体の不統一</text>
+    <text x="120" y="368" font-family="Arial, sans-serif" font-size="14" fill="#666">口語と文語が混在、改行も適当</text>
+    
+    <rect x="110" y="390" width="420" height="50" rx="5" fill="#ffebee" stroke="#FF6B6B" stroke-width="1"/>
+    <text x="120" y="412" font-family="Arial, sans-serif" font-size="16" fill="#c62828">❌ 未完成感</text>
+    <text x="120" y="428" font-family="Arial, sans-serif" font-size="14" fill="#666">そのまま公開は困難、大幅修正必要</text>
+    
+    <!-- Status -->
+    <rect x="110" y="455" width="420" height="30" rx="15" fill="#FF6B6B"/>
+    <text x="320" y="475" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">📝 大幅な手直しが必要</text>
+  </g>
+  
+  <!-- After Section -->
+  <g>
+    <!-- After Card -->
+    <rect x="720" y="80" width="480" height="400" rx="15" fill="url(#afterGrad)" opacity="0.9" filter="url(#glow)"/>
+    <rect x="730" y="90" width="460" height="380" rx="10" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- After Title -->
+    <circle cx="960" cy="130" r="25" fill="#4ECDC4"/>
+    <text x="960" y="138" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">After</text>
+    <text x="960" y="165" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#2c3e50">Claude統一後</text>
+    
+    <!-- After Improvements -->
+    <text x="750" y="200" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4ECDC4">✨ 改善された点</text>
+    
+    <rect x="750" y="210" width="420" height="50" rx="5" fill="#e8f5e8" stroke="#4ECDC4" stroke-width="1"/>
+    <text x="760" y="232" font-family="Arial, sans-serif" font-size="16" fill="#2e7d32">✅ 構造化</text>
+    <text x="760" y="248" font-family="Arial, sans-serif" font-size="14" fill="#666">適切な見出しとマークダウン記法</text>
+    
+    <rect x="750" y="270" width="420" height="50" rx="5" fill="#e8f5e8" stroke="#4ECDC4" stroke-width="1"/>
+    <text x="760" y="292" font-family="Arial, sans-serif" font-size="16" fill="#2e7d32">✅ 技術精度</text>
+    <text x="760" y="308" font-family="Arial, sans-serif" font-size="14" fill="#666">正確なコード例と解説</text>
+    
+    <rect x="750" y="330" width="420" height="50" rx="5" fill="#e8f5e8" stroke="#4ECDC4" stroke-width="1"/>
+    <text x="760" y="352" font-family="Arial, sans-serif" font-size="16" fill="#2e7d32">✅ 読みやすさ</text>
+    <text x="760" y="368" font-family="Arial, sans-serif" font-size="14" fill="#666">適切な改行と段落分け</text>
+    
+    <rect x="750" y="390" width="420" height="50" rx="5" fill="#e8f5e8" stroke="#4ECDC4" stroke-width="1"/>
+    <text x="760" y="412" font-family="Arial, sans-serif" font-size="16" fill="#2e7d32">✅ 完成度</text>
+    <text x="760" y="428" font-family="Arial, sans-serif" font-size="14" fill="#666">そのまま公開できるレベル</text>
+    
+    <!-- Status -->
+    <rect x="750" y="455" width="420" height="30" rx="15" fill="#4ECDC4"/>
+    <text x="960" y="475" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">🎉 即座に公開可能</text>
+  </g>
+  
+  <!-- Arrow -->
+  <g>
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#764ba2" />
+      </marker>
+    </defs>
+    <path d="M 570 280 Q 640 260 710 280" stroke="url(#timeGrad)" stroke-width="6" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="640" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#764ba2">AI変換</text>
+  </g>
+  
+  <!-- Time Comparison Banner -->
+  <rect x="80" y="520" width="1120" height="100" rx="20" fill="url(#timeGrad)" filter="url(#glow)"/>
+  <rect x="90" y="530" width="1100" height="80" rx="15" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Time Stats -->
+  <text x="640" y="555" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#764ba2">⚡ 圧倒的な時間短縮</text>
+  
+  <g>
+    <!-- Traditional Method -->
+    <rect x="120" y="570" width="480" height="35" rx="15" fill="#ff6b6b" opacity="0.2"/>
+    <rect x="120" y="570" width="480" height="35" rx="15" fill="none" stroke="#ff6b6b" stroke-width="2"/>
+    <text x="130" y="592" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#c62828">従来手法：2-3時間（1章800文字）</text>
+    <text x="570" y="592" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#c62828">😰</text>
+  </g>
+  
+  <g>
+    <!-- New Method -->
+    <rect x="680" y="570" width="140" height="35" rx="15" fill="#4ecdc4" opacity="0.2"/>
+    <rect x="680" y="570" width="140" height="35" rx="15" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+    <text x="690" y="592" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2e7d32">音声×AI：6分30秒</text>
+    <text x="800" y="592" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2e7d32">🚀</text>
+  </g>
+  
+  <!-- Percentage -->
+  <circle cx="1050" cy="585" r="35" fill="#764ba2" filter="url(#glow)"/>
+  <text x="1050" y="580" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">95%</text>
+  <text x="1050" y="595" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">短縮</text>
+</svg>

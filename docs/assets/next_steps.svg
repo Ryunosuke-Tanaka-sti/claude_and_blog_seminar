@@ -1,0 +1,125 @@
+<svg width="900" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <!-- グラデーション定義 -->
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1976D2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388E3C;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F57C00;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 影のフィルター -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="3" dy="3" result="offsetblur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.4"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景（透過） -->
+  
+  
+  
+  <!-- レベル1: 基本マスター（1段目） -->
+  <g>
+    <!-- 階段部分 -->
+    <rect x="50" y="280" width="250" height="130" fill="url(#blueGrad)" fill-opacity="0.9" filter="url(#shadow)" rx="8"/>
+    
+    <!-- コンテンツ -->
+    <g transform="translate(175, 305)">
+      <!-- アイコン -->
+      <text x="0" y="0" text-anchor="middle" fill="white" font-size="36">🚀</text>
+      
+      <!-- レベル表示 -->
+      <text x="0" y="25" text-anchor="middle" fill="white" font-size="16" font-weight="bold">レベル1: 基本マスター</text>
+      <text x="0" y="45" text-anchor="middle" fill="#B3D9FF" font-size="12">(今日から1週間)</text>
+      
+      <!-- 内容 -->
+      <text x="0" y="65" text-anchor="middle" fill="white" font-size="10">音声アウトライン生成</text>
+      <text x="0" y="80" text-anchor="middle" fill="white" font-size="10">Notion AI + Claude フロー</text>
+      <text x="0" y="95" text-anchor="middle" fill="white" font-size="10">短い記事（1000文字）</text>
+    </g>
+  </g>
+  
+  <!-- レベル2: 効率化追求（2段目） -->
+  <g>
+    <!-- 階段部分 -->
+    <rect x="300" y="170" width="250" height="130" fill="url(#greenGrad)" fill-opacity="0.9" filter="url(#shadow)" rx="8"/>
+    
+    <!-- コンテンツ -->
+    <g transform="translate(425, 195)">
+      <!-- アイコン -->
+      <text x="0" y="0" text-anchor="middle" fill="white" font-size="36">🚀🚀</text>
+      
+      <!-- レベル表示 -->
+      <text x="0" y="25" text-anchor="middle" fill="white" font-size="16" font-weight="bold">レベル2: 効率化追求</text>
+      <text x="0" y="45" text-anchor="middle" fill="#C8E6C9" font-size="12">(1-3ヶ月)</text>
+      
+      <!-- 内容 -->
+      <text x="0" y="65" text-anchor="middle" fill="white" font-size="10">文体抽出・プロンプト最適化</text>
+      <text x="0" y="80" text-anchor="middle" fill="white" font-size="10">複数ツールの連携自動化</text>
+      <text x="0" y="95" text-anchor="middle" fill="white" font-size="10">長文記事（3000文字以上）</text>
+    </g>
+  </g>
+  
+  <!-- レベル3: 高度な活用（3段目） -->
+  <g>
+    <!-- 階段部分 -->
+    <rect x="550" y="60" width="250" height="130" fill="url(#yellowGrad)" fill-opacity="0.9" filter="url(#shadow)" rx="8"/>
+    
+    <!-- コンテンツ -->
+    <g transform="translate(675, 85)">
+      <!-- アイコン -->
+      <text x="0" y="0" text-anchor="middle" fill="white" font-size="36">🚀🚀🚀</text>
+      
+      <!-- レベル表示 -->
+      <text x="0" y="25" text-anchor="middle" fill="white" font-size="16" font-weight="bold">レベル3: 高度な活用</text>
+      <text x="0" y="45" text-anchor="middle" fill="#FFF3C4" font-size="12">(3ヶ月以降)</text>
+      
+      <!-- 内容 -->
+      <text x="0" y="65" text-anchor="middle" fill="white" font-size="10">音声＋動画コンテンツ制作</text>
+      <text x="0" y="80" text-anchor="middle" fill="white" font-size="10">多言語展開</text>
+      <text x="0" y="95" text-anchor="middle" fill="white" font-size="10">チーム全体でのワークフロー共有</text>
+    </g>
+  </g>
+  
+  <!-- 登っている人のアイコン -->
+  <g transform="translate(175, 250)">
+    <text font-size="30">🏃</text>
+  </g>
+  
+  <!-- 矢印パス -->
+  <path d="M 200 260 L 420 150 L 670 50" 
+        stroke="#00BCD4" stroke-width="3" fill="none" 
+        stroke-dasharray="8,5" opacity="0.6"
+        marker-end="url(#arrowhead)"/>
+  
+  <!-- 矢印マーカー定義 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00BCD4" />
+    </marker>
+  </defs>
+  
+  <!-- 下部メッセージ -->
+  <text x="450" y="460" text-anchor="middle" fill="#7d8590" font-size="16" font-style="italic">
+    一歩ずつ確実にステップアップして、音声×AI執筆のエキスパートへ
+  </text>
+  
+  <!-- サイドノート -->
+  <g transform="translate(50, 440)">
+    <text fill="#656d76" font-size="12">💡 各レベルをマスターしてから次へ進むことが成功の鍵</text>
+  </g>
+</svg>
