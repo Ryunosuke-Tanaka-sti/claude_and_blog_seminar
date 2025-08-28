@@ -3,7 +3,6 @@ marp: true
 theme: github-dark
 paginate: true
 size: 16:9
-style: |
 
 ---
 
@@ -915,6 +914,23 @@ Plan：
 </div>
 
 ---
+<style scoped>
+/* twoColumnsクラス内のh2タグのフォントサイズを調整 */
+section.twoColumns h2 {
+  font-size: 1.4em !important;
+}
+
+/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
+section.twoColumns h3 {
+  font-size: 1.1em !important;
+}
+
+/* twoColumnsクラス内の全体フォントサイズを調整 */
+section.twoColumns {
+  font-size: 1.8em;
+}
+
+</style>
 
 # よくある失敗パターンと対策
 
@@ -999,7 +1015,23 @@ Plan：
 </div>
 
 ---
+<style scoped>
+/* twoColumnsクラス内のh2タグのフォントサイズを調整 */
+section.twoColumns h2 {
+  font-size: 1.4em !important;
+}
 
+/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
+section.twoColumns h3 {
+  font-size: 1.1em !important;
+}
+
+/* twoColumnsクラス内の全体フォントサイズを調整 */
+section.twoColumns {
+  font-size: 1.8em;
+}
+
+</style>
 # 継続的な改善のコツ
 
 <!--_class: twoColumns-->
@@ -1044,6 +1076,23 @@ Plan：
 # Part 7: Q&A・次のステップ
 
 ---
+<style scoped>
+/* twoColumnsクラス内のh2タグのフォントサイズを調整 */
+section.twoColumns h2 {
+  font-size: 1.4em !important;
+}
+
+/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
+section.twoColumns h3 {
+  font-size: 1.1em !important;
+}
+
+/* twoColumnsクラス内の全体フォントサイズを調整 */
+section.twoColumns {
+  font-size: 1.8em;
+}
+
+</style>
 
 # よくある質問
 
