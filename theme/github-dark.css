@@ -813,18 +813,3 @@ section::before {
   font-size: 1.2em;
   margin-right: 8px;
 }
-
-/* twoColumnsクラス内のh2タグのフォントサイズを調整 */
-section.twoColumns h2 {
-  font-size: 1.4em;
-}
-
-/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
-section.twoColumns h3 {
-  font-size: 1.1em ;
-}
-
-/* twoColumnsクラス内の全体フォントサイズを調整 */
-section.twoColumns {
-  font-size: 1.8em;
-}
