@@ -918,18 +918,23 @@ Plan：
   
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
 section.twoColumns h2 {
-  font-size: 1.3em !important;
+  font-size: 24px !important;
 }
 
 
 section.twoColumns .box {
-  padding: 10px 10px;
+  padding: 30px 10px;
   margin: 10px 0px;
+}
+
+section.twoColumns .box>p {
+  padding: 10px 30px;
+  margin: 0px;
 }
 
 /* twoColumnsクラス内のh3タグのフォントサイズを調整 */
 h3 {
-  font-size: 1.1em !important;
+  font-size: 12px !important;
 }
 
 </style>
@@ -1035,17 +1040,12 @@ h3 {
 <style scoped>
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
 h2 {
-  font-size: 1.4em !important;
+  font-size: 36px;
 }
 
 /* twoColumnsクラス内のh3タグのフォントサイズを調整 */
 h3 {
-  font-size: 1.1em !important;
-}
-
-/* twoColumnsクラス内の全体フォントサイズを調整 */
-section {
-  font-size: 1.8em;
+  font-size: 24px;
 }
 
 </style>

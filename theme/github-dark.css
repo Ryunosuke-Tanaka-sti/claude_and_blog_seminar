@@ -816,12 +816,12 @@ section::before {
 
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
 section.twoColumns h2 {
-  font-size: 1.4em !important;
+  font-size: 1.4em;
 }
 
 /* twoColumnsクラス内のh3タグのフォントサイズを調整 */
 section.twoColumns h3 {
-  font-size: 1.1em !important;
+  font-size: 1.1em ;
 }
 
 /* twoColumnsクラス内の全体フォントサイズを調整 */
