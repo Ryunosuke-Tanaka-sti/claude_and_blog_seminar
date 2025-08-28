@@ -914,13 +914,19 @@ Plan：
 </div>
 
 ---
+
+
+# よくある失敗パターンと対策
+
+<!--_class: twoColumns-->
+
+
 <style scoped>
   
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
 section.twoColumns h2 {
   font-size: 24px !important;
 }
-
 
 section.twoColumns .box {
   padding: 30px 10px;
@@ -930,18 +936,12 @@ section.twoColumns .box {
 section.twoColumns .box>p {
   padding: 10px 30px;
   margin: 0px;
+  font-size: 24px;
 }
 
-/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
-h3 {
-  font-size: 12px !important;
-}
 
 </style>
 
-# よくある失敗パターンと対策
-
-<!--_class: twoColumns-->
 
 <div>
 
@@ -1037,18 +1037,21 @@ h3 {
 </div>
 
 ---
+
 <style scoped>
+  
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
-h2 {
-  font-size: 36px;
+section.twoColumns h2 {
+  font-size: 24px;
 }
 
 /* twoColumnsクラス内のh3タグのフォントサイズを調整 */
 h3 {
-  font-size: 24px;
+  font-size: 12px;
 }
 
 </style>
+
 # 継続的な改善のコツ
 
 <!--_class: twoColumns-->
@@ -1096,17 +1099,13 @@ h3 {
 <style scoped>
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
 section.twoColumns h2 {
-  font-size: 1.4em !important;
+  font-size: 36px !important;
 }
 
-/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
-section.twoColumns h3 {
-  font-size: 1.1em !important;
-}
 
 /* twoColumnsクラス内の全体フォントサイズを調整 */
 section.twoColumns {
-  font-size: 1.8em;
+  font-size: 24px;
 }
 
 </style>
