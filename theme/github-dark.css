@@ -11,33 +11,34 @@
 
 /* GitHub Dark Theme Color Variables */
 :root {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-  
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Noto Sans", Helvetica, Arial, sans-serif;
+
   /* GitHub Dark Theme Colors */
   --gh-bg-primary: #0d1117;
   --gh-bg-secondary: #161b22;
   --gh-bg-tertiary: #21262d;
   --gh-bg-canvas-inset: #010409;
-  
+
   --gh-text-primary: #f0f6fc;
   --gh-text-secondary: #7d8590;
   --gh-text-muted: #656d76;
-  
+
   --gh-border-default: #30363d;
   --gh-border-muted: #21262d;
-  
+
   --gh-accent-emphasis: #1f6feb;
   --gh-accent-muted: rgba(31, 111, 235, 0.4);
   --gh-accent-subtle: rgba(31, 111, 235, 0.15);
-  
+
   --gh-success-emphasis: #238636;
   --gh-success-muted: rgba(35, 134, 54, 0.4);
   --gh-success-subtle: rgba(35, 134, 54, 0.15);
-  
+
   --gh-danger-emphasis: #da3633;
   --gh-danger-muted: rgba(218, 54, 51, 0.4);
   --gh-danger-subtle: rgba(218, 54, 51, 0.15);
-  
+
   --gh-warning-emphasis: #9e6a03;
   --gh-warning-muted: rgba(158, 106, 3, 0.4);
   --gh-warning-subtle: rgba(158, 106, 3, 0.15);
@@ -421,7 +422,11 @@ section.subTitle > h1:nth-of-type(1)::after {
 }
 
 .highlight {
-  background: linear-gradient(135deg, var(--gh-accent-emphasis) 0%, var(--gh-success-emphasis) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gh-accent-emphasis) 0%,
+    var(--gh-success-emphasis) 100%
+  );
   color: white;
   padding: 20px;
   border-radius: 6px;
@@ -451,7 +456,8 @@ code {
   color: var(--gh-text-primary);
   padding: 2px 6px;
   border-radius: 3px;
-  font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono",
+    Menlo, monospace;
   font-size: 0.85em;
   border: 1px solid var(--gh-border-default);
 }
@@ -481,7 +487,8 @@ img[alt~="center"] {
 }
 
 pre {
-  font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono",
+    Menlo, monospace;
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 1.4rem;
@@ -510,7 +517,8 @@ table {
   overflow: hidden;
 }
 
-th, td {
+th,
+td {
   border: 1px solid var(--gh-border-default);
   padding: 12px;
   text-align: left;
@@ -684,4 +692,139 @@ section.imageSide ul,
 section.imageSide ol {
   color: var(--gh-text-secondary);
   line-height: 1.8;
+}
+section {
+  font-family: "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "游ゴシック",
+    "Noto Sans JP", sans-serif;
+}
+.highlight {
+  background: linear-gradient(135deg, #00bcd4 0%, #0277bd 100%);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+.demo {
+  background: #2d3748;
+  border-left: 4px solid #00bcd4;
+  border-radius: 4px;
+  padding: 20px;
+  padding-bottom: 10px;
+  margin: 0;
+}
+.demo pre {
+  background: #1a202c;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 10px 0;
+  overflow-x: auto;
+  border: 2px solid #4a5568;
+}
+.demo code {
+  background: #1a202c;
+  color: #a0e7e5;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.content-section {
+  padding: 15px 0;
+  margin: 0;
+}
+.important {
+  border-left: 4px solid #00bcd4;
+  background-color: rgba(0, 188, 212, 0.15);
+  padding: 8px 20px;
+  padding-bottom: 2px;
+  margin-bottom: 2px;
+  border-radius: 0 4px 4px 0;
+}
+.box {
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid;
+}
+.box.blue {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-left-color: #2196f3;
+}
+.box.green {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left-color: #4caf50;
+}
+.box.yellow {
+  background-color: rgba(255, 193, 7, 0.1);
+  border-left-color: #ffc107;
+}
+.box.red {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left-color: #f44336;
+}
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  background-color: #2d3748 !important;
+  color: #00bcd4 !important;
+  font-weight: bold;
+  padding: 12px;
+  border: 1px solid #4a5568;
+  text-align: center;
+}
+td {
+  background-color: #1a202c !important;
+  color: #e2e8f0 !important;
+  padding: 12px;
+  border: 1px solid #4a5568;
+  text-align: center;
+}
+/* ページ番号（右上の数字）を非表示 */
+section::before {
+  display: none;
+}
+
+/* twoColumns後の横断結論表示用 */
+.cross-conclusion {
+  background: linear-gradient(135deg, #00bcd4 0%, #0277bd 100%);
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 20px auto;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid #00bcd4;
+  width: 90%;
+  max-width: 800px;
+  display: block;
+  clear: both;
+}
+
+.cross-conclusion::before {
+  content: "💡 ";
+  font-size: 1.2em;
+  margin-right: 8px;
+}
+
+/* twoColumnsクラス内のh2タグのフォントサイズを調整 */
+section.twoColumns h2 {
+  font-size: 1.4em !important;
+}
+
+/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
+section.twoColumns h3 {
+  font-size: 1.1em !important;
+}
+
+/* twoColumnsクラス内の全体フォントサイズを調整 */
+section.twoColumns {
+  font-size: 1.8em;
 }

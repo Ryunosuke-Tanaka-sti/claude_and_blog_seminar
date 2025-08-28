@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" style="background: #1e1e1e;">
+  <defs>
+    <linearGradient id="cardGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="cardGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ecdc4;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#4ecdc4;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="cardGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#45b7d1;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#45b7d1;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="cardGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7b731;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#f7b731;stop-opacity:0.05" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    よくある判定ミスと対処法
+  </text>
+
+  <!-- Card 1: レポートに納得がいかない -->
+  <g transform="translate(50, 70)">
+    <rect x="0" y="0" width="520" height="260" rx="15" fill="url(#cardGradient1)" stroke="#ff6b6b" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Icon -->
+    <circle cx="40" cy="40" r="20" fill="#ff6b6b" opacity="0.2"/>
+    <text x="40" y="48" font-family="Arial" font-size="24" fill="#ff6b6b" text-anchor="middle">1</text>
+    
+    <!-- Title -->
+    <text x="80" y="45" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ff6b6b">
+      レポートに納得がいかない場合
+    </text>
+    
+    <!-- Problem section -->
+    <text x="30" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ff9999">
+      原因
+    </text>
+    <text x="30" y="130" font-family="Arial, sans-serif" font-size="15" fill="#e0e0e0">
+      ブログ内容が不足して主張がAIに
+    </text>
+    <text x="30" y="155" font-family="Arial, sans-serif" font-size="15" fill="#e0e0e0">
+      伝わっていない
+    </text>
+    
+    <!-- Solution section -->
+    <rect x="30" y="175" width="460" height="60" rx="8" fill="#ff6b6b" fill-opacity="0.1" stroke="#ff6b6b" stroke-width="1"/>
+    <text x="45" y="200" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffaaaa">
+      対処法
+    </text>
+    <text x="45" y="220" font-family="Arial, sans-serif" font-size="15" fill="#ffffff">
+      ブログ側を加筆して情報を補完
+    </text>
+  </g>
+
+  <!-- Card 2: リンクがない判定 -->
+  <g transform="translate(630, 70)">
+    <rect x="0" y="0" width="520" height="260" rx="15" fill="url(#cardGradient2)" stroke="#4ecdc4" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Icon -->
+    <circle cx="40" cy="40" r="20" fill="#4ecdc4" opacity="0.2"/>
+    <text x="40" y="48" font-family="Arial" font-size="24" fill="#4ecdc4" text-anchor="middle">2</text>
+    
+    <!-- Title -->
+    <text x="80" y="45" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#4ecdc4">
+      「リンクがない」判定
+    </text>
+    
+    <!-- Solution section -->
+    <rect x="30" y="85" width="460" height="150" rx="8" fill="#4ecdc4" fill-opacity="0.1" stroke="#4ecdc4" stroke-width="1"/>
+    <text x="45" y="110" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#7eddd7">
+      対処法
+    </text>
+    <text x="45" y="140" font-family="Arial, sans-serif" font-size="15" fill="#ffffff">
+      AIと対話して確認を促す
+    </text>
+    <text x="45" y="165" font-family="Arial, sans-serif" font-size="15" fill="#e0e0e0">
+      リンクは含まれているので再確認を依頼
+    </text>
+    <text x="45" y="190" font-family="Arial, sans-serif" font-size="14" fill="#7eddd7" font-weight="bold">
+      最終手段：
+    </text>
+    <text x="130" y="190" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">
+      該当文章を抜き出して直接送信
+    </text>
+  </g>
+
+  <!-- Card 3: 情報が古い指摘 -->
+  <g transform="translate(50, 360)">
+    <rect x="0" y="0" width="520" height="260" rx="15" fill="url(#cardGradient3)" stroke="#45b7d1" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Icon -->
+    <circle cx="40" cy="40" r="20" fill="#45b7d1" opacity="0.2"/>
+    <text x="40" y="48" font-family="Arial" font-size="24" fill="#45b7d1" text-anchor="middle">3</text>
+    
+    <!-- Title -->
+    <text x="80" y="45" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#45b7d1">
+      「情報が古い」指摘
+    </text>
+    
+    <!-- Problem section -->
+    <text x="30" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#7accdf">
+      原因
+    </text>
+    <text x="30" y="130" font-family="Arial, sans-serif" font-size="15" fill="#e0e0e0">
+      最新リソースを参照していない
+    </text>
+    <text x="30" y="155" font-family="Arial, sans-serif" font-size="15" fill="#e0e0e0">
+      可能性がある
+    </text>
+    
+    <!-- Solution section -->
+    <rect x="30" y="175" width="460" height="60" rx="8" fill="#45b7d1" fill-opacity="0.1" stroke="#45b7d1" stroke-width="1"/>
+    <text x="45" y="200" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#7accdf">
+      対処法
+    </text>
+    <text x="45" y="220" font-family="Arial, sans-serif" font-size="15" fill="#ffffff">
+      最新リソースを別のAIか自力で探して提供
+    </text>
+  </g>
+
+  <!-- Card 4: ハルシネーションリスク -->
+  <g transform="translate(630, 360)">
+    <rect x="0" y="0" width="520" height="260" rx="15" fill="url(#cardGradient4)" stroke="#f7b731" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Icon -->
+    <circle cx="40" cy="40" r="20" fill="#f7b731" opacity="0.2"/>
+    <text x="40" y="48" font-family="Arial" font-size="24" fill="#f7b731" text-anchor="middle">4</text>
+    
+    <!-- Title -->
+    <text x="80" y="45" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f7b731">
+      ハルシネーションリスク
+    </text>
+    
+    <!-- Solution section -->
+    <rect x="30" y="85" width="460" height="150" rx="8" fill="#f7b731" fill-opacity="0.1" stroke="#f7b731" stroke-width="1"/>
+    <text x="45" y="110" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f9ca68">
+      対処法
+    </text>
+    <text x="45" y="140" font-family="Arial, sans-serif" font-size="15" fill="#ffffff">
+      AIと対話して事実確認を行う
+    </text>
+    <text x="45" y="165" font-family="Arial, sans-serif" font-size="15" fill="#e0e0e0">
+      人間もAIも誤りの可能性があることを認識
+    </text>
+    
+    <!-- Important note -->
+    <rect x="45" y="185" width="430" height="40" rx="8" fill="#ff5555" fill-opacity="0.2" stroke="#ff5555" stroke-width="2"/>
+    <text x="260" y="210" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ff8888" text-anchor="middle">
+      ⚠️ 最終確認は必ず人間が実施
+    </text>
+  </g>
+
+</svg>
