@@ -915,19 +915,21 @@ Plan：
 
 ---
 <style scoped>
+  
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
 section.twoColumns h2 {
-  font-size: 1.4em !important;
+  font-size: 1.3em !important;
+}
+
+
+section.twoColumns .box {
+  padding: 10px 10px;
+  margin: 10px 0px;
 }
 
 /* twoColumnsクラス内のh3タグのフォントサイズを調整 */
-section.twoColumns h3 {
+h3 {
   font-size: 1.1em !important;
-}
-
-/* twoColumnsクラス内の全体フォントサイズを調整 */
-section.twoColumns {
-  font-size: 1.8em;
 }
 
 </style>
@@ -938,10 +940,16 @@ section.twoColumns {
 
 <div>
 
+<div class="box">
+
 ## ❌ 失敗パターン1：音声で完璧を求める
 
 **症状**：言い間違いのたびに止めて修正
 **対策**：「えー」「あの」も含めて続ける
+
+</div>
+
+<div class="box">
 
 ## ❌ 失敗パターン2：AIに丸投げ
 
@@ -950,18 +958,27 @@ section.twoColumns {
 
 </div>
 
+</div>
+
 <div>
 
-## ❌ 失敗パターン3：ツールの過度な使い分け
+<div class="box">
+
+## ❌ 失敗パターン3：ツールの選択
 
 **症状**：毎回全てのツールを使う
 **対策**：記事の性質に応じて取捨選択
+
+</div>
+
+<div class="box">
 
 ## ❌ 失敗パターン4：環境への配慮不足
 
 **症状**：周囲を気にせず大声で話す
 **対策**：場所に応じた音量・時間帯の調整
 
+</div>
 </div>
 
 ---
@@ -1017,17 +1034,17 @@ section.twoColumns {
 ---
 <style scoped>
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
-section.twoColumns h2 {
+h2 {
   font-size: 1.4em !important;
 }
 
 /* twoColumnsクラス内のh3タグのフォントサイズを調整 */
-section.twoColumns h3 {
+h3 {
   font-size: 1.1em !important;
 }
 
 /* twoColumnsクラス内の全体フォントサイズを調整 */
-section.twoColumns {
+section {
   font-size: 1.8em;
 }
 
