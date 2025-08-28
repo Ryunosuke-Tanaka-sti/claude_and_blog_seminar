@@ -1041,13 +1041,13 @@ section.twoColumns .box>p {
 <style scoped>
   
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
-section.twoColumns h2 {
-  font-size: 24px;
+h2 {
+  font-size: 36px;
 }
 
-/* twoColumnsクラス内のh3タグのフォントサイズを調整 */
-h3 {
-  font-size: 12px;
+/* twoColumnsクラス内の全体フォントサイズを調整 */
+div {
+  font-size: 24px;
 }
 
 </style>
