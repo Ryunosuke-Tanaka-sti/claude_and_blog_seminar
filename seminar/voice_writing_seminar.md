@@ -1098,13 +1098,13 @@ h3 {
 ---
 <style scoped>
 /* twoColumnsクラス内のh2タグのフォントサイズを調整 */
-section.twoColumns h2 {
-  font-size: 36px !important;
+h2 {
+  font-size: 36px;
 }
 
 
 /* twoColumnsクラス内の全体フォントサイズを調整 */
-section.twoColumns {
+div {
   font-size: 24px;
 }
 
