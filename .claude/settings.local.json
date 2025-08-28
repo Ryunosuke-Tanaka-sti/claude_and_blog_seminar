@@ -14,7 +14,11 @@
       "Bash(URL=https://tech-lab.sios.jp/archives/48397 npm run scraper)",
       "Bash(URL=https://tech-lab.sios.jp/archives/48479 npm run scraper)",
       "Bash(URL=https://tech-lab.sios.jp/archives/48538 npm run scraper)",
-      "Bash(URL=https://tech-lab.sios.jp/archives/48406 npm run scraper)"
+      "Bash(URL=https://tech-lab.sios.jp/archives/48406 npm run scraper)",
+      "Bash(npm run build:voice:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }
