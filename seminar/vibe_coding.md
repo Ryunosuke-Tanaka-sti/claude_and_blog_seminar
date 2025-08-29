@@ -277,25 +277,14 @@ docs/bugs/YYYY-MM-DD-{feature}-{issue}.md
 
 ---
 
+
 <!-- _class: subTitle-->
 
-# Part 6: Claude Code最適化
+# まとめ
 
 ---
 
-### 計画フェーズ
-- コード生成抑制
-- 設計レビュー支援
-- 技術選定アドバイス
-
-### 実装フェーズ  
-- 仕様ベースコード生成
-- フレームワークパターン適用
-- 自動テスト生成
-
----
-
-# Part 7: 検証中の内容
+# 検証中の内容
 
 
 <div class="box blue">
@@ -313,16 +302,23 @@ docs/bugs/YYYY-MM-DD-{feature}-{issue}.md
 
 ---
 
-<!-- _class: subTitle-->
+# 今後の検証
 
-# Part 8: まとめ
+<div class="box blue">
 
----
+**セキュリティ統合**
+- GitHub ActionsでのFossID/Scan OSS活用
+- 自動脆弱性スキャン
+- ライセンスコンプライアンスチェック
 
-### キーポイント
-- 階層的CLAUDE.mdファイル
-- フェーズ別責任範囲
-- ドキュメントベースコミュニケーション
+</div>
 
-### 今後の展望
-自動化推進・メトリクス収集・フレームワーク化
+<div class="box green">
+
+**開発効率化**
+- 自動化推進
+- メトリクス収集
+- フレームワーク化
+
+</div>
+
