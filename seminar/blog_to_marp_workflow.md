@@ -3,7 +3,6 @@ marp: true
 theme: github-dark
 paginate: true
 size: 16:9
-style: |
 
 ---
 
@@ -89,7 +88,7 @@ Marp形式に変換
 
 # 得られたメリット
 
-<div class="twoColumns">
+<!--_class: twoColumns-->
 
 <div>
 
@@ -106,8 +105,6 @@ Marp形式に変換
 - 信頼性の高い情報源
 - 一貫したデザイン
 - GitHub Pages連携
-
-</div>
 
 </div>
 
@@ -142,12 +139,6 @@ Marp形式に変換
 
 # テンプレート駆動開発
 
-<div class="highlight">
-構築済みテンプレートの徹底活用
-</div>
-
-### 検証内容
-
 1. **テンプレートライブラリ構築**
    - 用途別テーマ集
    - レイアウトパターン集
@@ -158,6 +149,14 @@ Marp形式に変換
 
 3. **更なる高速化**
    - 5分以内での完成を目指す
+
+---
+
+# テンプレート駆動開発
+
+<div class="highlight">
+構築済みテンプレートの徹底活用
+</div>
 
 ---
 
