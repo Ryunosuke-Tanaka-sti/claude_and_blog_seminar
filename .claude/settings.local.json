@@ -18,7 +18,11 @@
       "Bash(npm run build:voice:*)",
       "Bash(git commit:*)",
       "Bash(git add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(mkdir:*)",
+      "Bash(URL=https://tech-lab.sios.jp/archives/49594 npm run scraper)",
+      "Bash(URL=https://tech-lab.sios.jp/archives/49591 npm run scraper)",
+      "WebSearch"
     ],
     "deny": []
   }

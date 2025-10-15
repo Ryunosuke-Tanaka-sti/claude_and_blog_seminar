@@ -61,18 +61,35 @@ npm run scraper:run
 
 ### `/doc/` - ドキュメント・記事キャッシュ
 
-技術ブログ記事のキャッシュストレージ。以下の記事が利用可能：
+技術ブログ記事のキャッシュストレージ。詳細な分類と関係性については[doc/README.md](./doc/README.md)を参照。
 
+#### 主要シリーズ記事：
+
+**Claude × 技術ブログシリーズ（執筆環境改革）**
+- **執筆ワークフロー** ([48259](https://tech-lab.sios.jp/archives/48259)) - Claude活用による執筆ワークフロー全体像
+- **校閲・文体統一** ([48406](https://tech-lab.sios.jp/archives/48406)) - 3段階品質チェックで安定
 - **NotionMCP連携** ([48397](https://tech-lab.sios.jp/archives/48397)) - Notion連携によるAI協働環境の構築
 - **SEOタイトル生成** ([48417](https://tech-lab.sios.jp/archives/48417)) - SEO最適化されたタイトル自動生成
-- **執筆ワークフロー** ([48259](https://tech-lab.sios.jp/archives/48259)) - Claude活用による執筆ワークフロー全体像
-- **プロンプト制御** ([48160](https://tech-lab.sios.jp/archives/48160)) - Claude制御のための効果的なプロンプト技術
+- **音声認識執筆** ([48431](https://tech-lab.sios.jp/archives/48431)) - 音声入力を活用した3倍速執筆手法
 - **Mermaid図表** ([48411](https://tech-lab.sios.jp/archives/48411)) - Mermaidを使った自動図表生成
-- **執筆後評価** ([48196](https://tech-lab.sios.jp/archives/48196)) - AIによる品質チェック・評価手法
-- **校閲・文体統一** ([48406](https://tech-lab.sios.jp/archives/48406)) - 文体統一と校正の自動化
-- **音声認識執筆** ([48431](https://tech-lab.sios.jp/archives/48431)) - 音声入力を活用した執筆手法
-- **登壇資料作成** ([48479](https://tech-lab.sios.jp/archives/48479)) - Claude×Marpで80時間を11時間に短縮した方法
+- **登壇資料作成** ([48479](https://tech-lab.sios.jp/archives/48479)) - Claude×Marpで80時間を11時間に短縮
 - **アウトライン生成** ([48538](https://tech-lab.sios.jp/archives/48538)) - 対話型vs抽出型の実践比較
+
+**Claude Code開発シリーズ**
+- **Vibe Coding脱却** ([49136](https://tech-lab.sios.jp/archives/49136)) - 適当なプロンプトからの卒業
+- **3フェーズ開発** ([49140](https://tech-lab.sios.jp/archives/49140)) - 計画→実装→検証の効率的開発
+- **仕様書作成法** ([49148](https://tech-lab.sios.jp/archives/49148)) - AI協働で開発時間を1週間→2日に短縮
+- **落とし穴回避** ([49154](https://tech-lab.sios.jp/archives/49154)) - 仕様書ベース開発の6つの落とし穴
+- **型定義同期** ([49157](https://tech-lab.sios.jp/archives/49157)) - Next.js×Nest.js自動生成パイプライン
+- **GitHub Actions自動化** ([49116](https://tech-lab.sios.jp/archives/49116)) - コスト60%削減システム構築
+
+**品質管理・制御技術**
+- **プロンプト制御** ([48160](https://tech-lab.sios.jp/archives/48160)) - Claude暴走パターンの制御術
+- **執筆後評価** ([48196](https://tech-lab.sios.jp/archives/48196)) - Gemini Deep Researchで5分検証
+
+**最新記事（2025年10月）**
+- **SWR考察** ([49591](https://tech-lab.sios.jp/archives/49591)) - Orval SWRの自動生成をやめた理由
+- **計画ドキュメント** ([49594](https://tech-lab.sios.jp/archives/49594)) - AI協働開発の落とし穴回避
 
 ### `/seminar/` - セミナー資料
 
