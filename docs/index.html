@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude AI活用技術セミナー - 登壇資料ハブ</title>
-    <meta name="description" content="Claude AIを活用した技術ブログ執筆とワークフロー革新に関する登壇資料をまとめたハブページです。">
+    <title>Claude AI活用技術 - セミナー資料 & ブログアーカイブ</title>
+    <meta name="description" content="Claude AIを活用した技術ブログ執筆とワークフロー革新に関する登壇資料・ブログ記事をまとめたハブページです。">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,7 +27,7 @@
         }
     </script>
     <style>
-        /* Custom gradient backgrounds that can't be done with Tailwind utilities */
+        /* Custom gradient backgrounds */
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -45,6 +45,19 @@
             word-break: keep-all;
             overflow-wrap: break-word;
         }
+        /* line-clamp utility */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="min-h-screen gradient-bg font-sans">
@@ -52,11 +65,50 @@
         <!-- Header -->
         <div class="text-center mb-12 text-white">
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 drop-shadow-lg">
-                Claude AI活用技術セミナー
+                Claude AI活用技術
             </h1>
             <p class="text-lg sm:text-xl opacity-95 max-w-2xl mx-auto leading-relaxed">
-                登壇資料ハブページ - Claude AIを活用した技術ブログ執筆とワークフロー革新
+                セミナー登壇資料 & ブログ記事アーカイブ
             </p>
+        </div>
+
+        <!-- Blog Archive Section -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-6">📝 ブログ記事アーカイブ</h2>
+            <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <div class="text-center mb-6">
+                    <p class="text-gray-700 text-lg mb-4">
+                        Claude × 技術ブログシリーズの記事を詳しく紹介
+                    </p>
+                    <p class="text-gray-600 text-sm">
+                        各記事の概要、重要ポイント、具体的な成果データを確認できます
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <a href="blog-index.html"
+                       class="inline-flex items-center gap-3 gradient-button text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        ブログ記事一覧を見る
+                        <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                    </a>
+                </div>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-purple-600 mb-1">19</div>
+                        <div class="text-sm text-gray-600">記事数</div>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-purple-600 mb-1">2</div>
+                        <div class="text-sm text-gray-600">カテゴリ</div>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-purple-600 mb-1">多数</div>
+                        <div class="text-sm text-gray-600">実践事例</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 45-minute Presentations Section -->
@@ -69,17 +121,17 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
                         今日から使えるClaude活用で技術ブログ執筆を3倍速に
                     </h2>
-                    
+
                     <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
                         <span class="flex items-center">🎯 基本編</span>
                         <span class="flex items-center">⏱️ 45分</span>
                         <span class="flex items-center">📊 実演付き</span>
                     </div>
-                    
+
                     <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
                         Claude AIを活用した技術ブログ執筆の基本的なワークフローを学べる入門セミナーです。タイトル生成、図表作成の自動化、AI品質チェックなど、今日から使える実践的なテクニックを実演を交えて紹介します。
                     </p>
-                    
+
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Claude基礎</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">ブログ執筆</span>
@@ -87,7 +139,7 @@
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">品質チェック</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">プロンプト制御</span>
                     </div>
-                    
+
                     <div class="mt-auto">
                         <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
                             スライドを見る
@@ -103,17 +155,17 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
                         Notion MCP×音声認識×Claudeで実現する次世代ブログ執筆環境
                     </h2>
-                    
+
                     <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
                         <span class="flex items-center">🚀 応用編</span>
                         <span class="flex items-center">⏱️ 45分</span>
                         <span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs font-medium">ハンズオン</span>
                     </div>
-                    
+
                     <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
                         Notion MCPと音声認識を組み合わせた革新的なブログ執筆環境の構築方法を解説します。思考速度での執筆を実現し、Claudeによる高度な文体補正、SEO最適化まで包括的にカバーした上級者向けセミナーです。
                     </p>
-                    
+
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Notion MCP</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">音声認識</span>
@@ -121,7 +173,7 @@
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">SEO最適化</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">統合環境</span>
                     </div>
-                    
+
                     <div class="mt-auto">
                         <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
                             スライドを見る
@@ -212,24 +264,24 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
                         なぜ僕はブログを書くのか
                     </h2>
-                    
+
                     <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
                         <span class="flex items-center">💭 LT</span>
                         <span class="flex items-center">⏱️ 5分</span>
                         <span class="flex items-center">📝 体験談</span>
                     </div>
-                    
+
                     <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
                         エンジニアとブログの距離感について語るライトニングトーク。「極力やらなくていいことはやりたくない」エンジニアがなぜブログを書き続けるのか、ノー校閲の環境で生まれる本音と実践的なメリットを紹介します。
                     </p>
-                    
+
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">モチベーション</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">情報発信</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">社内文化</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">実体験</span>
                     </div>
-                    
+
                     <div class="mt-auto">
                         <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
                             スライドを見る
@@ -245,24 +297,24 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
                         Vibe Coding検証 - AI支援開発の実践と学び
                     </h2>
-                    
+
                     <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
                         <span class="flex items-center">🔬 検証結果</span>
                         <span class="flex items-center">⏱️ 5分</span>
                         <span class="flex items-center">💡 実践知</span>
                     </div>
-                    
+
                     <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
                         Claude Codeを活用したVibe Coding手法の検証結果を共有。失敗から学んだドキュメントベース開発、フェーズ分離による効率化、セキュリティチェック統合など、実践で得た知見を5分で解説します。
                     </p>
-                    
+
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Claude Code</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">フェーズ分離</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">ドキュメント駆動</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">セキュリティ</span>
                     </div>
-                    
+
                     <div class="mt-auto">
                         <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
                             スライドを見る
@@ -278,24 +330,24 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 leading-relaxed">
                         ブログからプレゼン資料へ - 爆速変換術
                     </h2>
-                    
+
                     <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-gray-600">
                         <span class="flex items-center">🚀 効率化</span>
                         <span class="flex items-center">⏱️ 5分</span>
                         <span class="flex items-center">🔄 変換術</span>
                     </div>
-                    
+
                     <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
                         執筆済みブログ記事をMarpプレゼンに10分で変換する手法を紹介。スクレイピング→Claude変換→GitHub Pages公開の自動化フローで、信頼できる情報源を最大限活用する爆速プレゼン作成術です。
                     </p>
-                    
+
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Marp</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">自動変換</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">テンプレート</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">GitHub Pages</span>
                     </div>
-                    
+
                     <div class="mt-auto">
                         <span class="inline-flex items-center gap-2 gradient-button text-white px-6 py-3 rounded-lg font-medium group-hover:shadow-lg transition-all duration-300">
                             スライドを見る
@@ -377,15 +429,15 @@
         <div class="bg-white rounded-2xl p-8 mb-8 shadow-xl text-center">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">📱 スマートフォンでアクセス</h2>
             <p class="text-gray-600 mb-6">QRコードを読み取って、スライドや資料にアクセスできます</p>
-            
+
             <div class="inline-block p-4 bg-white border-2 border-gray-200 rounded-xl">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" 
-                     alt="QR Code" 
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/"
+                     alt="QR Code"
                      class="block w-48 h-48">
             </div>
-            
+
             <div class="mt-4">
-                <a href="https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/" 
+                <a href="https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/"
                    target="_blank"
                    class="text-purple-600 hover:text-purple-700 hover:underline text-sm break-all">
                     https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook LMへのデータ収集をSlack Botで効率化する開発 with Google Docs - ブログ記事紹介</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Web表示用レイアウト設定 */
+        .content-container {
+            max-width: 1400px;
+            padding: 2rem;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* フォント設定 */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+        }
+
+        /* 印刷時の調整 */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .content-container {
+                box-shadow: none;
+            }
+        }
+
+        /* カスタムスタイル */
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-8">
+    <div class="content-container">
+        <!-- Header -->
+        <div class="mb-6">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
+                            システム開発・自動化事例
+                        </span>
+                        
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-900 leading-tight mb-2">
+                        Notebook LMへのデータ収集をSlack Botで効率化する開発 with Google Docs
+                    </h1>
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                        <span>記事ID: 47891</span>
+                        <span>•</span>
+                        <span class="px-2 py-0.5 bg-purple-50 text-purple-600 rounded text-xs">開発手法</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content: 2カラムレイアウト -->
+        <div class="grid grid-cols-5 gap-6">
+            <!-- 左カラム: 60% -->
+            <div class="col-span-3 space-y-4">
+                <!-- 概要 -->
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-5">
+                    <h2 class="text-sm font-semibold text-purple-900 mb-2 uppercase tracking-wide">記事概要</h2>
+                    <p class="text-gray-800 leading-relaxed text-base">
+                        Slack BotとGoogle Docsを連携したナレッジベース自動構築システム。記事では「なぜこのシステムを開発したのか？」「実際の挙動」「使用技術」などの実践的な手順を詳しく解説。「初期設定とメッセージ送信」「Slack Events APIによる監視」「メッセージ情報の取得」といった実践的なトピックをカバー
+                    </p>
+                </div>
+
+                <!-- 重要ポイント -->
+                <div class="bg-white rounded-lg p-5 border border-gray-200">
+                    <h2 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                        </svg>
+                        重要ポイント
+                    </h2>
+                    <ul class="space-y-2.5">
+                        
+                        <li class="flex items-center gap-2">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">1</span>
+                            <span class="text-sm text-gray-800">なぜこのシステムを開発したのか？</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">2</span>
+                            <span class="text-sm text-gray-800">実際の挙動</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">3</span>
+                            <span class="text-sm text-gray-800">使用技術</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">4</span>
+                            <span class="text-sm text-gray-800">処理フロー</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">5</span>
+                            <span class="text-sm text-gray-800">初期設定とメッセージ送信</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 右カラム: 40% -->
+            <div class="col-span-2 space-y-4">
+                
+                
+                <!-- 記事のハイライト -->
+                <div class="bg-white rounded-lg p-5 border-2 border-purple-200">
+                    <h2 class="text-sm font-semibold text-purple-900 mb-3 uppercase tracking-wide flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                        記事のハイライト
+                    </h2>
+                    <div class="space-y-2">
+                        
+                        <div class="bg-purple-50 rounded p-3 border-l-4 border-purple-400">
+                            <p class="text-xs text-gray-700">Google Docs API関連のエラー処理:</p>
+                        </div>
+                        <div class="bg-purple-50 rounded p-3 border-l-4 border-purple-400">
+                            <p class="text-xs text-gray-700">Google Docs APIについては、サービスアカウントを利用して認証を行い、documents.batchUpdate を使用してドキュメントへのテキスト追記を実現しています</p>
+                        </div>
+                        <div class="bg-purple-50 rounded p-3 border-l-4 border-purple-400">
+                            <p class="text-xs text-gray-700">これにより、リアルタイムでの質問応答機能や、自動的なインサイト生成なども実現可能になるかもしれません</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 記事リンク -->
+                <div class="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg p-5 text-center">
+                    <h3 class="text-lg font-bold text-white mb-4">元記事を読む</h3>
+                    <a href="https://tech-lab.sios.jp/archives/47891"
+                       target="_blank"
+                       class="inline-block w-full bg-white text-purple-600 font-bold py-4 px-6 rounded-lg hover:bg-purple-50 transition-colors duration-200 shadow-lg text-lg">
+                        詳しく読む →
+                    </a>
+                    <p class="text-sm mt-4 text-white opacity-90">tech-lab.sios.jp</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between text-sm text-gray-600">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>SIOS Tech Lab ブログアーカイブ</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">← 前の記事</a>
+                <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">一覧へ</a>
+                <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">次の記事 →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

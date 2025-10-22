@@ -22,7 +22,13 @@
       "Bash(mkdir:*)",
       "Bash(URL=https://tech-lab.sios.jp/archives/49594 npm run scraper)",
       "Bash(URL=https://tech-lab.sios.jp/archives/49591 npm run scraper)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(URL=https://tech-lab.sios.jp/archives/47891 npm run scraper)",
+      "Bash(awk '\nBEGIN { \n  slide = 0\n  lines = 0\n  title = \"\"\"\"\"\"\"\"\n}\n/^---$/ { \n  if (lines > 0) {\n    printf \"\"\"\"Slide %2d (lines %4d-%4d, %2d lines): %s\\n\"\"\"\", slide, start_line, NR-1, lines, title\n  }\n  slide++\n  lines = 0\n  title = \"\"\"\"\"\"\"\"\n  start_line = NR + 1\n  next\n}\n/^# / && title == \"\"\"\"\"\"\"\" {\n  title = substr($0, 3)\n  if (length(title) > 50) title = substr(title, 1, 47) \"\"\"\"...\"\"\"\"\n}\n{\n  lines++\n}\nEND {\n  if (lines > 0) {\n    printf \"\"\"\"Slide %2d (lines %4d-%4d, %2d lines): %s\\n\"\"\"\", slide, start_line, NR, lines, title\n  }\n}' /home/node/workspace/seminar/automation_pipeline_deep_dive_slides.md)",
+      "Bash(sort -t',' -k2 -nr)",
+      "Bash(sed -n '1008,1049p' /home/node/workspace/seminar/automation_pipeline_deep_dive_slides.md)",
+      "Bash(tsx src/blog-data-extractor.ts:*)",
+      "Bash(npx tsx:*)"
     ],
     "deny": []
   }
