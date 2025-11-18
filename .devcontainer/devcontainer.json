@@ -3,6 +3,13 @@
     "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
     "workspaceFolder": "/home/node/workspace",
     "remoteUser": "node",
+    "forwardPorts": [4321],
+    "portsAttributes": {
+        "4321": {
+            "label": "Astro Dev Server",
+            "onAutoForward": "notify"
+        }
+    },
     "customizations": {
         "vscode": {
             "extensions": [

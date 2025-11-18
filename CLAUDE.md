@@ -4,57 +4,93 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a documentation repository focused on Claude AI utilization techniques for technical blog writing. The repository contains comprehensive guides and resources for improving technical writing workflows using AI.
+This is a monorepo documentation repository focused on Claude AI utilization techniques for technical blog writing. The repository contains comprehensive guides, presentation materials, and utility tools for improving technical writing workflows using AI.
 
 ## Build and Development Commands
 
-### Presentation Building
+### Build All
 ```bash
-# Build presentations using npm scripts
-npm run build:claude    # Claude seminar slides with dark theme → docs/claude_seminar_slides.html
-npm run build:notion    # Notion integration guide with bright theme → docs/notion_and_claude_blog_write.html
-
-# Manual Marp commands for custom builds
-marp seminar/[filename].md --html --theme ./theme/[theme-name].css --output ./[output-dir]/[filename].html
+npm run build              # Build both Marp presentations and frontend website
+npm run build:marp         # Build only Marp presentations → dist/
+npm run build:frontend     # Build only frontend website → dist/
 ```
 
-### Web Scraper Utility
+### Development
 ```bash
-# Run the TypeScript web scraper to fetch and compress blog articles
-npm run scraper                     # Run directly with tsx
-URL=https://tech-lab.sios.jp/archives/[id] npm run scraper  # Specify URL via environment variable
-
-# Build and run compiled version
-npm run scraper:build              # Compile TypeScript to dist/
-npm run scraper:run                # Run compiled JavaScript
+npm run dev:frontend       # Start Astro dev server for frontend development
+npm run scraper            # Run web scraper utility
 ```
 
-The scraper fetches articles from tech-lab.sios.jp, compresses HTML content, and saves to the `doc/` directory with token usage statistics.
+### Workspace-Specific Commands
+```bash
+# Marp presentations
+npm run build --workspace=application/marp
+
+# Frontend website (Astro + React)
+npm run dev --workspace=application/frontend
+npm run build --workspace=application/frontend
+
+# Tools
+npm run scraper --workspace=application/tools
+```
 
 ## High-Level Architecture
 
-### Content Generation Pipeline
-1. **Source Files** (`seminar/*.md`) - Markdown files with Marp directives
-2. **Theme System** (`theme/*.css`) - Reusable presentation themes
-   - `canyon-custom.css` - Bright theme with yellow/cyan accents
-   - `github-dark.css` - GitHub-inspired dark theme
-3. **Assets** (`seminar/assets/`, `seminar/html/`) - SVG diagrams and interactive components
-4. **Output** (`docs/`, `src/`) - Generated HTML presentations
+### Monorepo Structure
+```
+/
+├── application/
+│   ├── marp/           # Presentation slides (Marp)
+│   ├── frontend/       # Website (Astro + React)
+│   └── tools/          # Utility tools (scraper, etc.)
+├── docs/               # Documentation and data storage
+├── dist/               # Build output (GitHub Pages)
+└── .claude/            # Claude Code settings and skills
+```
+
+### Application Workspaces
+
+#### 1. application/marp
+Presentation materials built with Marp:
+- **Source Files** (`src/*.md`) - Markdown files with Marp directives
+- **Theme System** (`theme/*.css`) - Reusable presentation themes
+  - `canyon-custom.css` - Bright theme with yellow/cyan accents
+  - `github-dark.css` - GitHub-inspired dark theme
+- **Assets** (`src/assets/`, `src/html/`) - SVG diagrams and interactive components
+- **Templates** (`templates/`) - Reusable slide templates and components
+  - `base/` - Base templates (seminar, technical, workshop)
+  - `components/` - Reusable slide components and styles
+  - `examples/` - Template usage examples
+- **Output** → `dist/*.html`
+
+#### 2. application/frontend
+Frontend website built with Astro and React:
+- Static site generation (SSG)
+- React components for interactive elements
+- **Output** → `dist/`
+
+#### 3. application/tools
+Utility tools for workspace automation:
+- `scraper.ts` - Web scraper for blog content extraction and compression
+- **Output** → `docs/data/` (cached article data)
 
 ### Directory Structure
-- `doc/` - Main documentation directory containing guides organized by topic
-  - Also serves as cache directory for scraped blog articles
-- `seminar/` - Seminar materials for Claude utilization workshops
-  - `claude_seminar_slides.md` - Main 45-minute workshop presentation
-  - `notion_and_claude_blog_write.md` - Notion×Claude integration guide
-  - `assets/` - SVG diagrams and visual resources
-  - `html/` - Interactive HTML components for presentations
-  - `commpass/` - Additional seminar content
-- `src/` - TypeScript utilities
-  - `scraper.ts` - Web scraper for blog content extraction
-  - `scraper.py` - Python version of the scraper (legacy)
-- `theme/` - Marp CSS themes for presentations
-- `docs/` - Generated HTML presentations (production output)
+- `application/` - Monorepo workspaces (marp, frontend, tools)
+- `docs/` - Documentation and specifications (3-phase development)
+  - `CLAUDE.md` - Planning phase rules
+  - `features/` - Feature specifications (directory-based)
+    - `[feature-name]/` - Each feature has its own directory
+      - `spec.md` - Specification document
+      - `plan.md` - Implementation plan
+      - `assets/` - Optional diagrams and images
+  - `bugs/` - Bug investigation and fix plans (directory-based)
+  - `research/` - Implementation reviews and learnings
+  - `data/` - Scraped blog article data (cached HTML files)
+  - `templates/` - Specification templates
+- `dist/` - Build output for GitHub Pages (git-ignored)
+- `.claude/` - Claude Code configuration
+  - `settings.local.json` - Permissions and settings
+  - `skills/` - Custom skills for Claude Code
 
 ### Key Documentation Patterns
 
@@ -80,13 +116,33 @@ All presentation files use YAML frontmatter configuration:
 - `size: 16:9` - Widescreen format
 - Custom CSS in `style:` block for per-presentation adjustments
 
-### TypeScript Configuration
-- Target: ES2020, CommonJS modules
-- Strict mode enabled
-- Output directory: `dist/`
-- Source maps and declarations enabled
+### Technology Stack
+- **Build System**: npm workspaces (monorepo)
+- **Presentations**: Marp CLI
+- **Frontend**: Astro + React
+- **Tools**: TypeScript, Node.js
+- **TypeScript Config** (`application/tools/`):
+  - Target: ES2020, CommonJS modules
+  - Strict mode enabled
+  - Output directory: `dist/`
+  - Source maps and declarations enabled
 
 ## Working with This Repository
+
+### Getting Started
+```bash
+# Install all workspace dependencies
+npm install
+
+# Build everything
+npm run build
+
+# Run scraper
+npm run scraper
+
+# Start frontend dev server
+npm run dev:frontend
+```
 
 ### Content Creation Guidelines
 - Documentation should focus on practical, actionable techniques
@@ -94,15 +150,13 @@ All presentation files use YAML frontmatter configuration:
 - Provide before/after examples showing efficiency gains
 - Use Japanese language for primary content targeting Japanese technical bloggers
 
-### Scraped Content Management
-The web scraper (`src/scraper.ts`) provides:
-- Automatic caching in `doc/` directory
-- Token usage estimation for Claude (Japanese text optimized)
-- HTML compression with attribute removal
-- Detailed compression statistics
-
 ### Multi-Language Considerations
 - Primary content is in Japanese targeting Japanese technical bloggers
 - File paths and directory names use Japanese characters (UTF-8)
 - English README.md provides international accessibility
 - Presentation themes support both Latin and Japanese typography
+
+### Deployment
+- **GitHub Pages**: Builds are generated in `dist/` directory
+- **GitHub Actions**: Automated build process combines Marp presentations and frontend website
+- **Output Structure**: All static files are placed in `dist/` for deployment

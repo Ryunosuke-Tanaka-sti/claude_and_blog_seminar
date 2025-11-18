@@ -12,34 +12,18 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "private": true,
+  "workspaces": [
+    "application/marp",
+    "application/frontend",
+    "application/tools"
+  ],
   "scripts": {
-    "build": "npm run build:all",
-    "build:all": "npm run build:claude && npm run build:notion && npm run build:blog-reason && npm run build:voice",
-    "build:claude": "marp seminar/claude_seminar_slides.md --html --theme ./theme/github-dark.css --output ./docs/claude_seminar_slides.html",
-    "build:notion": "marp seminar/notion_and_claude_blog_write.md --html --theme ./theme/canyon-custom.css --output ./docs/notion_and_claude_blog_write.html",
-    "build:blog-reason": "marp seminar/blog_reason_lt_slides.md --html --theme ./theme/github-dark.css --output ./docs/blog_reason_lt_slides.html",
-    "build:voice": "marp seminar/voice_writing_seminar.md --html --theme ./theme/github-dark.css --output ./docs/voice_writing_seminar.html --allow-local-files",
-    "scraper": "tsx src/scraper.ts",
-    "scraper:build": "tsc",
-    "scraper:run": "node dist/scraper.js"
+    "build": "npm run build:marp && npm run build:frontend",
+    "build:marp": "npm run build --workspace=application/marp",
+    "build:frontend": "npm run build --workspace=application/frontend",
+    "scraper": "npm run scraper --workspace=application/tools",
+    "dev:frontend": "npm run dev --workspace=application/frontend"
   },
-  "dependencies": {
-    "@types/cheerio": "^0.22.35",
-    "@types/jsdom": "^27.0.0",
-    "axios": "^1.11.0",
-    "cheerio": "^1.1.2",
-    "jsdom": "^27.0.1",
-    "node-fetch": "^2.7.0"
-  },
-  "devDependencies": {
-    "@types/node": "^24.1.0",
-    "@types/node-fetch": "^2.6.13",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
-  }
+  "devDependencies": {}
 }
