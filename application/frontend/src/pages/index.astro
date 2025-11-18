@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import WelcomeMessage from '@/components/atoms/WelcomeMessage';
+import SeminarSlideList from '@/components/organisms/SeminarSlideList';
+import { seminarSlides } from '@/data/seminarSlides';
 ---
 
 <BaseLayout
@@ -43,6 +45,10 @@ import WelcomeMessage from '@/components/atoms/WelcomeMessage';
       <li><strong>TypeScript 5.x</strong> - 型安全な開発</li>
       <li><strong>Marp</strong> - プレゼンテーションスライド</li>
     </ul>
+  </section>
+
+  <section class="seminars">
+    <SeminarSlideList slides={seminarSlides} client:load />
   </section>
 </BaseLayout>
 
@@ -165,6 +171,12 @@ import WelcomeMessage from '@/components/atoms/WelcomeMessage';
     color: var(--color-text);
   }
 
+  .seminars {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+
   /* Responsive design */
   @media (max-width: 768px) {
     .hero h2 {
@@ -181,6 +193,11 @@ import WelcomeMessage from '@/components/atoms/WelcomeMessage';
 
     .tech-stack ul {
       grid-template-columns: 1fr;
+    }
+
+    .seminars {
+      margin-top: 3rem;
+      padding-top: 3rem;
     }
   }
 </style>
