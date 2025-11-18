@@ -83,23 +83,17 @@ GitHub Actionsワークフローを使用して、以下を自動化：
 - **パッケージマネージャー**: npm
 - **キャッシュ**: `node_modules`をキャッシュして高速化
 
-### ビルド戦略：npm workspace対応の並列ビルド + Artifact統合
+### ビルド戦略：npm workspace対応の並列ビルド + npmキャッシュ
 
-**採用アプローチ**: モノレポの依存関係を正しく解決し、並列ビルドでパフォーマンスを向上
+**採用アプローチ**: 各ジョブで独立してnpm ciを実行し、npmキャッシュで高速化
 
 **ビルドフロー**:
 ```
-Job: install
-    ↓
-ルートでnpm ci（モノレポ全体の依存関係）
-    ↓
-node_modulesをartifactにアップロード
-    ↓
 ┌─────────────────┬─────────────────┐
 │  Job: build-marp │ Job: build-site │ (並列実行)
 │                  │                 │
-│ node_modules     │ node_modules    │
-│ ダウンロード     │ ダウンロード    │
+│ npm ci           │ npm ci          │
+│ (npmキャッシュ)  │ (npmキャッシュ)  │
 │ ↓                │ ↓               │
 │ Marpビルド       │ Frontendビルド  │
 │ ↓                │ ↓               │
@@ -113,6 +107,12 @@ node_modulesをartifactにアップロード
               ↓
          GitHub Pages
 ```
+
+**最終アプローチの選択理由**:
+- ✅ **シンプルで保守しやすい**: 複雑なartifact管理が不要
+- ✅ **シンボリックリンクの問題を回避**: node_modules/.bin/のコマンドが正常動作
+- ✅ **実行権限の問題を回避**: artifactの圧縮・展開による権限喪失なし
+- ✅ **npmキャッシュで高速化**: 2回目以降のnpm ciは高速
 
 ### 成果物の配置
 - **Marp出力**: `dist/slides/*.html` + `dist/slides/assets/`
@@ -195,39 +195,27 @@ GitHub リポジトリの Settings で以下を確認：
 
 ### ジョブ構成
 
-#### Job 1: install（依存関係のインストール）
+#### Job 1: build-marp（Marpスライドビルド）
 1. リポジトリをチェックアウト
 2. Node.js 20.x をセットアップ（npmキャッシュ有効）
 3. モノレポ全体の依存関係をインストール（`npm ci`）
-4. `node_modules/`をartifactとしてアップロード
-
-**Artifact名**: `node-modules`
-
-**重要**: npm workspaceでは、ルートで一度だけ`npm ci`を実行することで、すべてのワークスペースの依存関係が正しく解決されます。
-
-#### Job 2: build-marp（Marpスライドビルド）
-1. リポジトリをチェックアウト
-2. Node.js 20.x をセットアップ
-3. `node-modules` artifactをダウンロード
 4. Marpスライドをビルド（`npm run build --workspace=application/marp`）
 5. ビルド成果物（`application/marp/dist/`）をartifactとしてアップロード
 
 **Artifact名**: `marp-dist`
-**依存関係**: `install`ジョブの成功後に実行
 
-#### Job 3: build-site（Frontendビルド）
+#### Job 2: build-site（Frontendビルド）
 1. リポジトリをチェックアウト
-2. Node.js 20.x をセットアップ
-3. `node-modules` artifactをダウンロード
+2. Node.js 20.x をセットアップ（npmキャッシュ有効）
+3. モノレポ全体の依存関係をインストール（`npm ci`）
 4. Astro Frontendをビルド（`npm run build --workspace=application/frontend`）
 5. ビルド成果物（`application/frontend/dist/`）をartifactとしてアップロード
 
 **Artifact名**: `site-dist`
-**依存関係**: `install`ジョブの成功後に実行
 
-**注意**: build-marpとbuild-siteは並列実行される（どちらもinstallジョブに依存）
+**注意**: build-marpとbuild-siteは並列実行される
 
-#### Job 4: deploy（統合とデプロイ）
+#### Job 3: deploy（統合とデプロイ）
 1. `marp-dist` artifactをダウンロード → `dist/slides/`
 2. `site-dist` artifactをダウンロード → `dist/`
 3. 統合された`dist/`ディレクトリをGitHub Pagesにデプロイ

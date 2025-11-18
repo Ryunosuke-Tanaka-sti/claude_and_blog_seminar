@@ -58,17 +58,10 @@ mainブランチへpush
   ↓
 GitHub Actions トリガー
   ↓
-Job: install
-  ↓
-ルートでnpm ci実行（モノレポ全体の依存関係インストール）
-  ↓
-node_modulesをartifactにアップロード
-  ↓
 ┌──────────────────────────┬──────────────────────────┐
 │  Job: build-marp         │  Job: build-site         │
-│  (installジョブに依存)   │  (installジョブに依存)   │
 │                          │                          │
-│  node_modulesダウンロード│  node_modulesダウンロード│
+│  npm ci (npmキャッシュ)  │  npm ci (npmキャッシュ)  │
 │  ↓                       │  ↓                       │
 │  Marpビルド              │  Frontendビルド          │
 │  ↓                       │  ↓                       │
@@ -90,11 +83,16 @@ node_modulesをartifactにアップロード
                   公開完了
 ```
 
-**npm workspace対応アプローチのメリット**:
-- ✅ モノレポ構造に完全対応（patch-packageエラーを回避）
-- ✅ ルートで一度だけnpm ciを実行することで依存関係を正しく解決
-- ✅ ビルドジョブの並列実行でビルド時間を短縮
-- ✅ node_modulesを共有することでディスク使用量を削減
+**最終アプローチの選択理由**:
+- ✅ **各ジョブで独立してnpm ci実行**: シンボリックリンクや実行権限の問題を回避
+- ✅ **npmキャッシュで高速化**: 2回目以降のnpm ciは高速（キャッシュヒット時）
+- ✅ **並列ビルドでビルド時間短縮**: 2つのビルドジョブが同時実行
+- ✅ **シンプルで保守しやすい**: 複雑なartifact管理が不要
+
+**試行錯誤の結果（詳細は研究レビューを参照）**:
+1. ❌ 各ジョブで独立してnpm ci → patch-packageエラー
+2. ❌ installジョブでnpm ci + artifact共有 → シンボリックリンク/実行権限の問題
+3. ✅ patch-package追加 + 各ジョブでnpm ci + npmキャッシュ → 成功
 
 ## 作成するファイルの詳細
 
@@ -105,31 +103,23 @@ node_modulesをartifactにアップロード
 **ファイル構成**:
 - ワークフロー名: `Deploy to GitHub Pages`
 - トリガー: `main`ブランチへのpush
-- ジョブ: `install`, `build-marp`, `build-site`, `deploy`の4つ
+- ジョブ: `build-marp`, `build-site`, `deploy`の3つ
 
-**Job 1: install**（依存関係のインストール）
+**Job 1: build-marp**
 1. リポジトリのチェックアウト
 2. Node.js 20.xのセットアップ（npmキャッシュ有効）
 3. モノレポ全体の依存関係をインストール（`npm ci`）
-4. `node_modules/`をartifactとしてアップロード（名前: `node-modules`）
-   - ルートの`node_modules/`
-   - 各ワークスペースの`node_modules/`
-
-**Job 2: build-marp**（installジョブに依存）
-1. リポジトリのチェックアウト
-2. Node.js 20.xのセットアップ
-3. `node-modules` artifactをダウンロード
 4. Marpビルドの実行（`npm run build --workspace=application/marp`）
 5. `application/marp/dist/`をartifactとしてアップロード（名前: `marp-dist`）
 
-**Job 3: build-site**（installジョブに依存、build-marpと並列実行）
+**Job 2: build-site**（build-marpと並列実行）
 1. リポジトリのチェックアウト
-2. Node.js 20.xのセットアップ
-3. `node-modules` artifactをダウンロード
+2. Node.js 20.xのセットアップ（npmキャッシュ有効）
+3. モノレポ全体の依存関係をインストール（`npm ci`）
 4. Frontendビルドの実行（`npm run build --workspace=application/frontend`）
 5. `application/frontend/dist/`をartifactとしてアップロード（名前: `site-dist`）
 
-**Job 4: deploy**（build-marpとbuild-site成功後に実行）
+**Job 3: deploy**（build-marpとbuild-site成功後に実行）
 1. `marp-dist` artifactをダウンロード → `dist/slides/`
 2. `site-dist` artifactをダウンロード → `dist/`
 3. 統合された`dist/`をGitHub Pagesにデプロイ
@@ -266,13 +256,27 @@ grep -r "src=" dist/slides/*.html | grep assets
 **発生確率**: 高 → **0%**
 
 **問題の詳細**:
-- 各ビルドジョブで個別に`npm ci`を実行すると、モノレポの依存関係が正しく解決されない
-- `rollup`パッケージのpostinstallスクリプトが`patch-package`を要求するが、インストールされていない
+- `rollup`パッケージのpostinstallスクリプトが`patch-package`を要求
+- `patch-package`が依存関係に含まれていないため`npm ci`が失敗
 
 **採用した対策**:
-- ✅ 専用の`install`ジョブでルートの`npm ci`を一度だけ実行
-- ✅ `node_modules`をartifact経由で各ビルドジョブに配布
-- ✅ ビルドジョブでは`npm ci`を実行せず、ダウンロードしたnode_modulesを使用
+- ✅ ルートの`package.json`の`devDependencies`に`patch-package@^8.0.1`を追加
+
+**残存リスク**: なし
+
+### リスク1-2: node_modulesのartifact共有の問題
+**影響度**: 高 → **解決済み**
+**発生確率**: 高 → **0%**
+
+**問題の詳細**:
+- artifact経由で`node_modules`を共有すると以下の問題が発生:
+  1. シンボリックリンク（`node_modules/.bin/`）が壊れる
+  2. 実行権限が失われる
+  3. `marp`/`astro`コマンドが見つからない
+
+**採用した対策**:
+- ✅ installジョブを削除し、各ビルドジョブで独立して`npm ci`を実行
+- ✅ npmキャッシュ機能（`cache: 'npm'`）を使用して高速化
 
 **残存リスク**: なし
 
