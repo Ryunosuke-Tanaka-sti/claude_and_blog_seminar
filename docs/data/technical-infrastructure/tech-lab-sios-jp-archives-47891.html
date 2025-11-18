@@ -1,0 +1,351 @@
+<!--
+ブログ記事情報:
+タイトル: Notebook LMへのデータ収集をSlack Botで効率化する開発 with Google Docs | SIOS Tech. Lab
+URL: https://tech-lab.sios.jp/archives/47891
+OGP画像: https://tech-lab.sios.jp/wp-content/uploads/2025/06/ad8161766f5487542998631309f26383.jpg
+抽出日時: 2025-11-07T21:13:56.812Z
+-->
+
+<h1>Notebook LMへのデータ収集をSlack Botで効率化する開発 with Google Docs | SIOS Tech. Lab</h1>
+
+
+	
+<div data-smooth-scroll="1" data-smooth-scroll-offset="24"><div><div><b>目次</b></div><div><ul><li><a href="#hajimeni"><span>1</span><span>はじめに</span></a></li><li><a href="#nazekonoshisutemuwo_kai_fashitanoka"><span>2</span><span>なぜこのシステムを開発したのか？</span></a></li><li><a href="#shi_jino_ju_dong"><span>3</span><span>実際の挙動</span></a></li><li><a href="#shi_yong_ji_shu"><span>4</span><span>使用技術</span></a></li><li><a href="#chu_lifuro"><span>5</span><span>処理フロー</span></a><ul><li><a href="#chu_qi_she_dingtomesseji_song_xin"><span>5.1</span><span>初期設定とメッセージ送信</span></a></li><li><a href="#Slack_Events_APIniyoru_jian_shi"><span>5.2</span><span>Slack Events APIによる監視</span></a></li><li><a href="#messeji_qing_baono_qu_de"><span>5.3</span><span>メッセージ情報の取得</span></a></li><li><a href="#Google_Docs_lian_xie_chu_li"><span>5.4</span><span>Google Docs連携処理</span></a></li><li><a href="#wan_le_tong_zhi"><span>5.5</span><span>完了通知</span></a></li></ul></li><li><a href="#gou_zhu"><span>6</span><span>構築</span></a><ul><li><a href="#Google_Docsno_geng_xin"><span>6.1</span><span>Google Docsの更新</span></a></li><li><a href="#Slacknibottomessejiwo_song_xinsuru"><span>6.2</span><span>Slackにボットメッセージを送信する</span></a></li><li><a href="#riakushonibentowo_shouke_fukeru"><span>6.3</span><span>リアクションイベントを受け付ける</span></a></li><li><a href="#Slack_sureddoni_song_xinsaretamessejiwosubete_qu_de"><span>6.4</span><span>Slack スレッドに送信されたメッセージをすべて取得</span></a></li><li><a href="#riakushonibentokaraGoogle_Docsno_qu_demadewo_yitsuno_chu_litoshitematomeru"><span>6.5</span><span>リアクションイベントからGoogle Docsの取得までを一つの処理としてまとめる</span></a></li></ul></li><li><a href="#erahandoringuto_shu_ming_jian_zheng"><span>7</span><span>エラーハンドリングと署名検証</span></a><ul><li><a href="#Slackno_shu_ming_jian_zheng"><span>7.1</span><span>Slackの署名検証</span></a></li><li><a href="#erahandoringu"><span>7.2</span><span>エラーハンドリング</span></a></li></ul></li><li><a href="#jin_houno_zhan_wang"><span>8</span><span>今後の展望</span></a><ul><li><a href="#ji_neng_kuo_zhangno_fang_xiang_xing"><span>8.1</span><span>機能拡張の方向性</span></a></li><li><a href="#shisutemu_gai_shanno_quri_zumi"><span>8.2</span><span>システム改善の取り組み</span></a></li><li><a href="#ji_shu_de_tiao_zhan"><span>8.3</span><span>技術的挑戦</span></a></li><li><a href="#owarini"><span>8.4</span><span>おわりに</span></a></li></ul></li></ul></div></div></div><h1><span>はじめに</span></h1><p>お久です！皆さんAIにどれぐらい課金していますか？動画配信サービスより、AIサービスのほうが課金額が高くなっている龍ちゃんです。サービスごとに特色もあり、得意領域もそれぞれ異なるので、いっそのこと10万ぐらいぶっこんでしまいたいところですね。</p><p>さて！今回は、AIサービスを使うにあたって便利にしていこうというお話です。具体的な部分としては「SlackからNotebook LMに簡単にデータを取り込む方法」のプロトタイプについてです。</p><p>今回はベースのコンテンツを作成して、執筆はAIに手伝わせようと思います。ブログの最後にAIが執筆した部分と方法についてコラムを書いておきます。</p><h1><span>なぜこのシステムを開発したのか？</span></h1><p>このプロトタイプを開発した背景には、AIサービスの活用における課題があります。特に、現在様々なAIサービスが登場し、それぞれの特色や得意分野が異なる中で、効率的な情報管理と連携の重要性が高まっています。</p><p>具体的な課題として、Google Docsを普段使用していないためのデータ連携の困難さや、Slackでの会話内容を効率的にまとめる必要性がありました。また、Slack AIは比較的高価である一方、既に契約済みのNotebook LMを有効活用したいという思いもありました。</p><p>そこで今回は、「SlackからNotebook LMに簡単にデータを取り込む方法」のプロトタイプ開発に着手しました。初期段階として、Slackのテキストメッセージのみを対象とし、スレッドを一つの単位として取り込む基本的な機能の実装を目指しています。</p><p>Notebook LMでは、一度紐づけたソースが更新された場合は手動でアクションを行う必要があるため完全な自動化には至っていません。ですが、Google Docsを起動することなく情報を転機できるため、AIと開発の連携をより上げることができると期待しています。</p><div><div><div><img data-recalc-dims="1" decoding="async" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/02/profile-mini.png?resize=80%2C80&amp;ssl=1" width="80" height="80"> [画像: 龍ちゃん] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/02/profile-mini.png?resize=80%2C80&amp;ssl=1) <div>龍ちゃん</div></div><div><div><p><a href="https://developer.feedforce.jp/entry/2024/09/26/120000" target="_blank" rel="noopener" title="">あとは！この記事を読んで作りたくなったからですね！</a></p><span></span><span></span></div></div></div></div><h1><span>実際の挙動</span></h1><figure><div><iframe title="Notebook LMへのデータ収集をSlack Botで効率化する開発 with Google Docs" width="880" height="660" src="https://www.youtube.com/embed/-w60rQXKjNs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></div></figure><h1><span>使用技術</span></h1><figure><img data-recalc-dims="1" loading="lazy" decoding="async" width="880" height="589" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f80e593c8ae6b706d97282a26a438015.png?resize=880%2C589&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f80e593c8ae6b706d97282a26a438015.png?w=972&amp;ssl=1 972w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f80e593c8ae6b706d97282a26a438015.png?resize=940%2C630&amp;ssl=1 940w" sizes="auto, (max-width: 880px) 100vw, 880px">  (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f80e593c8ae6b706d97282a26a438015.png?resize=880%2C589&amp;ssl=1) </figure><p>今回開発したシステムは、以下のような技術スタックを使用しています。まず、バックエンドフレームワークとしてNestJSを採用しました。これは既存のデプロイ環境との親和性を考慮した選択です。<a href="https://www.npmjs.com/package/@slack/web-api" target="_blank" rel="noopener" title="">@slack/web-apiライブラリ</a>を利用することで、Slackとの連携を効率的に実装することができました。</p><p>Slack APIに関しては、主に3つの機能を活用しています。まず、Event Subscriptionsの <code>reactions.item_added</code> を使用してリアクションの検知を行います。次に、メッセージの取得には <code>conversations.history</code> でリアクション対象のメッセージを、<code>conversations.replies</code> でスレッド内の返信を取得します。また、<code>chat.postMessage</code> を使用してスレッドへの返信機能も実装しています。</p><p>Google Docs APIについては、サービスアカウントを利用して認証を行い、<code>documents.batchUpdate</code> を使用してドキュメントへのテキスト追記を実現しています。これにより、Slackでの会話内容を自動的にGoogle Docsに記録することが可能になりました。</p><p>最終的に、Google DocsとNotebook LMを連携させることで、Slackの内容を活用してNotebook LMを効率的に使用できるようになります。</p><h1><span>処理フロー</span></h1><p>処理フローは以下の流れになります。</p><figure><img data-recalc-dims="1" loading="lazy" decoding="async" width="654" height="633" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/a1eb60c287231f1ad17189a093f7a178.png?resize=654%2C633&amp;ssl=1">  (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/a1eb60c287231f1ad17189a093f7a178.png?resize=654%2C633&amp;ssl=1) </figure><h2><span>初期設定とメッセージ送信</span></h2><p>ユーザーがSlackにメッセージを送信すると、リアクション追加の準備が整います。</p><h2><span>Slack Events APIによる監視</span></h2><p>バックエンドAPIでは、Slack Events APIを使用してSlackでの活動を監視します。具体的には：</p><ul><li><code>POST /api/slack/events</code> エンドポイントでSubscription Eventを受信</li><li><code>reaction_added</code> イベントをキャッチして処理を開始（特定のリアクションの場合は処理）</li></ul><h2><span>メッセージ情報の取得</span></h2><p>リアクションが追加されると、システムは以下の処理を実行します：</p><ul><li>Slack APIの <code>GET Slack Message</code> を呼び出し</li><li>Slack APIを用いてメッセージを取得
+<ul><li><code>conversations.history</code> ：リアクションがつけられたメッセージ取得</li><li><code>conversations.replies</code>：リアクションをつけられたメッセージにスレッドがあればスレッドのメッセージも取得する</li></ul></li></ul><h2><span>Google Docs連携処理</span></h2><p>取得したメッセージ情報をもとに、リアクション対応の処理を実行：</p><ul><li>Google Docs更新処理を開始</li><li>Service Accountを使用した認証で安全にアクセス</li><li>ドキュメントの内容を更新</li></ul><h2><span>完了通知</span></h2><p>処理完了後、Slackに結果を通知：</p><ul><li><code>chat.postMessage</code> でリアクション対象への結果通知</li><li>処理結果確認のメッセージ送信</li></ul><h1><span>構築</span></h1><p>ここでは、実際のシステム構築について詳しく説明していきます。プロトタイプとはいえ、実用的な機能を備えたシステムを構築することができました。以下、主要なコンポーネントごとに実装の詳細を解説していきます。部分的なコードを解説用に添付します。最終的なコードはGitHubのリポジトリとブログの最後に完成版のコードを張ります。</p><h2><span>Google Docsの更新</span></h2><p>Google Docsを操作するためにサービスアカウントを用いて認証を行っています。</p><div><div>サービスアカウントって何？</div><div><p> サービスアカウントとは、ユーザーがログインしなくても、プログラムがGoogleのサービスにアクセスできるようにする、特別なアカウントのことです。人間でいうと「あなたは〇〇のタスクを代わりにやってくれる、もう一人の自分」のような存在です。これにより、システムが裏側で黙々と処理を進めたり、決められたタイミングで情報を記録したりといった、自動化がスムーズに実現できるようになるんです。</p></div></div><p>Google Docsへの更新処理は、主に以下のような流れで実装しています：</p><p>まず、Google Cloud Platformでサービスアカウントを作成し、必要なAPIを有効化します。認証情報をJSONファイルとして取得し、これを使用してGoogle APIにアクセスします。NestJSからは、googleapisライブラリを使用してクライアントを作成し、適切なスコープ（documents、drive）を設定します。スコープとしては、以下を指定しています。</p><div><figure><table><thead><tr><th>スコープ</th><th>説明</th></tr></thead><tbody><tr><td><a href="https://www.googleapis.com/auth/documents">https://www.googleapis.com/auth/documents</a></td><td>Googleドキュメント操作に必要なスコープ</td></tr><tr><td><a href="https://www.googleapis.com/auth/drive">https://www.googleapis.com/auth/drive</a></td><td>Googleドライブ操作に必要なスコープ</td></tr></tbody></table></figure></div><p>サービスアカウントで割り振られたメールアドレスで操作したいGoogleドキュメントに、共有権限でドキュメントを共有します。</p><p>認証周りの処理はnest.jsの<a href="https://docs.nestjs.com/techniques/configuration" target="_blank" rel="noopener" title="">Configuration</a>を通じて共通的に保持しています。</p><div><pre data-lang="TypeScript"><code>import { MessagingApiClient } from '@line/bot-sdk/dist/messaging-api/api';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+
+import { docs_v1, google } from 'googleapis';
+
+@Injectable()
+export class EnvironmentsService {
+  constructor(private configService: ConfigService) {}
+
+  private googleDocs: docs_v1.Docs;
+  get googleDosc() {
+    if (this.googleDocs) return this.googleDocs;
+
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.DOCS_CLIENT_EMAIL,
+        private_key: process.env.DOCS_PRIVATE_KEY.replace(/\\n/g, '\n'), // 環境変数から読み込む場合は改行コードを修正
+      },
+      scopes: ['https://www.googleapis.com/auth/documents', 'https://www.googleapis.com/auth/drive'], // 必要なスコープ
+    });
+
+    this.googleDocs = google.docs({
+      version: 'v1',
+      auth,
+    });
+
+    return this.googleDocs;
+  }
+
+  get GoogleDocsID(): string {
+    return this.configService.get('DOCS_ID');
+  }
+}
+</code></pre></div><p>実際のドキュメント操作では、<code>documents.batchUpdate</code>メソッドでDocsのトップに追記する形で更新します。この際、Slackから取得したメッセージの内容を適切なフォーマットに変換して追記します。</p><div><pre data-lang="TypeScript"><code>import { Injectable } from '@nestjs/common';
+
+import { EnvironmentsService } from 'src/config/enviroments.service';
+
+@Injectable()
+export class DocsAccessService {
+  constructor(private readonly env: EnvironmentsService) {}
+  docs = this.env.googleDosc;
+  
+  async updateDoc(docId: string, text: string) {
+    try {
+      const response = await this.docs.documents.batchUpdate({
+        documentId: docId,
+        requestBody: {
+          requests: [
+            {
+              insertText: {
+                text: text,
+                location: {
+                  index: 1, // Insert at the beginning of the document
+                },
+              },
+            },
+          ],
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error updating document:', error);
+      throw error;
+    }
+  }
+}
+</code></pre></div><p>これにより、API経由で内容を自動的にGoogle Docsに記録し、後でNotebook LMで活用できる形式で保存することが可能になりました。</p><h2><span>Slackにボットメッセージを送信する</span></h2><p>Slackからのメッセージ送信では、<code>Bot User OAuth Tokens</code>を使用します。これには、<code>channels:history</code>、<code>chat:write</code>、<code>reactions:read</code>の権限が必要です。</p><figure><img data-recalc-dims="1" loading="lazy" decoding="async" width="880" height="1315" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f74498a7658d11b219bd6fa9a2476bb5.png?resize=880%2C1315&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f74498a7658d11b219bd6fa9a2476bb5.png?w=1285&amp;ssl=1 1285w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f74498a7658d11b219bd6fa9a2476bb5.png?resize=1028%2C1536&amp;ssl=1 1028w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f74498a7658d11b219bd6fa9a2476bb5.png?resize=940%2C1405&amp;ssl=1 940w" sizes="auto, (max-width: 880px) 100vw, 880px">  (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/f74498a7658d11b219bd6fa9a2476bb5.png?resize=880%2C1315&amp;ssl=1) </figure><p>まずは、先ほど取得したトークンを環境変数として参照できるようにします。</p><div><pre data-lang="TypeScript"><code>import { MessagingApiClient } from '@line/bot-sdk/dist/messaging-api/api';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+
+@Injectable()
+export class EnvironmentsService {
+  constructor(private configService: ConfigService) {}
+
+  get SlackBotToken(): string {
+    return this.configService.get('SLACK_BOT_TOKEN');
+  }
+}</code></pre></div><p>メッセージの送信方法は主に2種類あり、<code>chat.postMessage</code>で通常のメッセージを、<code>chat.postEphemeral</code>で一時的なメッセージを送信できます。Slack Botの捜査には<code>@slack/web-api</code>を使用しています。</p><div><pre data-lang="TypeScript"><code>import { Injectable } from '@nestjs/common';
+import { ReactionAddedEvent, WebClient } from '@slack/web-api';
+import { EnvironmentsService } from 'src/config/enviroments.service';
+import { DocsAccessService } from 'src/utils/docs-access/docs-access.service';
+
+@Injectable()
+export class SlackService {
+  private client: WebClient;
+  constructor(
+    private readonly env: EnvironmentsService,
+    private readonly docService: DocsAccessService,
+  ) {
+    const token = this.env.SlackBotToken;
+    this.client = new WebClient(token);
+  }
+  
+  async postMessage(channelId: string, text: string, threadTs?: string): Promise&lt;void&gt; {
+    try {
+      console.log(`Attempting to post message to channel ${channelId}${threadTs ? ` in thread ${threadTs}` : ''}`);
+      await this.client.chat.postMessage({
+        channel: channelId,
+        text: text,
+        thread_ts: threadTs, // ここに返信したいメッセージのtsを指定
+        // optional: icon_emoji: ':robot_face:', // カスタムアイコンを使いたい場合
+        // optional: username: 'My Reaction Bot', // カスタムユーザー名を使いたい場合
+      });
+      // console.log('Message posted successfully:', result.ts);
+    } catch (error) {
+      console.error(`Failed to post message: ${error.message}`, error.stack);
+      if (error.data) {
+        console.error('Slack API error response:', error.data);
+      }
+      throw error;
+    }
+  }
+  // あなただけに表示されています系メッセージ
+  async postMessageEphemeral(channelId: string, text: string, threadTs: string, user: string): Promise&lt;void&gt; {
+    try {
+      console.log(`Attempting to post message to channel ${channelId}${threadTs ? ` in thread ${threadTs}` : ''}`);
+      await this.client.chat.postEphemeral({
+        channel: channelId,
+        user: user,
+        text: text,
+        thread_ts: threadTs, // ここに返信したいメッセージのtsを指定
+        // optional: icon_emoji: ':robot_face:', // カスタムアイコンを使いたい場合
+        // optional: username: 'My Reaction Bot', // カスタムユーザー名を使いたい場合
+      });
+      // console.log('Message posted successfully:', result.ts);
+    } catch (error) {
+      console.error(`Failed to post message: ${error.message}`, error.stack);
+      if (error.data) {
+        console.error('Slack API error response:', error.data);
+      }
+      throw error;
+    }
+  }
+}
+</code></pre></div><p>二つのメソッドはほとんど同様の使い方ができます。明確な違いとしては、他のユーザーからの視認性・メッセージの修正の有無にあります。</p><div><figure><table><thead><tr><th>特徴</th><th>chat.postMessage</th><th>chat.postEphemeral</th></tr></thead><tbody><tr><td>用途</td><td>チャンネルやスレッドに永続的なメッセージを投稿する</td><td>特定のユーザーに対してのみ一時的な（非公開の）メッセージを投稿する</td></tr><tr><td>可視性</td><td>そのメッセージが投稿されたチャンネルの全員に見える</td><td>指定した user のみに見え、他のチャンネルメンバーには見えない</td></tr><tr><td>持続性</td><td>チャンネルの履歴に残り、後から参照可能</td><td>ユーザーがSlackクライアントを再起動したり、セッションを終了したりすると消える可能性がある（Slackの保証はないが、一時的と認識すべき）</td></tr><tr><td>宛先指定</td><td>channel パラメータでチャンネルIDまたはユーザーID（DMの場合）を指定</td><td>channel パラメータでチャンネルID、user パラメータでメッセージを表示するユーザーID を指定</td></tr><tr><td>スレッド返信</td><td>thread_ts パラメータでスレッドに返信可能</td><td>thread_ts パラメータでスレッド内の特定のユーザーに返信可能</td></tr><tr><td>APIスコープ</td><td>chat:write（通常）<br>chat:write.public（パブリックチャンネルのみ）<br>chat:write.private（プライベートチャンネルのみ）</td><td>chat:write または chat:write.ephemeral</td></tr><tr><td>メッセージの編集/削除</td><td>chat.update や chat.delete で後から編集・削除が可能</td><td>基本的に後から編集・削除する機能はない (表示されるかどうかはSlackクライアントに依存するため)</td></tr></tbody></table></figure></div><h2><span>リアクションイベントを受け付ける</span></h2><p>Events Subscriptionsを設定することで、Slackでのリアクションなどのイベントを検知できるようになります。今回のプロトタイプでは、メッセージへのリアクション追加・削除を監視するため、<code>reaction_added</code>と<code>reaction_removed</code>イベントを使用しています。</p><figure><img data-recalc-dims="1" loading="lazy" decoding="async" width="880" height="550" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/0a288a84c5c933335ebb6b85e6b81576.jpg?resize=880%2C550&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/0a288a84c5c933335ebb6b85e6b81576.jpg?w=1920&amp;ssl=1 1920w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/0a288a84c5c933335ebb6b85e6b81576.jpg?resize=1536%2C960&amp;ssl=1 1536w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/0a288a84c5c933335ebb6b85e6b81576.jpg?resize=940%2C588&amp;ssl=1 940w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/0a288a84c5c933335ebb6b85e6b81576.jpg?w=1760&amp;ssl=1 1760w" sizes="auto, (max-width: 880px) 100vw, 880px">  (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/06/0a288a84c5c933335ebb6b85e6b81576.jpg?resize=880%2C550&amp;ssl=1) </figure><p>処理としては、URL検証用リクエスト<code>url_verification</code>とイベントコールバック<code>event_callback</code>を取得する処理が割り振られています。</p><div><pre data-lang="TypeScript"><code>import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { SlackService } from './slack.service';
+import { SlackBotSignatureGuard } from 'src/common/guard/slack-bot-signature/slack-bot-signature.guard';
+
+import { SlackEvent } from '@slack/types';
+
+@Controller('/api/slack/')
+export class SlackController {
+  constructor(private readonly slackService: SlackService) {}
+
+  @UseGuards(SlackBotSignatureGuard)
+  @Post('events')
+  async handleSlackEvents(@Body() payload): Promise&lt;string | { challenge: string }&gt; {
+    // SlackのイベントがURL検証リクエストの場合は、challengeを返す
+    // これにより、Slackがイベントサブスクリプションを確認できるようになります
+    if (payload.type === 'url_verification') {
+      console.log('URL Verification Request handled.');
+      return { challenge: payload.challenge };
+    }
+    const event: SlackEvent = payload.event;
+
+    // イベントのタイプがサポートされていない場合はログを出力して終了
+    // ここでは 'event_callback' タイプのみを処理する
+    // 必要に応じて他のイベントタイプを追加することができます
+    if (payload.type !== 'event_callback' || !event) {
+      console.log('Unsupported Slack event type:', payload.type);
+      return 'OK'; // Slackに200 OKを返却
+    }
+
+    // イベントの処理を行う
+    if (event.type === 'reaction_added') {
+      // リアクションが 'notebooklm' の場合のみ処理を行う
+      if (event.reaction == 'notebooklm') {
+        this.slackService.updateDataSource(event);
+      }
+      return 'OK'; // Slackに200 OKを返却
+    }
+
+    return 'OK'; // Slackに200 OKを返却
+  }
+}
+</code></pre></div><p>リアクションイベントの型定義は<a href="https://api.slack.com/events/reaction_added" target="_blank" rel="noopener" title="">こちらのリファレンス</a>を参照してください。リアクション追加判別後、特定のリアクションが追加されたときのみ処理を行うようにしています。リアクション追加イベントには、リアクション情報とリアクションがつけられた対象を特定するための情報（ts/channel）が含まれています。こちらを使用してメッセージを取得します。</p><h2><span>Slack スレッドに送信されたメッセージをすべて取得</span></h2><div><pre data-lang="TypeScript"><code>import { Injectable } from '@nestjs/common';
+import { ReactionAddedEvent, WebClient } from '@slack/web-api';
+import { EnvironmentsService } from 'src/config/enviroments.service';
+import { DocsAccessService } from 'src/utils/docs-access/docs-access.service';
+
+@Injectable()
+export class SlackService {
+  constructor(
+    private readonly env: EnvironmentsService,
+  ) {
+    const token = this.env.SlackBotToken;
+    this.client = new WebClient(token);
+  }
+
+  async getMessage(channelId: string, ts: string): Promise&lt;string&gt; {
+    try {
+      const result = await this.client.conversations.history({
+        channel: channelId,
+        latest: ts,
+        limit: 1,
+        inclusive: true,
+      });
+      if (result.messages &amp;&amp; result.messages.length &gt; 0) {
+        const message = result.messages[0];
+        
+        if (message.thread_ts) {
+          const repilesResponse = await this.client.conversations.replies({
+            channel: channelId,
+            ts: message.thread_ts,
+          });
+
+          const replies = repilesResponse.messages
+            .map((reply) =&gt; {
+              // TODO：BOTが返信したメッセージを除外する
+              if (reply.bot_id) return '';
+              return reply.text ? reply.text : '';
+            })
+            .join('\n');
+
+          console.log('Replies retrieved successfully:', replies);
+          return replies;
+        }
+        return message.text ? message.text : '';
+      } else {
+        console.warn('No messages found for the given ts');
+        return null;
+      }
+    } catch (error) {
+      console.error(`Failed to get message: ${error.message}`, error.stack);
+      if (error.data) {
+        console.error('Slack API error response:', error.data);
+      }
+      throw error;
+    }
+  }
+}
+</code></pre></div><p>Slackのメッセージ取得について、いくつかの重要な点と制限事項があります。リアクションイベント内に含まれるチャンネルIDとts（タイムスタンプ）で<code>conversations.history</code>を<code>limit:1</code>で実行することで親スレッドを特定します。これはスレッド内にてリアクションイベントが発生しても、取得できるのは親スレッドの情報というSlack API特有の仕様です。<a href="https://api.slack.com/methods/conversations.history" target="_blank" rel="noopener" title="">API仕様書はこちらになります</a>。</p><p>スレッドを含むメッセージを完全に取得するためには、スレッド全体を別途取得する必要があります。BOTからの自動返信もメッセージとして含まれる可能性があり、これが実際の利用者の会話の流れを把握する際に不都合を生じさせることがあります。そのため、メッセージのフィルタリングや処理方法について、慎重な設計が必要となります。今回は、<code>conversations.replies</code>の結果でBOTの情報が含まれる場合はメッセージを除外しています。<a href="https://api.slack.com/methods/conversations.replies" target="_blank" rel="noopener" title="">API仕様書はこちらになります</a>。</p><h2><span>リアクションイベントからGoogle Docsの取得までを一つの処理としてまとめる</span></h2><p>ここまで、個別の処理に切り分けて実装していました。最終的にコントローラーから処理を受け取るサービスとして一つの関数にまとめていきます。</p><div><pre data-lang="TypeScript"><code>import { Injectable } from '@nestjs/common';
+import { ReactionAddedEvent, WebClient } from '@slack/web-api';
+import { EnvironmentsService } from 'src/config/enviroments.service';
+import { DocsAccessService } from 'src/utils/docs-access/docs-access.service';
+
+@Injectable()
+export class SlackService {
+  private client: WebClient;
+  constructor(
+    private readonly env: EnvironmentsService,
+    private readonly docService: DocsAccessService,
+  ) {
+    const token = this.env.SlackBotToken;
+    this.client = new WebClient(token);
+  }
+
+  async updateDataSource(event: ReactionAddedEvent): Promise&lt;void&gt; {
+    const channelId = event.item.channel;
+    const ts = event.item.ts;
+
+    const message = await this.getMessage(channelId, ts);
+
+    if (!message) {
+      console.warn(`Message not found for channel ${channelId} and ts ${ts}`);
+    }
+
+    if (message != '') {
+      const docId = this.env.GoogleDocsID;
+      const text = `\n---\n${message}\n---\n`;
+      await this.docService.updateDoc(docId, text);
+
+      this.postMessage(
+        channelId,
+        `Notebook LMデータソースに追記しました: ${event.reaction} by &lt;@${event.user}&gt; \n\n${message}`,
+        ts, // ここでスレッドのtsを指定
+      );
+    } else {
+      this.postMessage(
+        channelId,
+        `現在テキストソースにしか対応していません。リアクションをつけたメッセージはテキストが空でした。`,
+        ts, // ここでスレッドのtsを指定
+      );
+    }
+  }
+
+}
+</code></pre></div><p>今回解説した関数を利用して、イベントを受け取りGoogle Docsの更新・SlackへのBotによるメッセージ送信までの実装が完了しました。</p><h1><span>エラーハンドリングと署名検証</span></h1><p>エラーハンドリングと今後の課題について詳しく見ていきましょう。</p><h2><span>Slackの署名検証</span></h2><p><a href="https://api.slack.com/authentication/verifying-requests-from-slack" target="_blank" rel="noopener" title="">公式でも言及されていますが、アクセスがSlackからのものであることを確約する</a>必要があります。nest.jsではGuardsという機能を用いて、コントローラーにアクセスする前に事前に検証をすることができます。処理自体は公式の情報をもとに構築してあります。</p><p>必要になるのは、Slack Developerで取得することができる<code>Signing Secret</code>です。</p><div><pre data-lang="TypeScript"><code>import { CanActivate, ExecutionContext, Injectable, RawBodyRequest, UnauthorizedException } from '@nestjs/common';
+import { createHmac, timingSafeEqual } from 'crypto';
+import { Observable } from 'rxjs';
+import { EnvironmentsService } from 'src/config/enviroments.service';
+
+@Injectable()
+export class SlackBotSignatureGuard implements CanActivate {
+  constructor(private readonly env: EnvironmentsService) {}
+  private readonly MAX_TIMESTAMP_AGE_SECONDS = 300; // 5分 (リプレイアタック防止のため)
+
+  canActivate(context: ExecutionContext): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
+    const request = context.switchToHttp().getRequest&lt;RawBodyRequest&lt;Request&gt;&gt;();
+
+    const slackSignature = request.headers['x-slack-signature'] as string;
+    const slackTimestamp = request.headers['x-slack-request-timestamp'] as string;
+    const rawBody = (request as any).rawBody; // main.ts で bodyParser を設定して取得
+
+    if (!slackSignature || !slackTimestamp || !rawBody) {
+      console.error('署名検証が失敗しました: 必要なヘッダーまたはボディが不足しています。');
+      throw new UnauthorizedException('署名検証が失敗しました: 必要なヘッダーまたはボディが不足しています。');
+    }
+
+    // リプレイアタック
+    const timestamp = parseInt(slackTimestamp, 10);
+    const currentTime = Math.floor(Date.now() / 1000); // Unixタイムスタンプ (秒)
+
+    if (Math.abs(currentTime - timestamp) &gt; this.MAX_TIMESTAMP_AGE_SECONDS) {
+      console.warn(
+        // 日本語にしてエラーメッセージをわかりやすくする
+        `Slackリクエストのタイムスタンプが古すぎるか、未来のものです。タイムスタンプ: ${timestamp}, 現在: ${currentTime}`,
+      );
+      throw new UnauthorizedException('Slackリクエストのタイムスタンプが古すぎるか、未来のものです。');
+    }
+
+    // Slackの署名検証
+    const baseString = `v0:${timestamp}:${rawBody.toString()}`;
+
+    const hmac = createHmac('sha256', this.env.SlackBotSigningSecret);
+    hmac.update(baseString);
+    const computedSignature = `v0=${hmac.digest('hex')}`;
+
+    if (!timingSafeEqual(Buffer.from(computedSignature), Buffer.from(slackSignature))) {
+      console.warn('Slackの署名が無効です。');
+      throw new UnauthorizedException('Slackの署名が無効です。');
+    }
+
+    return true;
+  }
+}
+</code></pre></div><h2><span>エラーハンドリング</span></h2><p>プロトタイプとしての現在の実装では、基本的なエラーハンドリングのみを実装していますが、本番環境での運用を想定した場合、以下のような設計が必要になりそうです。</p><ul><li><strong>Slack API関連のエラー処理:</strong><ul><li>レート制限への対応とリトライロジックの実装</li><li>API接続タイムアウトの適切な処理</li><li>チャンネルアクセス権限エラーの処理</li></ul></li><li><strong>Google Docs API関連のエラー処理:</strong><ul><li>認証エラーの適切な処理とトークンリフレッシュ</li><li>ドキュメント編集権限エラーのハンドリング</li><li>API制限到達時の待機ロジック実装</li></ul></li><li><strong>システム全般のエラー処理:</strong><ul><li>エラーログの構造化と保存</li><li>重要なエラーの管理者への通知システム</li><li>システムの状態回復メカニズムの実装</li></ul></li></ul><p>これらのエラーハンドリングを実装することで、システムの安定性と信頼性が大幅に向上します。また、運用面でのトラブルシューティングも容易になります。</p><h1><span>今後の展望</span></h1><p>今回のプロトタイプ開発を通じて、SlackからNotebook LMへのデータ連携という基本的な仕組みは構築できました。しかし、これはあくまで第一歩であり、より実用的で価値のあるシステムに発展させるための道筋がいくつか見えてきました。</p><h2><span>機能拡張の方向性</span></h2><p><strong>ファイル形式の対応拡大</strong></p><p>現在はテキストメッセージのみの対応ですが、Slackでは画像、PDF、スプレッドシートなど様々なファイルが共有されます。特に、画像からのOCR処理やPDFの内容抽出機能を追加することで、より包括的な情報収集が可能になります。Google Cloud VisionやDocument AIとの連携により、これらの実装は十分現実的です。</p><p><strong>リアクション種別による分類機能</strong></p><p>現在は単一のリアクション（<code>:notebooklm:</code>）のみに対応していますが、複数のリアクションを使い分けることで、情報を自動分類できるようになります。例えば：</p><ul><li><code>:important:</code> → 重要な情報として優先度高でマーク</li><li><code>:todo:</code> → タスクリストとして別ドキュメントに記録</li><li><code>:knowledge:</code> → ナレッジベース用ドキュメントに整理</li></ul><p>この仕組みにより、単なるデータ収集から、目的別の情報整理システムへと発展させることができます。</p><p><strong>AI要約機能の統合</strong></p><p>現在はSlackのメッセージをそのままGoogle Docsに転記していますが、長いスレッドや議論については、Azure OpenAIやAnthropic APIを活用した要約機能を追加したいと考えています。これにより、本質的な内容のみを抽出してNotebook LMに渡すことが可能になり、より効率的な情報活用が実現できます。</p><h2><span>システム改善の取り組み</span></h2><p><strong>パフォーマンスとスケーラビリティの向上</strong></p><p>現在の同期処理から非同期処理への移行は必須です。Redis Queueやbull.jsを使用したジョブキューイングシステムを導入し、大量のメッセージ処理にも対応できる構成に変更予定です。また、Google Docsの容量制限を考慮し、定期的なドキュメント分割機能も検討しています。</p><p><strong>ユーザーエクスペリエンスの改善</strong></p><p>現在のシンプルなBot返信から、より詳細なフィードバック機能への拡張を計画しています。処理状況の可視化、エラー時の分かりやすい説明、さらにはSlashコマンドを使った手動操作機能なども追加したいところです。</p><p><strong>監視とメンテナンス機能</strong></p><p>本格運用を見据えて、システムヘルスチェック機能やログ分析ダッシュボードの構築も重要です。特に、API使用量の監視やエラー傾向の分析機能により、安定したサービス提供を目指します。</p><h2><span>技術的挑戦</span></h2><p><strong>Notebook LM APIの活用</strong></p><p>現在はGoogle Docsを経由した間接的な連携ですが、今後Notebook LM APIが公開された際には、より直接的な統合を検討したいと思います。これにより、リアルタイムでの質問応答機能や、自動的なインサイト生成なども実現可能になるかもしれません。</p><p><strong>マルチプラットフォーム対応</strong></p><p>Slack以外のコミュニケーションツール（Microsoft Teams、Discord、Mattermost等）への対応も視野に入れています。共通のインターフェースを設計することで、組織の使用ツールに関係なく同様の価値を提供できるシステムを目指します。</p><p><strong>セキュリティとコンプライアンス強化</strong></p><p>企業利用を考慮し、データの暗号化、アクセス権限の細分化、監査ログの充実などを進める必要があります。特に、個人情報や機密情報を含む可能性のあるSlackメッセージの取り扱いについては、慎重な設計が求められます。</p><h2><span>おわりに</span></h2><p>今回開発したプロトタイプは、AIを活用した情報管理の可能性を示す小さな一歩でした。しかし、ここから得られた知見と技術基盤を活かし、より実用的で価値のあるシステムへと発展させていきたいと考えています。</p><p>特に、現在のAIブームの中で、単にAIツールを使うだけでなく、既存のワークフローにAIを自然に統合する仕組みの重要性を改めて感じました。SlackのようなコミュニケーションツールとNotebook LMのような分析ツールを橋渡しすることで、日常的な業務の中で自然にナレッジが蓄積され、活用される環境を作ることができそうです。</p><p>今後も継続的に改善を重ね、最終的には「気がついたら素晴らしいナレッジベースができていた」と感じられるような、透明で価値のあるシステムを目指していきます。皆さんも、ぜひ様々なAIサービスを組み合わせて、独自の価値を生み出すシステム構築にチャレンジしてみてください！</p><div><div>AIが執筆した部分とプロンプト</div><div><p>AIが執筆した部分としては「処理フロー」「Slackにボットメッセージを送信する：表」「今後の展望～おわりに」になります。</p><p>「処理フロー」に関しては、Claudeを使用してSVG形式で出力しています。以下のプロンプトを使用してMarmaid形式の情報を出力して、SVGに変換してFigmaで成形しています。</p><div><pre data-lang="Markdown"><code>Slack・バックエンドAPI・Google Docs・Notebook LMの連携フロー図を描いてほしい 
+- from Slack to backend callback /api/slack/events(POST) : Subscription Event reacttion add 
+- from backend to Slack API GET Slack Message 
+- from backend to Google Docs : update Docs use service account Google Docs 
+- from backend to Slack POST Slack Message target reacttion target
+</code></pre></div><p>「Slackにボットメッセージを送信する：表」に関しては、Geminiを使用して出力しています。コンテンツを箇条書きで書いて変換にAIを使用しています。</p><p>「今後の展望～おわりに」に関しては、Geminiを利用しています。コンテンツを執筆し、PDFとしてエクスポートして、入力しています。</p><div><pre data-lang="Markdown"><code>内容のファクトチェックと「今後の展望」・「おわりに」を文体を合わせて執筆してください。
+
+add PDF
+</code></pre></div><p>内容を確認して、納得がいったのでそのまま採用しました。</p></div></div><p>弊社ではAI活用頑張ってますので、こちらも併せてチェック！！</p><div><a href="https://tech-lab.sios.jp/archives/47820"><span><img loading="lazy" decoding="async" width="520" height="300" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9-1.png?resize=520%2C300&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9-1.png?resize=520%2C300&amp;ssl=1 520w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9-1.png?zoom=2&amp;resize=520%2C300&amp;ssl=1 1040w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9-1.png?zoom=3&amp;resize=520%2C300&amp;ssl=1 1560w" sizes="auto, (max-width: 520px) 100vw, 520px"> [画像: PRレビューを自動化しよう！GitHub Copilot × システムプロンプトの基本] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9-1.png?resize=520%2C300&amp;ssl=1) </span><div><time itemprop="datePublished" datetime="2025-05-31">2025-05-31</time><span>PRレビューを自動化しよう！GitHub Copilot × システムプロンプトの基本</span></div></a></div><div><a href="https://tech-lab.sios.jp/archives/47814"><span><img loading="lazy" decoding="async" width="520" height="300" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9.png?resize=520%2C300&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9.png?resize=520%2C300&amp;ssl=1 520w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9.png?zoom=2&amp;resize=520%2C300&amp;ssl=1 1040w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9.png?zoom=3&amp;resize=520%2C300&amp;ssl=1 1560w" sizes="auto, (max-width: 520px) 100vw, 520px"> [画像: GitHub Copilotをチーム開発で使いこなす！システムプロンプト設定方法] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/05/d198041283864ff33f62da4a570840a9.png?resize=520%2C300&amp;ssl=1) </span><div><time itemprop="datePublished" datetime="2025-05-30">2025-05-30</time><span>GitHub Copilotをチーム開発で使いこなす！システムプロンプト設定方法</span></div></a></div><!-- Anyway Feedback Container //--><div>ご覧いただきありがとうございます！
+
+<span>この投稿はお役に立ちましたか？</span><br><br><a href="#afb-post-47891">役に立った</a><a href="#afb-post-47891">役に立たなかった</a><br><br><span>0人がこの投稿は役に立ったと言っています。</span><input type="hidden" name="post_type" value="post"><input type="hidden" name="object_id" value="47891"></div><!-- //Anyway Feedback Container -->

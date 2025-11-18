@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import WelcomeMessage from '@/components/atoms/WelcomeMessage';
+---
+
+<BaseLayout
+  title="Claude & Blog Seminar"
+  description="Claudeを活用した技術ブログ執筆のテクニックとワークフロー"
+>
+  <section class="hero">
+    <h2>Astro + React環境の構築が完了しました</h2>
+    <p class="description">
+      Claudeを活用した技術ブログ執筆のテクニックとワークフローを学ぶためのプラットフォーム
+    </p>
+  </section>
+
+  <section class="features">
+    <WelcomeMessage client:load />
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>AIデザイン駆動開発</h3>
+        <p>情報設計に注力し、デザイン詳細はAIに委ねる新しい開発アプローチ</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>3フェーズ開発手法</h3>
+        <p>計画・実装・検証の3つのフェーズで効率的な開発を実現</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>モノレポ構成</h3>
+        <p>Marp、Frontend、Toolsの3つのワークスペースで構成された統合環境</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tech-stack">
+    <h3>技術スタック</h3>
+    <ul>
+      <li><strong>Astro 4.x</strong> - 静的サイト生成</li>
+      <li><strong>React 18.x</strong> - インタラクティブコンポーネント</li>
+      <li><strong>TypeScript 5.x</strong> - 型安全な開発</li>
+      <li><strong>Marp</strong> - プレゼンテーションスライド</li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .features {
+    margin-bottom: 3rem;
+  }
+
+  .features :global(.welcome-message) {
+    background-color: var(--color-bg-secondary);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .features :global(.welcome-message .icon) {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .features :global(.welcome-message p) {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .feature-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+  }
+
+  .tech-stack {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .tech-stack h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .tech-stack ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .tech-stack li {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .tech-stack strong {
+    color: var(--color-text);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .hero h2 {
+      font-size: 1.5rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tech-stack ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

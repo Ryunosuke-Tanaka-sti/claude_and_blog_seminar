@@ -1,0 +1,60 @@
+<!--
+ブログ記事情報:
+タイトル: AI協働で仕様書アレルギー克服！開発時間を1週間→2日に短縮する実践法 | SIOS Tech. Lab
+URL: https://tech-lab.sios.jp/archives/49148
+OGP画像: https://tech-lab.sios.jp/wp-content/uploads/2025/09/dc0689e579ad1cac3b24e3bfe25c71f9.png
+抽出日時: 2025-11-07T20:47:52.931Z
+-->
+
+<h1>AI協働で仕様書アレルギー克服！開発時間を1週間→2日に短縮する実践法 | SIOS Tech. Lab</h1>
+
+
+	
+<div data-smooth-scroll="1" data-smooth-scroll-offset="24"><div><div><b>目次</b></div><div><ul><li><a href="#hajimeni"><span>1</span><span>はじめに</span></a></li><li><a href="#bei_jingke_ti_shuo_ming"><span>2</span><span>背景・課題説明</span></a><ul><li><a href="#shi_yang_shuga_bi_yaona_li_you"><span>2.1</span><span>仕様書が必要な理由</span></a></li><li><a href="#shi_yang_shuarerugino_yuan_yin_fen_xi"><span>2.2</span><span>仕様書アレルギーの原因分析</span></a></li></ul></li><li><a href="#ji_shu_xuan_zeno_li_younazeAIto_xie_lisurunoka"><span>3</span><span>技術選択の理由：なぜAIと協力するのか</span></a><ul><li><a href="#AIwo_huo_yongshita_shi_yang_shu_zuo_chengfuro"><span>3.1</span><span>AIを活用した仕様書作成フロー</span></a></li></ul></li><li><a href="#shi_zhuang_xiang_xi"><span>4</span><span>実装詳細</span></a><ul><li><a href="#CLAUDEmdno_ju_ti_dena_ji_shu_li"><span>4.1</span><span>CLAUDE.mdの具体的な記述例</span></a></li><li><a href="#shi_yang_shu_zuo_chengno_ju_ti_dena_shou_shun"><span>4.2</span><span>仕様書作成の具体的な手順</span></a></li><li><a href="#shi_yang_shunotenpureto_li"><span>4.3</span><span>仕様書のテンプレート例</span></a></li></ul></li><li><a href="#dong_zuo_que_renjian_zheng"><span>5</span><span>動作確認・検証</span></a><ul><li><a href="#shi_jino_xiao_guowo_jian_zhengshitemita"><span>5.1</span><span>実際の効果を検証してみた</span></a></li><li><a href="#AIto_xie_lisuru_fu_ci_de_xiao_guo"><span>5.2</span><span>AIと協力する副次的効果</span></a></li><li><a href="#cheng_gong_shi_li_shi_jinopurojekutokara"><span>5.3</span><span>成功事例：実際のプロジェクトから</span></a></li></ul></li><li><a href="#ke_tito_jin_houno_zhan_wang"><span>6</span><span>課題と今後の展望</span></a><ul><li><a href="#xian_zaino_zhi_xian_shi_xiangto_gai_shan_an"><span>6.1</span><span>現在の制限事項と改善案</span></a></li></ul></li><li><a href="#matome"><span>7</span><span>まとめ</span></a></li></ul></div></div></div><h2><span>はじめに</span></h2><p>ども！AIとの開発をがっつり初めて2か月で毎日Claude Codeとお話している龍ちゃんです。本業とは別で開発を進めているのですが、今まで1週間で頑張って1件の検証開発しかできなかったんですが、2日で検証したいことをサンプル付きで作成できるので最高ですね。これまでの開発経験で技術記事も数多く書いてきましたが、今回は特に効果を実感したAIとの協働について書いていこうと思います。</p><p>ちなみに「<a href="https://tech-lab.sios.jp/archives/49140" target="_blank" rel="noopener" title="">Claude Code革命！3フェーズ開発で効率的な開発：計画→実装→検証術</a>」Claudeに実装させるフェーズを分割して開発をする手法を紹介しています。今回はそこの計画書執筆フェーズのお話です。</p><p>皆さんは、仕様書を書くことに対してどんな印象をお持ちですか？正直に言うと、入社して4年ですが、いまだに仕様書を書くという作業に対して苦手意識があります。仕様書を書くのが好きというエンジニアに個人的にあったことがありません。「完璧な仕様書を書くぞ～！」というモチベーションを持ったとしてもアレルギーといいますか、「完璧な仕様書」というものを書くのはハードルが高いですね。</p><h2><span>背景・課題説明</span></h2><figure><img data-recalc-dims="1" decoding="async" width="880" height="602" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/09/5bd156fc0f4e676ff6934beaeca67492-1.png?resize=880%2C602&amp;ssl=1">  (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/09/5bd156fc0f4e676ff6934beaeca67492-1.png?resize=880%2C602&amp;ssl=1) </figure><h3><span>仕様書が必要な理由</span></h3><p>その一方でAIと共同で開発を進めていくためには「仕様書」があったほうが良いです。コード規約やLinter/Formatterが整備されているプロジェクトであれば、コードが仕様書の機能を持つことがありますが、プロジェクト初期の段階であれば仕様書を読み込ませて開発をするほうが圧倒的に開発効率が良いです。Vibe Codingで単純なプロンプトで100-300文字のプロンプトで作成するのは不可能です。</p><p>機能開発中によくあるのが、検討不足や考慮不足によって開発中にSlackでの相談やミーティングを挟んだり、手が止まって考え込んだりすることではないでしょうか。コードの書き方で悩むのは問題ありませんが、事前に決めておくべき情報が未確定なために発生する手戻りは避けたいものです。</p><h3><span>仕様書アレルギーの原因分析</span></h3><p>仕様書を書くことに対してアレルギーがある原因を個人的に分析をしてみると、仕様書を読み込んだ経験があまりないことがあります。より良い仕様書を書くためには、良い仕様書のお手本が必要です。じゃあそのより良い仕様書ってどこにあるのって話ですよね。完璧超人が執筆した仕様書があれば理想ですね。（レビューなしで完璧な仕様書を書ける人がいるならあってみたい…）</p><p>そんな可能性はないので、プロジェクトではレビューを重ねてより良い仕様書を目指していくのが、普通の流れになると思います。ということを踏まえて、皆さんの周りに仕様書ってありますか？仕様書を読み込む経験ってあまりないんじゃないでしょうか？</p><h2><span>技術選択の理由：なぜAIと協力するのか</span></h2><p>そこで提案です！小さく仕様書を書いてみませんか？いきなり完璧な仕様書なんて不可能ですし、レビューアーを確保するのも大変ですよね。そこでAIを活用します。</p><h3><span>AIを活用した仕様書作成フロー</span></h3><p>AIに仕様書を書いてもらい、それをレビューする。私たちは意図を伝えて仕様書を作成してもらい、人間がレビュアーとして参加し、AIと協力する形で仕様書を作成していくフローです。</p><figure><img data-recalc-dims="1" decoding="async" width="800" height="405" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/09/2ac05af23840a4bbf68459e76853f04f-1.png?resize=800%2C405&amp;ssl=1">  (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/09/2ac05af23840a4bbf68459e76853f04f-1.png?resize=800%2C405&amp;ssl=1) </figure><h2><span>実装詳細</span></h2><h3><span>CLAUDE.mdの具体的な記述例</span></h3><p>前提としてAIはコードを書きたがります。設計段階では、目的や禁止事項をCLAUDE.mdに定義しています。</p><p>実際に私が使っているCLAUDE.mdの中身を見てみましょう：</p><div><pre data-lang="Markdown"><code># 設計フェーズのルール
+
+## 目的
+AIに人間の意図を適切に伝えて効率的な開発を行う
+
+## 設計フェーズで行うこと
+- 型定義の設計
+- データベース構造の設計
+- API 仕様の定義
+- アーキテクチャ設計
+- 機能要件の明確化
+- 非機能要件の定義
+
+## 設計フェーズで禁止すること
+- ❌ 実装コードの記述禁止
+- ❌ 具体的なロジックの記述禁止
+- ❌ ライブラリの選定禁止
+- ❌ 具体的な関数実装禁止
+
+## レビューポイント
+- 要件の抜け漏れはないか
+- 設計の整合性は取れているか
+- スケーラビリティは考慮されているか
+- セキュリティ要件は満たしているか</code></pre></div><p>このように明確にルールを定義することで、AIが設計に集中してくれます。</p><h3><span>仕様書作成の具体的な手順</span></h3><ol><li><strong>要件の整理</strong>：何を作りたいかを箇条書きで整理</li><li><strong>AIとの対話</strong>：CLAUDE.mdのルールに基づいて仕様書を依頼</li><li><strong>レビューと修正</strong>：作成された仕様書を人間の視点でレビュー</li><li><strong>反復改善</strong>：不足部分や曖昧な部分を繰り返し修正</li></ol><h3><span>仕様書のテンプレート例</span></h3><div><pre data-lang="Markdown"><code># 機能仕様書：[機能名]
+
+## 概要
+[機能の目的と概要]
+
+## 機能要件
+- [要件1]
+- [要件2]
+- [要件3]
+
+## 非機能要件
+- パフォーマンス要件
+- セキュリティ要件
+- 可用性要件
+
+## データ構造
+[必要なデータ構造の定義]
+
+## API仕様
+[エンドポイントの定義]
+
+## 制約事項
+[技術的制約や業務的制約]</code></pre></div><h2><span>動作確認・検証</span></h2><h3><span>実際の効果を検証してみた</span></h3><p>従来の開発フローと比較してみました：</p><div><figure><table><thead><tr><th>項目</th><th>Before（従来の人間だけでの開発）</th><th>After（AIと協力した仕様書駆動）</th></tr></thead><tbody><tr><td>仕様検討</td><td>開発中に随時（割り込み多数）</td><td>事前に1-2時間</td></tr><tr><td>開発時間</td><td>1週間</td><td>2日</td></tr><tr><td>手戻り回数</td><td>平均3-4回</td><td>平均1回</td></tr></tbody></table></figure></div><p>特に<strong>開発時間の短縮</strong>と手戻り回数が顕著に現れました！</p><p>まだまだ検証中の段階なので、小規模な検証なことは留意しておいてください。</p><h3><span>AIと協力する副次的効果</span></h3><p>仕様書を書くことの効果は、開発前に作成したい機能の整理ができることです。</p><p>AIと一緒に仕様書を作成する副次的効果として、AIが作った仕様書をレビューする経験が得られます。仕様書の段階で、こちらの意図が適切に伝わっていなければレビューして修正します。これにより開発前に検討不足や考慮不足を抑えることができます。完璧なレビューは不可能ですが、それは経験を重ねることで改善していくものですね。</p><h3><span>成功事例：実際のプロジェクトから</span></h3><p>最近の検証プロジェクトでは、以下のような成果が得られました：</p><ul><li><strong>ユーザー認証システム</strong>：仕様書作成1時間 → 実装1.5日</li><li><strong>データ分析ダッシュボード</strong>：仕様書作成2時間 → 実装2日</li><li><strong>API統合機能</strong>：仕様書作成1.5時間 → 実装1日</li></ul><p>いずれも従来の3-4倍の速度で完成させることができました。</p><h2><span>課題と今後の展望</span></h2><h3><span>現在の制限事項と改善案</span></h3><p>まだ完璧ではありません。AIの理解度に依存する部分があり、複雑な業務ロジックは人間の補完が必要です。また、チーム内での標準化やレビュー観点の統一も課題ですね。</p><p>短期的には仕様書テンプレートの標準化とAIプロンプトの最適化を進めています。<strong>いっそのこと</strong>、将来的にはAIが要件定義から運用まで一貫してサポートしてくれるような環境を構築したいですね。</p><h2><span>まとめ</span></h2><p>今回は、AIと協力した仕様書作成フローについて詳しく見てきました。</p><p>「仕様書アレルギー」を克服し、効率的な開発を実現する方法として：</p><ul><li><strong>小さく始める仕様書作成</strong>：完璧を目指さず、まずは基本的な要件から</li><li><strong>AIとの協働レビュープロセス</strong>：AIに作成してもらい、人間がレビューする</li><li><strong>設計フェーズでの明確なルール設定</strong>：CLAUDE.mdでの禁止事項と目的の明示</li><li><strong>段階的な開発プロセス</strong>：設計→開発→ブラッシュアップの3段階</li></ul><p>これらの知識を活かして、皆さんもAIと一緒に仕様書作成にチャレンジしてみてください！最初は慣れないかもしれませんが、開発効率の向上を実感できると思います。</p><p>実際のプロジェクトでどちらを選ぶべきか、迷うところですよね。でも、一度この方法を試してみれば、その効果を実感していただけるはずです。</p><p>次回は、実際の開発フェーズでのAI活用術について書く予定です。お楽しみに！</p><!-- Anyway Feedback Container //--><div>ご覧いただきありがとうございます！
+
+<span>この投稿はお役に立ちましたか？</span><br><br><a href="#afb-post-49148">役に立った</a><a href="#afb-post-49148">役に立たなかった</a><br><br><span>0人がこの投稿は役に立ったと言っています。</span><input type="hidden" name="post_type" value="post"><input type="hidden" name="object_id" value="49148"></div><!-- //Anyway Feedback Container -->

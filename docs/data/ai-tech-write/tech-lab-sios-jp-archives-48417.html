@@ -1,0 +1,52 @@
+<!--
+ブログ記事情報:
+タイトル: SEOなんもわからんけんClaudeに丸投げしたらストレスフリーになった話 | SIOS Tech. Lab
+URL: https://tech-lab.sios.jp/archives/48417
+OGP画像: https://tech-lab.sios.jp/wp-content/uploads/2025/07/79881e48602dcd73ecb1c7aa7798cbd3.png
+抽出日時: 2025-11-07T20:47:23.862Z
+-->
+
+<h1>SEOなんもわからんけんClaudeに丸投げしたらストレスフリーになった話 | SIOS Tech. Lab</h1>
+
+
+	
+<div data-smooth-scroll="1" data-smooth-scroll-offset="24"><div><div><b>目次</b></div><div><ul><li><a href="#ai_za"><span>1</span><span>挨拶</span></a></li><li><a href="#SEOwakaran_shinoriaruna_naomi"><span>2</span><span>SEOわからん勢のリアルな悩み</span></a><ul><li><a href="#konnakotode_naondemasenka"><span>2.1</span><span>こんなことで悩んでませんか？</span></a></li></ul></li><li><a href="#shi_jiniyatterutaitoru_sheng_chengno_liure"><span>3</span><span>実際にやってるタイトル生成の流れ</span></a><ul><li><a href="#suteppu1_ji_shino_yao_suwo_zheng_li"><span>3.1</span><span>ステップ1：記事の要素を整理</span></a></li><li><a href="#suteppu2Claudeni_tougerupuronputo"><span>3.2</span><span>ステップ2：Claudeに投げるプロンプト</span></a></li><li><a href="#suteppu3_fu_shu_anmoratte_xuanbu"><span>3.3</span><span>ステップ3：複数案もらって選ぶ</span></a></li></ul></li><li><a href="#metadisukuripushon_sheng_chengno_liure"><span>4</span><span>メタディスクリプション生成の流れ</span></a><ul><li><a href="#SEOnanmowakarankara_diao_zhashitemita"><span>4.1</span><span>SEOなんもわからんから調査してみた</span></a></li><li><a href="#diao_zha_jie_guowopurojekutonarejjini_deng_lu"><span>4.2</span><span>調査結果をプロジェクトナレッジに登録</span></a></li><li><a href="#narejjibesuwo_huo_yongshitapuronputo_wan_cheng_ban"><span>4.3</span><span>ナレッジベースを活用したプロンプト完成版</span></a></li></ul></li><li><a href="#shi_li_ju_debifoafuta"><span>5</span><span>実例：劇的ビフォーアフター</span></a><ul><li><a href="#Claude_bao_zou_zhi_yu_ji_shino_chang_he"><span>5.1</span><span>Claude暴走制御記事の場合</span></a></li><li><a href="#Azure_Nextjs_ji_shino_chang_he"><span>5.2</span><span>Azure + Next.js記事の場合</span></a></li></ul></li><li><a href="#yattemitewakattakotsuto_zhu_yi_dian"><span>6</span><span>やってみてわかったコツと注意点</span></a><ul><li><a href="#kua_da_biao_xian_wen_tiheno_dui_chu_fa"><span>6.1</span><span>誇大表現問題への対処法</span></a></li><li><a href="#puronputode_zhi_dingsubekikoto"><span>6.2</span><span>プロンプトで指定すべきこと</span></a></li><li><a href="#ren_jianga_zui_zhongchekkusubekipointo"><span>6.3</span><span>人間が最終チェックすべきポイント</span></a></li></ul></li><li><a href="#SEO_xiao_guoha_shi_jidounatta"><span>7</span><span>SEO効果は実際どうなった？</span></a><ul><li><a href="#zhu_guan_dena_bian_hua"><span>7.1</span><span>主観的な変化</span></a></li></ul></li><li><a href="#matomeSEOwakaranakutemonantokanaru"><span>8</span><span>まとめ：SEOわからなくてもなんとかなる</span></a></li></ul></div></div></div><h2><span>挨拶</span></h2><p>ども！登壇資料の準備が佳境を迎えています、龍ちゃんです。資料の前段でブログを書こうと思ったら、執筆済みのブログが5件ほど積み上がっているという魔境のような現状があります。</p><p>さて今回は、その中の1つシリーズである「タイトルとメタディスクリプションをAIに丸投げしてみた」というブログの内容になります。</p><h2><span>SEOわからん勢のリアルな悩み</span></h2><p>ブログを書き終わった後に悩む要素って、サムネイルとタイトルとメタディスクリプションですよね。正直、タイトルとメタディスクリプションだけで考えるのは非常に疲れてしまいます。というか嫌ですね。</p><p>だってメタディスクリプションって何なんですか？知らないですよね。でもやっぱりタイトルの引きってあると思うんですよね。「検索されやすいタイトルを…」って言われても困っちゃいますよね。</p><p>というわけで、そういうめんどくさい作業をAIに丸投げしちゃおうぜ！という話になります。</p><h3><span>こんなことで悩んでませんか？</span></h3><ul><li>タイトル考えるのに30分かかる問題</li><li>メタディスクリプションって何？状態</li><li>キーワードとか意味不明</li><li>「検索されやすいタイトルを…」とか言われても困る</li></ul><p><span>結論：もうAIに丸投げしよう</span></p><h2><span>実際にやってるタイトル生成の流れ</span></h2><p>もう今では、タイトルやメタディスクリプションを自分で考えることなんて1個もなくなりました。AIが出してきたものに対して文句を言ってるだけで完成するんですね。</p><p>具体的な流れとしては、まずブログを執筆します。これは避けることのできない工程です。ブログを執筆して、そのブログを入力として与えます。</p><h3><span>ステップ1：記事の要素を整理</span></h3><ul><li>使った技術スタック</li><li>想定読者（初心者？上級者？）</li><li>記事で解決する問題</li><li>他の記事との違い</li></ul><h3><span>ステップ2：Claudeに投げるプロンプト</span></h3><div><pre><code>あなたは、SEOに精通したライターです。
+
+Goal：ブログ用タイトル・メタディスクリプションの作成
+
+Plan：
+- 添付ファイルからコンテンツの把握
+- タイトルを55~60文字以内で考案
+- メタディスクリプションを85文字以内で作成
+- SEO的に優れているという観点で順位付け
+- 複数案を提案
+
+Tips：
+- 誇大広告は避けてください
+- 技術名を明確に含める
+- 実践的な価値を伝える
+</code></pre></div><h3><span>ステップ3：複数案もらって選ぶ</span></h3><ul><li>だいたい3-5個案をもらう</li><li>自分が「あ、これ読みたい」と思うやつを選ぶ</li><li>技術名が入ってるかチェック</li></ul><h2><span>メタディスクリプション生成の流れ</span></h2><p>メタディスクリプションも同様の方法で作成することができます。ですが、メタディスクリプションはプロジェクトナレッジの追加を行い、条件付けを行っています。</p><h3><span>SEOなんもわからんから調査してみた</span></h3><p>メタディスクリプションって何なんですか？正直全然わからなかったんですよね。</p><p>「120文字以内で書け」とか「160文字がベスト」とか、色んな情報が飛び交ってて何が正解かわからない状態でした。タイトルはなんとなく「キャッチーに書けばいいんでしょ？」って感じでしたが、メタディスクリプションは本当に謎。</p><p>そこで、SEOなんもわからん勢の僕が取った行動は「AIに調査してもらう」でした。調査はClaude リサーチとGemini DeepReserchを利用して調査しました。</p><h3><span>調査結果をプロジェクトナレッジに登録</span></h3><p>この調査結果を「メタディスクリプションガイド」としてプロジェクトナレッジに登録しました。</p><p><strong>登録した重要な発見</strong>：</p><ul><li><strong>文字数の現実</strong>：60-85文字が2025年の実際の表示限界</li><li><strong>表示確率の現実</strong>：Googleが設定内容を使うのは28%だけ</li><li><strong>スマホファースト</strong>：検索の75%がスマホなので、スマホ基準で考える</li><li><strong>前半50文字ルール</strong>：重要情報は絶対に前半に配置</li></ul><p>この調査をやってみて「やっぱりSEOって奥が深いんだな」って思いました。でも同時に「AIに調査してもらえば、素人でもプロレベルの知識が手に入る」っていうことも分かりました。</p><h3><span>ナレッジベースを活用したプロンプト完成版</span></h3><p>プロジェクトナレッジに調査結果を登録したので、今度はそれを活用したプロンプトを作成しました：</p><div><pre><code>あなたは、SEOに精通したライターです。
+
+Goal：ブログ用メタディスクリプションの作成
+
+制約条件（プロジェクトナレッジより）：
+- 文字数：60-85文字以内（2025年現在の実際の表示限界）
+- プライマリキーワード：最初の50文字以内に必ず配置
+- 技術名を2-3個まで（キーワード詰め込み禁止）
+- 誇大表現禁止（「完全ガイド」「決定版」など）
+- スマホ表示を最優先に考える
+
+Plan：
+1. 添付ファイルからコンテンツとタイトルの把握
+2. プロジェクトナレッジのメタディスクリプション評価指標を参照
+3. 前半50文字に最重要情報を配置したメタディスクリプションを複数考案
+4. SEO的に最適かどうかの観点で順位付け
+5. 最終的に一つに絞って推奨案を提示
+
+Tips：
+- プロジェクトナレッジの制限事項を厳守
+- 価値提案を明確にする（読者のメリット明示）
+- 技術レベルを表示する（初心者向け/上級者向け）
+- 問題解決フォーカスで書く</code></pre></div><p><strong>ポイント</strong>：「プロジェクトナレッジより」「プロジェクトナレッジの制限事項を厳守」って入れることで、Claudeが調査結果を参照してくれるんです。これがめちゃくちゃ便利！</p><h2><span>実例：劇的ビフォーアフター</span></h2><h3><span>Claude暴走制御記事の場合</span></h3><p><strong>元々考えてたタイトル</strong>：「Claudeの暴走制御を行う3つのパターン」</p><p><strong>Claudeが作ったタイトル</strong>：「<a href="https://tech-lab.sios.jp/archives/48160" target="_blank" rel="noopener" title="">Claude調教術｜暴走パターンを制御する3つのプロンプトテクニック</a>」</p><p><strong>メタディスクリプション</strong>：「Claude制御の実践ガイド。過剰Artifact生成・スレッド肥大化・人間主導学習の3テクニックをプロンプトエンジニアリング視点で解説。Goal設定や成果物否定、段階的学習法で効率的AI活用を実現」</p><p><strong>結果</strong>：技術名が明確で検索されやすそう！</p><div><a href="https://tech-lab.sios.jp/archives/48160"><span><img decoding="async" width="520" height="300" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/c84cd6a3255bc310e54643732e1276d6.png?resize=520%2C300&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/c84cd6a3255bc310e54643732e1276d6.png?resize=520%2C300&amp;ssl=1 520w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/c84cd6a3255bc310e54643732e1276d6.png?zoom=2&amp;resize=520%2C300&amp;ssl=1 1040w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/c84cd6a3255bc310e54643732e1276d6.png?zoom=3&amp;resize=520%2C300&amp;ssl=1 1560w" sizes="(max-width: 520px) 100vw, 520px"> [画像: Claude調教術｜暴走パターンを制御する3つのプロンプトテクニック] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/c84cd6a3255bc310e54643732e1276d6.png?resize=520%2C300&amp;ssl=1) </span><div><time itemprop="datePublished" datetime="2025-07-04">2025-07-04</time><span>Claude調教術｜暴走パターンを制御する3つのプロンプトテクニック</span></div></a></div><h3><span>Azure + Next.js記事の場合</span></h3><p><strong>元々考えてたタイトル</strong>：「Azure SWA×Managed Fucntions：Next.jsでBicepから作成してGitHub Actionsでデプロイする」</p><p><strong>Claudeが作ったタイトル</strong>：「<a href="https://tech-lab.sios.jp/archives/48185" target="_blank" rel="noopener" title="">Azure SWA×Next.js認証API統合を実践解説【DevContainer〜本番まで】</a>」</p><p><strong>メタディスクリプション</strong>：「Azure SWAでNext.js×Azure Functions認証API統合を実践解説。DevContainer開発環境からBicep IaC、GitHub Actions並列ビルドまで完全対応。Standard プラン対応でセキュアな認証フロー構築」</p><p><strong>結果</strong>：具体的で差別化されたタイトルに変身！</p><div><a href="https://tech-lab.sios.jp/archives/48185" target="_blank"><span><img decoding="async" width="520" height="300" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/7e599c6c5e21a12a64ff2309a2189920.jpg?resize=520%2C300&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/7e599c6c5e21a12a64ff2309a2189920.jpg?resize=520%2C300&amp;ssl=1 520w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/7e599c6c5e21a12a64ff2309a2189920.jpg?zoom=2&amp;resize=520%2C300&amp;ssl=1 1040w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/7e599c6c5e21a12a64ff2309a2189920.jpg?zoom=3&amp;resize=520%2C300&amp;ssl=1 1560w" sizes="(max-width: 520px) 100vw, 520px"> [画像: Azure SWA×Next.js認証API統合を実践解説【DevContainer〜本番まで】] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/07/7e599c6c5e21a12a64ff2309a2189920.jpg?resize=520%2C300&amp;ssl=1) </span><div><time itemprop="datePublished" datetime="2025-07-07">2025-07-07</time><span>Azure SWA×Next.js認証API統合を実践解説【DevContainer〜本番まで】</span></div></a></div><h2><span>やってみてわかったコツと注意点</span></h2><h3><span>誇大表現問題への対処法</span></h3><p>実際に僕がぶち当たった問題なんですけど、Claudeって「完全ガイド」とか「決定版」とか誇大表現が好きなんですよね。</p><p>そんな自信持ってブログ書いてるわけないじゃないですか！なので、そういった時は「ブログは完全版に耐えることができる内容ですか？」って聞いちゃうんです。すると反省して「完全じゃないです」って言って「実践編」とかに変えてくれます。</p><h3><span>プロンプトで指定すべきこと</span></h3><ul><li>技術レベル（初心者向けとか）</li><li>記事の種類（チュートリアル、解説、比較など）</li><li>使ってる技術名</li><li>文字数制限</li></ul><h3><span>人間が最終チェックすべきポイント</span></h3><ul><li>内容と合ってるか</li><li>誇大広告になってないか</li><li>技術名が正確に記載されているか</li><li>自然な日本語になってるか</li></ul><h2><span>SEO効果は実際どうなった？</span></h2><p>SEO効果ってところは、これ測ってないんで知らないんですよね（笑）</p><p>ただ、なんとなく昔のブログのタイトルと今のブログのタイトルを比較して、なんかいい感じです。なんか技術ブログっぽくなってるんですよ。てか昔のタイトルがゴミすぎるって説はあるんですけど。</p><p><strong>時間的な効果は確実</strong>：タイトル考えるのに1時間かかってたのが、プロンプト入力だけなので5分になりました。めっちゃ早い！</p><h3><span>主観的な変化</span></h3><ul><li>タイトル考える時間が激減（1時間→5分）</li><li>記事を書くこと自体に集中できるように</li><li>なんとなく「それっぽい」技術ブログタイトルになった</li><li>ストレスが大幅に軽減された</li></ul><h2><span>まとめ：SEOわからなくてもなんとかなる</span></h2><p>今回は、SEOなんもわからん勢の僕が「タイトルとメタディスクリプションをAIに丸投げしてみた」という話をしてきました。</p><p><strong>やったこと</strong>：</p><ul><li>Claudeに調査してもらってプロジェクトナレッジに蓄積</li><li>プロンプトを作ってタイトル・メタディスクリプション生成を自動化</li><li>人間は最終チェックだけ</li></ul><p><strong>得られた成果</strong>：</p><ul><li>タイトル考える時間が1時間→5分に激減</li><li>なんとなく技術ブログっぽいタイトルになった</li><li>ストレス大幅軽減でブログ執筆に集中できるように</li></ul><p>正直、SEO効果のほどは測ってないので分からないんですが、少なくとも「タイトル考えるのめんどくさい問題」は完全に解決しました。</p><p>皆さんも、ブログのタイトルやメタディスクリプションで悩んでる時間があったら、その時間をブログの内容充実に使った方が絶対いいですよね。AIにできることはAIに任せて、人間は創造的な部分に集中しましょう！</p><p>それでは、また次回の記事でお会いしましょう〜！</p><!-- Anyway Feedback Container //--><div>ご覧いただきありがとうございます！
+
+<span>この投稿はお役に立ちましたか？</span><br><br><a href="#afb-post-48417">役に立った</a><a href="#afb-post-48417">役に立たなかった</a><br><br><span>0人がこの投稿は役に立ったと言っています。</span><input type="hidden" name="post_type" value="post"><input type="hidden" name="object_id" value="48417"></div><!-- //Anyway Feedback Container -->

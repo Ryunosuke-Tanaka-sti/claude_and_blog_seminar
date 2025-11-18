@@ -1,0 +1,23 @@
+{
+  "name": "@workspace/tools",
+  "version": "1.0.0",
+  "description": "Utility tools for workspace",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "scraper": "tsx scraper.ts",
+    "scraper:build": "tsc",
+    "scraper:run": "node dist/scraper.js"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.22.35",
+    "cheerio": "^1.1.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/node-fetch": "^2.6.13",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
