@@ -11,6 +11,15 @@ AIに人間の意図を適切に伝えて効率的な開発を行うための仕
 ```
 docs/
 ├── CLAUDE.md                    # このファイル（計画フェーズルール）
+├── spec/                        # 確定した仕様の保管場所
+│   ├── frontend/                # フロントエンド機能の確定仕様
+│   │   └── [feature-name].md
+│   ├── marp/                    # Marpスライドの確定仕様
+│   │   └── [slide-name].md
+│   ├── tools/                   # ツールの確定仕様
+│   │   └── [tool-name].md
+│   └── infra/                   # インフラの確定仕様
+│       └── [infrastructure-name].md
 ├── features/                    # 新機能の計画書（ディレクトリ単位）
 │   └── [feature-name]/          # 機能ごとのディレクトリ
 │       ├── spec.md              # 仕様書（必須）
@@ -125,6 +134,66 @@ research/
 - `research/frontend-astro-setup-review.md`
 - `research/authentication-implementation-review.md`
 
+### specディレクトリ
+実装・検証が完了し、運用に乗った機能の**確定仕様**を保管します。
+
+**役割**:
+- `features/` で計画した仕様が実装・検証を経て確定したものを保存
+- 運用中の機能の安定版仕様として管理
+- 他のドキュメントや新機能開発時の参照元として使用
+
+**命名パターン**:
+```
+spec/
+├── frontend/
+│   └── [feature-name].md        # 例: blog-index.md, article-detail.md
+├── marp/
+│   └── [slide-name].md          # 例: claude-intro.md, writing-workflow.md
+├── tools/
+│   └── [tool-name].md           # 例: scraper.md, index-generator.md
+└── infra/
+    └── [infrastructure-name].md # 例: github-pages-deployment.md
+```
+
+**例**:
+- `spec/frontend/blog-index.md` - ブログ一覧ページの確定仕様
+- `spec/marp/claude-intro.md` - Claudeセミナースライドの確定仕様
+- `spec/tools/scraper.md` - スクレイパーツールの確定仕様
+- `spec/infra/github-pages-deployment.md` - GitHub Pages デプロイメントの確定仕様
+
+**管理ルール**:
+1. **昇格タイミング**: 実装・検証完了後、運用開始時に `features/` から移動またはコピー
+2. **バージョン管理**: 大きな変更がある場合は、ファイル名に日付を付与（例: `blog-index-2025-01.md`）
+3. **変更履歴**: ドキュメント内に変更履歴セクションを設け、更新日時と変更内容を記録
+4. **参照の安定性**: 確定仕様は頻繁に変更しない（変更時は新バージョンとして保存）
+
+**ワークフロー**:
+```
+features/frontend-blog-index/spec.md
+    ↓ (実装)
+application/frontend/src/pages/blog/
+    ↓ (検証)
+docs/research/blog-index-review.md
+    ↓ (確定・昇格)
+spec/frontend/blog-index.md
+```
+
+**活用方法**:
+新機能開発時や既存機能の改修時に、関連する確定仕様を参照することで：
+- ✅ **既存の設計パターンを踏襲**: 一貫性のある実装が可能
+- ✅ **過去の学びを活用**: 試行錯誤の結果や重要な学びを参照
+- ✅ **重複作業の回避**: 似た機能の実装方法をすぐに確認
+- ✅ **技術的整合性の確保**: 既存のアーキテクチャとの整合性を保つ
+
+**参照例**:
+```bash
+# 新しいフロントエンド機能を開発する前に
+ls docs/spec/frontend/          # 既存の確定仕様を確認
+
+# インフラ変更時に
+cat docs/spec/infra/github-pages-deployment.md  # デプロイ構成を確認
+```
+
 ## 仕様書の構成
 
 ### spec.md（仕様書）
@@ -174,11 +243,28 @@ cp docs/templates/spec-template-marp.md docs/features/marp-[name]/spec.md
 cp docs/templates/spec-template-tool.md docs/features/tool-[name]/spec.md
 ```
 
-**ステップ3: 仕様書作成**
-Claude Codeに依頼：
+**ステップ3: 関連する確定仕様の確認**
+新機能が既存機能と関連する場合、確定仕様を参照：
+```bash
+# 関連する確定仕様を確認
+ls docs/spec/[category]/
+
+# 例：フロントエンド機能の場合
+ls docs/spec/frontend/
+
+# 例：インフラ関連の場合
+ls docs/spec/infra/
+```
+
+**ステップ4: 仕様書作成**
+Claude Codeに依頼（関連する確定仕様がある場合は参照）：
 ```
 以下のテンプレートを元に、[機能名]の仕様書を作成してください：
 @docs/features/[feature-name]/spec.md
+
+# 関連する確定仕様がある場合は参照
+参考：
+@docs/spec/[category]/[related-spec].md
 
 要件：
 - [要件1]
@@ -186,7 +272,7 @@ Claude Codeに依頼：
 - [要件3]
 ```
 
-**ステップ4: 計画書作成**
+**ステップ5: 計画書作成**
 仕様書を元に計画書を作成：
 ```
 @docs/features/[feature-name]/spec.md を元に、
@@ -242,6 +328,10 @@ cp docs/templates/spec-template-bug.md docs/bugs/[bug-name]/spec.md
 以下の仕様書を読み込んで実装してください：
 @docs/features/[feature-name]/spec.md
 
+# 関連する確定仕様がある場合は参照
+参考にする確定仕様：
+@docs/spec/[category]/[related-spec].md
+
 実装方針：
 - [方針1]
 - [方針2]
@@ -282,22 +372,28 @@ cp docs/templates/spec-template-bug.md docs/bugs/[bug-name]/spec.md
 
 ## ベストプラクティス
 
-### 1. 小さく始める
+### 1. 確定仕様を積極的に活用する
+- 新機能開発前に `docs/spec/` を確認し、関連する確定仕様を参照
+- 既存の設計パターンや技術スタックを踏襲することで、一貫性のある実装を実現
+- 過去の試行錯誤や重要な学びを活かし、同じ問題を繰り返さない
+- 関連する確定仕様がある場合は、仕様書作成時と実装時に明示的に参照
+
+### 2. 小さく始める
 - 最初から完璧を目指さない
 - 小規模な機能で試してみる
 - 検証フェーズで学びを得て改善
 
-### 2. 情報設計に注力（フロントエンド）
+### 3. 情報設計に注力（フロントエンド）
 - 「何を」「どの順で」表示するかを明確に
 - 「どう見せるか」はAIに任せる
 - 情報の優先度を3段階（最重要・重要・補足）で定義
 
-### 3. 入出力を明確に（バックエンド/ツール）
+### 4. 入出力を明確に（バックエンド/ツール）
 - 入力の形式を具体例で示す
 - 出力の期待値を明確にする
 - エラーケースを網羅的にリストアップ
 
-### 4. 段階的に改善
+### 5. 段階的に改善
 - 仕様書は1回で完璧にならない
 - 検証フェーズの学びを次回に活かす
 - テンプレート自体も改善していく

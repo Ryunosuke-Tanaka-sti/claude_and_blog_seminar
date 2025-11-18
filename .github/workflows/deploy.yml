@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'application/marp/**'
+      - 'application/frontend/**'
+      - '.github/workflows/deploy.yml'
 
 # GitHub Pagesへのデプロイに必要な権限
 permissions:

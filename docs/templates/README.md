@@ -10,7 +10,7 @@
 
 ## テンプレート一覧
 
-### 仕様書テンプレート
+### 計画フェーズ用テンプレート
 
 開発内容を記述する仕様書のテンプレートです。
 
@@ -21,6 +21,27 @@
 | `spec-template-tool.md` | ツール開発 | `docs/features/tool-*.md` | **入出力仕様重視** |
 | `spec-template-feature.md` | 汎用機能 | `docs/features/*.md` | 汎用テンプレート |
 | `spec-template-bug.md` | バグ修正用 | `docs/bugs/*.md` | バグ修正用 |
+
+### 確定仕様用テンプレート
+
+実装・検証完了後の確定仕様を記述するテンプレートです。
+
+| ファイル名 | 用途 | 配置場所 | 特徴 |
+|-----------|------|---------|------|
+| `spec-confirmed-template.md` | 確定仕様 | `docs/spec/[category]/[name].md` | **実装済み情報を含む** |
+
+**使い方:**
+```bash
+# 実装・検証完了後に確定仕様を作成
+cp docs/templates/spec-confirmed-template.md docs/spec/frontend/blog-index.md
+
+# features/ の仕様書をベースに、実装情報を追記
+# - 実装ファイルのパス
+# - 使用した技術スタック
+# - 実装状況
+# - 既知の制約・制限事項
+# - 今後の改善案
+```
 
 ### 検証用テンプレート
 

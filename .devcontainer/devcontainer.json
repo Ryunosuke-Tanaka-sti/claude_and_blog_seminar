@@ -15,7 +15,8 @@
             "extensions": [
                 "marp-team.marp-vscode",
                 "ms-vscode.live-server",
-                "github.vscode-github-actions"
+                "github.vscode-github-actions",
+                "astro-build.astro-vscode"
             ],
             "settings": {}
         }
