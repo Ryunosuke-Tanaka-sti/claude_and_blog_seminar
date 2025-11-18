@@ -1,0 +1,25 @@
+{
+  "name": "@workspace/marp",
+  "version": "1.0.0",
+  "description": "Marp presentation slides",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:all && npm run copy:assets",
+    "build:all": "npm run build:claude && npm run build:notion && npm run build:blog-reason && npm run build:voice && npm run build:others",
+    "build:claude": "marp src/claude_seminar_slides.md --html --theme ./theme/github-dark.css --output dist/claude_seminar_slides.html --no-stdin",
+    "build:notion": "marp src/notion_and_claude_blog_write.md --html --theme ./theme/canyon-custom.css --output dist/notion_and_claude_blog_write.html --no-stdin",
+    "build:blog-reason": "marp src/blog_reason_lt_slides.md --html --theme ./theme/github-dark.css --output dist/blog_reason_lt_slides.html --no-stdin",
+    "build:voice": "marp src/voice_writing_seminar.md --html --theme ./theme/github-dark.css --output dist/voice_writing_seminar.html --allow-local-files --no-stdin",
+    "build:ai-spec": "marp src/ai_spec_driven_development_slides.md --html --theme ./theme/github-dark.css --output dist/ai_spec_driven_development_slides.html --allow-local-files --no-stdin",
+    "build:automation": "marp src/automation_pipeline_deep_dive_slides.md --html --theme ./theme/github-dark.css --output dist/automation_pipeline_deep_dive_slides.html --allow-local-files --no-stdin",
+    "build:blog-marp": "marp src/blog_to_marp_workflow.md --html --theme ./theme/github-dark.css --output dist/blog_to_marp_workflow.html --allow-local-files --no-stdin",
+    "build:github-issue": "marp src/github_issue_claude_x_generator.md --html --theme ./theme/github-dark.css --output dist/github_issue_claude_x_generator.html --allow-local-files --no-stdin",
+    "build:notebook": "marp src/notebook_lm_slack_bot_slides.md --html --theme ./theme/github-dark.css --output dist/notebook_lm_slack_bot_slides.html --allow-local-files --no-stdin",
+    "build:vibe": "marp src/vibe_coding.md --html --theme ./theme/github-dark.css --output dist/vibe_coding.html --allow-local-files --no-stdin",
+    "build:others": "npm run build:ai-spec && npm run build:automation && npm run build:blog-marp && npm run build:github-issue && npm run build:notebook && npm run build:vibe",
+    "copy:assets": "mkdir -p dist/assets && cp -r src/assets/* dist/assets/"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.0.0"
+  }
+}
