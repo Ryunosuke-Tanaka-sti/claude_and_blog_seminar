@@ -52,17 +52,24 @@ GitHub ActionsとGitHub Pagesを使用して、Marpプレゼンテーション�
 | Astro | 4.x | フロントエンドビルド |
 | GitHub Pages | - | ホスティング |
 
-### デプロイフロー（並列ビルド）
+### デプロイフロー（npm workspace対応の並列ビルド）
 ```
 mainブランチへpush
   ↓
 GitHub Actions トリガー
   ↓
-依存関係インストール (両ジョブで共通)
+Job: install
+  ↓
+ルートでnpm ci実行（モノレポ全体の依存関係インストール）
+  ↓
+node_modulesをartifactにアップロード
   ↓
 ┌──────────────────────────┬──────────────────────────┐
 │  Job: build-marp         │  Job: build-site         │
+│  (installジョブに依存)   │  (installジョブに依存)   │
 │                          │                          │
+│  node_modulesダウンロード│  node_modulesダウンロード│
+│  ↓                       │  ↓                       │
 │  Marpビルド              │  Frontendビルド          │
 │  ↓                       │  ↓                       │
 │  dist/slides/*.html      │  dist/ (Astro出力)       │
@@ -83,38 +90,46 @@ GitHub Actions トリガー
                   公開完了
 ```
 
-**並列ビルドのメリット**:
-- ビルド時間の短縮（最大50%削減）
-- 出力先の完全分離により競合リスク0
-- 各ジョブの独立性が高く、デバッグが容易
+**npm workspace対応アプローチのメリット**:
+- ✅ モノレポ構造に完全対応（patch-packageエラーを回避）
+- ✅ ルートで一度だけnpm ciを実行することで依存関係を正しく解決
+- ✅ ビルドジョブの並列実行でビルド時間を短縮
+- ✅ node_modulesを共有することでディスク使用量を削減
 
 ## 作成するファイルの詳細
 
 ### 1. `.github/workflows/deploy.yml`
 
-**目的**: GitHub Pagesへのデプロイワークフロー（並列ビルド対応）
+**目的**: GitHub Pagesへのデプロイワークフロー（npm workspace対応の並列ビルド）
 
 **ファイル構成**:
 - ワークフロー名: `Deploy to GitHub Pages`
 - トリガー: `main`ブランチへのpush
-- ジョブ: `build-marp`, `build-site`, `deploy`の3つ
+- ジョブ: `install`, `build-marp`, `build-site`, `deploy`の4つ
 
-**Job 1: build-marp**
+**Job 1: install**（依存関係のインストール）
+1. リポジトリのチェックアウト
+2. Node.js 20.xのセットアップ（npmキャッシュ有効）
+3. モノレポ全体の依存関係をインストール（`npm ci`）
+4. `node_modules/`をartifactとしてアップロード（名前: `node-modules`）
+   - ルートの`node_modules/`
+   - 各ワークスペースの`node_modules/`
+
+**Job 2: build-marp**（installジョブに依存）
 1. リポジトリのチェックアウト
 2. Node.js 20.xのセットアップ
-3. 依存関係のインストール（`npm ci`）
-4. Marpビルドの実行（`dist/slides/`に出力）
-5. assetsのコピー（`dist/slides/assets/`）
-6. `dist/slides/`をartifactとしてアップロード（名前: `marp-dist`）
+3. `node-modules` artifactをダウンロード
+4. Marpビルドの実行（`npm run build --workspace=application/marp`）
+5. `application/marp/dist/`をartifactとしてアップロード（名前: `marp-dist`）
 
-**Job 2: build-site**（build-marpと並列実行）
+**Job 3: build-site**（installジョブに依存、build-marpと並列実行）
 1. リポジトリのチェックアウト
 2. Node.js 20.xのセットアップ
-3. 依存関係のインストール（`npm ci`）
-4. Frontendビルドの実行（`dist/`に出力）
-5. `dist/`をartifactとしてアップロード（名前: `site-dist`）
+3. `node-modules` artifactをダウンロード
+4. Frontendビルドの実行（`npm run build --workspace=application/frontend`）
+5. `application/frontend/dist/`をartifactとしてアップロード（名前: `site-dist`）
 
-**Job 3: deploy**（build-marpとbuild-site成功後に実行）
+**Job 4: deploy**（build-marpとbuild-site成功後に実行）
 1. `marp-dist` artifactをダウンロード → `dist/slides/`
 2. `site-dist` artifactをダウンロード → `dist/`
 3. 統合された`dist/`をGitHub Pagesにデプロイ
@@ -246,7 +261,22 @@ grep -r "src=" dist/slides/*.html | grep assets
 
 ## リスクと対策
 
-### リスク1: MarpとAstroのビルド成果物が競合
+### リスク1: npm workspace構成でのpatch-packageエラー
+**影響度**: 高 → **解決済み**
+**発生確率**: 高 → **0%**
+
+**問題の詳細**:
+- 各ビルドジョブで個別に`npm ci`を実行すると、モノレポの依存関係が正しく解決されない
+- `rollup`パッケージのpostinstallスクリプトが`patch-package`を要求するが、インストールされていない
+
+**採用した対策**:
+- ✅ 専用の`install`ジョブでルートの`npm ci`を一度だけ実行
+- ✅ `node_modules`をartifact経由で各ビルドジョブに配布
+- ✅ ビルドジョブでは`npm ci`を実行せず、ダウンロードしたnode_modulesを使用
+
+**残存リスク**: なし
+
+### リスク2: MarpとAstroのビルド成果物が競合
 **影響度**: 高 → **解決済み**
 **発生確率**: 中 → **0%**
 
@@ -257,7 +287,7 @@ grep -r "src=" dist/slides/*.html | grep assets
 
 **残存リスク**: なし
 
-### リスク2: `--allow-local-files`フラグがCI環境で動作しない
+### リスク3: `--allow-local-files`フラグがCI環境で動作しない
 **影響度**: 高
 **発生確率**: 低
 
@@ -269,7 +299,7 @@ grep -r "src=" dist/slides/*.html | grep assets
 - アセットをBase64エンコードしてスライドに埋め込む
 - アセットを絶対URLで参照するように変更
 
-### リスク3: GitHub Pages の権限設定が不足
+### リスク4: GitHub Pages の権限設定が不足
 **影響度**: 中
 **発生確率**: 低
 
@@ -282,7 +312,7 @@ grep -r "src=" dist/slides/*.html | grep assets
 - Personal Access Tokenを使用
 - GitHub Pagesの設定をブランチベースに変更
 
-### リスク4: ビルド時間が長すぎる
+### リスク5: ビルド時間が長すぎる
 **影響度**: 低
 **発生確率**: 中
 
