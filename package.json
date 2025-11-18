@@ -25,5 +25,7 @@
     "scraper": "npm run scraper --workspace=application/tools",
     "dev:frontend": "npm run dev --workspace=application/frontend"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "patch-package": "^8.0.1"
+  }
 }
