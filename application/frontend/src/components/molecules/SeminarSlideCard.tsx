@@ -15,6 +15,11 @@ const SeminarSlideCard: React.FC<SeminarSlideCardProps> = ({ slide }) => {
       className="seminar-slide-card"
       aria-label={`${slide.title} - ${slide.description}`}
     >
+      {slide.thumbnail && (
+        <div className="card-thumbnail">
+          <img src={slide.thumbnail} alt={slide.title} loading="lazy" />
+        </div>
+      )}
       <div className="card-content">
         <div className="card-header">
           <h3 className="card-title">{slide.title}</h3>
