@@ -38,15 +38,6 @@ export const seminarSlides: SeminarSlide[] = [
     categories: ['Marp', 'プレゼン作成', 'ワークフロー'],
   },
   {
-    id: 'automation_pipeline_deep_dive_slides',
-    title: 'フロント×バック型定義同期の実践術',
-    url: '/claude_and_blog_seminar/slides/automation_pipeline_deep_dive_slides.html',
-    description: 'フロントエンドとバックエンドで型定義を同期させる自動化パイプラインの構築方法。TypeScript活用で開発効率と品質を向上させる実践例を解説します。',
-    targetAudience: ['フルスタックエンジニア', 'TypeScript開発者', 'DevOpsエンジニア'],
-    theme: 'github-dark',
-    categories: ['TypeScript', '自動化', 'パイプライン'],
-  },
-  {
     id: 'blog_reason_lt_slides',
     title: '中央線 Developers LT 会',
     url: '/claude_and_blog_seminar/slides/blog_reason_lt_slides.html',
