@@ -96,6 +96,23 @@ style: |
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
+  section.cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  section.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+---
+
+<!-- _class: cover -->
+
+![bg contain](assets/thumbnail.png)
+
 ---
 
 <!--_class: title-->
