@@ -91,4 +91,13 @@ export const seminarSlides: SeminarSlide[] = [
     theme: 'canyon-custom',
     categories: ['ブログ執筆', 'LT', 'キャリア'],
   },
+  {
+    id: 'ai_development_environment_setup',
+    title: 'AI開発を効率化する環境整備術',
+    url: '/claude_and_blog_seminar/slides/ai_development_environment_setup.html',
+    description: '型定義・関数のパーツ化でハチャメチャなコードを防ぐ。モノレポ×自動生成パイプラインで実現する、AI協働開発の実践セミナー。',
+    targetAudience: ['ソフトウェアエンジニア', 'フルスタック開発者', 'AI開発環境に興味がある人'],
+    theme: 'github-dark',
+    categories: ['AI開発', 'モノレポ', '自動生成パイプライン', '環境整備'],
+  },
 ];
