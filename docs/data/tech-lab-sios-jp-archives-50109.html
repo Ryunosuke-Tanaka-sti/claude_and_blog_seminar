@@ -1,0 +1,275 @@
+<!--
+ブログ記事情報:
+タイトル: AI 協業開発環境の構築術｜モノレポでビルド時間を大幅短縮する CLAUDE.md 活用法
+URL: https://tech-lab.sios.jp/archives/50109
+OGP画像: https://tech-lab.sios.jp/wp-content/uploads/2025/11/286bcfe4e35ab99f122815f78e7c323e.png
+抽出日時: 2025-11-19T06:59:06.485Z
+-->
+
+<h1>AI 協業開発環境の構築術｜モノレポでビルド時間を大幅短縮する CLAUDE.md 活用法</h1>
+
+
+	
+<div data-smooth-scroll="1" data-smooth-scroll-offset="24"><div><div><b>目次</b></div><div><ul><li><a href="#hajimeni"><span>1</span><span>はじめに</span></a><ul><li><a href="#ji_shino_wei_zhidzuke"><span>1.1</span><span>記事の位置づけ</span></a></li></ul></li><li><a href="#kono_ji_shide_xueberukoto"><span>2</span><span>この記事で学べること</span></a><ul><li><a href="#zhu_yaonapointo"><span>2.1</span><span>🎯 主要なポイント</span></a></li><li><a href="#shi_jian_denatekunikku"><span>2.2</span><span>💡 実践的なテクニック</span></a></li></ul></li><li><a href="#qian_ti_tiao_jian"><span>3</span><span>前提条件</span></a><ul><li><a href="#qian_ti_zhi_shi_aruto_wangmashii"><span>3.1</span><span>前提知識（あると望ましい）</span></a></li><li><a href="#ben_ji_shide_xiwanaikoto"><span>3.2</span><span>本記事で扱わないこと</span></a></li></ul></li><li><a href="#purojekuto_quan_ti_xiang"><span>4</span><span>プロジェクト全体像</span></a><ul><li><a href="#monorepo_gou_chengno_4_tsunoapurikeshon"><span>4.1</span><span>モノレポ構成の 4 つのアプリケーション</span></a></li><li><a href="#direkutori_gou_zaono_quan_ti_xiang"><span>4.2</span><span>ディレクトリ構造の全体像</span></a></li><li><a href="#shisutemu_gou_cheng_tu"><span>4.3</span><span>システム構成図</span></a></li><li><a href="#nazemonoreponanoka"><span>4.4</span><span>なぜモノレポなのか？</span></a><ul><li><a href="#monoreponomeritto"><span>4.4.1</span><span>✅ モノレポのメリット</span></a></li></ul></li><li><a href="#AI_xie_ye_kai_fawo_zhieru_she_ji_si_xiang"><span>4.5</span><span>AI 協業開発を支える設計思想</span></a><ul><li><a href="#1_ji_huato_shi_zhuangno_fen_li"><span>4.5.1</span><span>1. 計画と実装の分離</span></a></li><li><a href="#2_CLAUDEmd_jie_ceng_gou_zao"><span>4.5.2</span><span>2. CLAUDE.md 階層構造</span></a></li><li><a href="#3_Single_Source_of_Truth_xing_an_quanpaipurain"><span>4.5.3</span><span>3. Single Source of Truth（型安全パイプライン）</span></a></li></ul></li></ul></li><li><a href="#CLAUDEmd_jie_ceng_gou_zaono_she_ji"><span>5</span><span>CLAUDE.md 階層構造の設計</span></a><ul><li><a href="#CLAUDEmd_toha"><span>5.1</span><span>CLAUDE.md とは？</span></a></li><li><a href="#9_tsuno_CLAUDEmd_fairu"><span>5.2</span><span>9 つの CLAUDE.md ファイル</span></a></li><li><a href="#kontekisuto_ji_chengpatan"><span>5.3</span><span>コンテキスト継承パターン</span></a></li><li><a href="#ruto_CLAUDEmd_no_zhong_yao_xing"><span>5.4</span><span>ルート CLAUDE.md の重要性</span></a><ul><li><a href="#ji_zai_nei_rongno_li"><span>5.4.1</span><span>記載内容の例</span></a></li></ul></li><li><a href="#CLAUDEmd_jie_ceng_gou_zaono_xiao_guo"><span>5.5</span><span>CLAUDE.md 階層構造の効果</span></a></li></ul></li><li><a href="#dokyumento_qu_dong_xing_kai_fano_shi_jian_3_fezu_4_fezuheno_jin_hua"><span>6</span><span>ドキュメント駆動型開発の実践（3 フェーズ →4 フェーズへの進化）</span></a><ul><li><a href="#3_fezu_kai_fakara_4_fezu_kai_faheno_jin_hua"><span>6.1</span><span>3 フェーズ開発から 4 フェーズ開発への進化</span></a></li><li><a href="#gefezuno_gai_yao"><span>6.2</span><span>各フェーズの概要</span></a><ul><li><a href="#fezu_1_ji_hua_docsfeatures"><span>6.2.1</span><span>フェーズ 1: 計画 (/docs/features/)</span></a></li><li><a href="#fezu_2_shi_zhuang_application"><span>6.2.2</span><span>フェーズ 2: 実装 (/application/)</span></a></li><li><a href="#fezu_3_yan_jiu_ji_lu_docsresearch"><span>6.2.3</span><span>フェーズ 3: 研究記録 (/docs/research/)</span></a></li><li><a href="#fezu_4_ji_shi_hua_docsarticle"><span>6.2.4</span><span>フェーズ 4: 記事化 (/docs/article/)</span></a></li></ul></li><li><a href="#konowakufurono_xiao_guo"><span>6.3</span><span>このワークフローの効果</span></a></li></ul></li><li><a href="#xing_an_quanna_API_kai_fapaipurain"><span>7</span><span>型安全な API 開発パイプライン</span></a><ul><li><a href="#Single_Source_of_Truth_no_yuan_ze"><span>7.1</span><span>Single Source of Truth の原則</span></a></li><li><a href="#xing_an_quanpaipurainno_xiao_guo"><span>7.2</span><span>型安全パイプラインの効果</span></a></li></ul></li><li><a href="#monorepo_CICD_paipurain_paths_firutano_wei_li"><span>8</span><span>モノレポ CI/CD パイプライン: paths フィルタの威力</span></a><ul><li><a href="#4_tsuno_du_lishitawakufuro"><span>8.1</span><span>4 つの独立したワークフロー</span></a></li><li><a href="#paths_firutaniyoru_zui_shi_hua"><span>8.2</span><span>paths フィルタによる最適化</span></a><ul><li><a href="#li_Frontend_SWA_Deploy"><span>8.2.1</span><span>例: Frontend SWA Deploy</span></a></li><li><a href="#BeforeAfter_bi_jiao"><span>8.2.2</span><span>Before/After 比較</span></a></li></ul></li><li><a href="#bing_xingdepuroino_shi_xian"><span>8.3</span><span>並行デプロイの実現</span></a></li><li><a href="#CICD_paipurainno_xiao_guo"><span>8.4</span><span>CI/CD パイプラインの効果</span></a></li></ul></li><li><a href="#kai_fa_ti_yanno_bian_hua_BeforeAfter"><span>9</span><span>開発体験の変化（Before/After）</span></a><ul><li><a href="#Beforemonorepo_AI_huan_jing_dao_ru_qian"><span>9.1</span><span>Before（モノレポ ×AI 環境導入前）</span></a><ul><li><a href="#wen_ti_dian"><span>9.1.1</span><span>問題点</span></a></li></ul></li><li><a href="#Aftermonorepo_AI_huan_jing_dao_ru_hou"><span>9.2</span><span>After（モノレポ ×AI 環境導入後）</span></a><ul><li><a href="#gai_shan_dian"><span>9.2.1</span><span>改善点</span></a></li></ul></li><li><a href="#ding_liang_dena_xiao_guo"><span>9.3</span><span>定量的な効果</span></a></li><li><a href="#longchanno_suo_gan"><span>9.4</span><span>龍ちゃんの所感</span></a></li></ul></li><li><a href="#matome"><span>10</span><span>まとめ</span></a><ul><li><a href="#monorepo_AI_xie_ye_kai_fa_huan_jingnopointo"><span>10.1</span><span>モノレポ ×AI 協業開発環境のポイント</span></a></li><li><a href="#kai_fa_ti_yanno_bian_hua"><span>10.2</span><span>開発体験の変化</span></a></li><li><a href="#cinosuteppu"><span>10.3</span><span>次のステップ</span></a><ul><li><a href="#1_CLAUDEmd_wo_zuo_cheng"><span>10.3.1</span><span>1. CLAUDE.md を作成</span></a></li><li><a href="#2_paths_firutawo_dao_ru"><span>10.3.2</span><span>2. paths フィルタを導入</span></a></li><li><a href="#3_4_fezuwakufurowo_shi_jian"><span>10.3.3</span><span>3. 4 フェーズワークフローを実践</span></a></li></ul></li></ul></li><li><a href="#can_kaorinku"><span>11</span><span>参考リンク</span></a><ul><li><a href="#guan_lian_ji_shi_bensaito"><span>11.1</span><span>関連記事（本サイト）</span></a><ul><li><a href="#AI_xie_ye_kai_fa_shou_fashirizu"><span>11.1.1</span><span>AI 協業開発手法シリーズ</span></a></li><li><a href="#xing_an_quanpaipurain"><span>11.1.2</span><span>型安全パイプライン</span></a></li></ul></li><li><a href="#gong_shidokyumento"><span>11.2</span><span>公式ドキュメント</span></a></li></ul></li></ul></div></div></div><h2><span>はじめに</span></h2><p>ども！最近は Claude Code ともに開発を進めて、with AI での生活にどっぷりだったのですが 2025 年も締めということで貯まった検証を一気に記事化している龍ちゃんです。検証がたまっていたので、11 月と 12 月は大量にブログを書く羽目になりそうですね。ゴリゴリ執筆する必要がありますね！</p><p>皆さん、AI（Claude Code 等）と一緒に開発してると、こんな悩みありませんか？</p><ul><li><strong>「このプロジェクト、どういう構成になってるの？」と AI に毎回説明するのが面倒</strong></li><li><strong>ファイルが多すぎて AI が混乱して、的外れな提案をしてくる</strong></li><li><strong>モノレポにしたけど、全部のアプリが毎回ビルドされて時間がかかる</strong></li></ul><p>僕も以前はこれらの課題に悩まされていました。特に、<strong>プロジェクトが大きくなるほど、AI が全体像を把握しづらくなる</strong>という問題が深刻でした。</p><p>そこで構築したのが、<strong>CLAUDE.md 階層構造</strong>を核としたモノレポ環境です。この環境により、以下の成果を得られました：</p><p>✅ <strong>AI が自律的にプロジェクト構成を理解</strong>（CLAUDE.md 階層構造）<br>✅ <strong>CI/CD ビルド時間 58%削減</strong>（paths フィルタによる最適化）<br>✅ <strong>ドキュメントが自然に蓄積</strong>（4 フェーズワークフロー: 計画 → 実装 → 研究記録 → 記事化）</p><p><strong>本記事で紹介する環境は、実際に稼働中のシステムで実践している内容です。</strong> このモノレポで開発しているシステムの詳細については、<a href="https://tech-lab.sios.jp/archives/49981" target="_blank" rel="noopener" title="">AI チャットで話すだけ!X 予約投稿を完全自動化するシステム構築術</a>で解説しています（リポジトリは非公開）。</p><p>この記事では、<strong>モノレポ構成と AI 協業開発を最適化する環境設計</strong>について、実際のプロジェクト構成とワークフローを交えながら解説していきます。</p><h3><span>記事の位置づけ</span></h3><p><strong>前提となる知識（先に読むべき記事）</strong>:</p><p>本記事で紹介する 4 フェーズワークフローは、以下の記事で解説した 3 フェーズ開発を基盤に構築されています：</p><ul><li><strong>3 フェーズ開発の基本を学ぶ</strong>: <a href="https://tech-lab.sios.jp/archives/49140" target="_blank" rel="noopener" title="">Claude Code 革命！3 フェーズ開発で効率的な開発：計画 → 実装 → 検証術</a><ul><li>計画 → 実装 → 検証の 3 フェーズワークフロー</li><li>/docs/ と /application/ のディレクトリ分離</li><li>小規模システムを 30 分で実装する実例</li></ul></li><li><strong>計画フェーズの詳細を学ぶ</strong>: <a href="https://tech-lab.sios.jp/archives/49148" target="_blank" rel="noopener" title="">AI 協働で仕様書アレルギー克服！開発時間を 1 週間 →2 日に短縮する実践法</a><ul><li>CLAUDE.md による仕様書作成ルール</li><li>AI との協働レビュープロセス</li><li>開発時間を 1 週間 →2 日に短縮した実践法</li></ul></li><li><strong>4 フェーズへの拡張を学ぶ</strong>: <a href="https://tech-lab.sios.jp/archives/50103" target="_blank" rel="noopener" title="">検証 → 記事化で知見を資産化！Claude Code×RAG もどきで AI 技術ブログ執筆を効率化</a><ul><li>フェーズ 4（記事化）の追加による知見の資産化</li><li>RAG もどきシステムでトークン数 50-60%削減</li><li>文体補正システムで一貫した記事品質を実現</li><li>記事執筆時間 50%削減、重複チェック 83%削減</li></ul></li></ul><p><strong>技術基盤</strong>:</p><ul><li><strong>型安全な API 開発を学ぶ</strong>: <a href="https://tech-lab.sios.jp/archives/49157" target="_blank" rel="noopener" title="">AI と爆速開発！Next.js×Nest.js 型定義同期の自動生成パイプライン構築術</a><ul><li>Backend DTOs → OpenAPI → Frontend Types の自動生成</li><li>Single Source of Truth による型ズレゼロの実現</li></ul></li></ul><h2><span>この記事で学べること</span></h2><p>この記事を読むことで、以下の知識とスキルが得られます：</p><h3><span>🎯 主要なポイント</span></h3><ol><li><strong>モノレポ構成と AI 協業開発の相性</strong><br>なぜモノレポが AI 協業に適しているのか、実体験をもとに解説</li><li><strong>CLAUDE.md 階層構造によるコンテキスト管理</strong><br>9 つの CLAUDE.md ファイルで AI に適切な情報を提供する設計</li><li><strong>paths フィルタによる CI/CD 最適化</strong><br>変更されたアプリのみビルドすることでビルド時間 58%削減</li><li><strong>4 フェーズワークフローによる知見の資産化</strong><br>計画 → 実装 → 研究記録 → 記事化のドキュメント駆動型開発</li></ol><h3><span>💡 実践的なテクニック</span></h3><ul><li>AI が理解しやすいディレクトリ構造と命名規則</li><li>GitHub Actions paths フィルタの活用</li><li>ドキュメント駆動型開発による知見の蓄積</li></ul><h2><span>前提条件</span></h2><p>この記事は、<strong>モノレポ構成と AI 協業開発環境の設計・アーキテクチャ</strong>に焦点を当てています。</p><h3><span>前提知識（あると望ましい）</span></h3><ul><li><strong>AI 開発ツールの使用経験</strong><ul><li>Claude Code、GitHub Copilot、Cursor 等の AI 開発支援ツールを使った開発経験</li><li>AI にプロンプトを投げてコードを生成した経験</li></ul></li><li><strong>モノレポの基礎知識</strong><ul><li>複数のアプリケーションを 1 つのリポジトリで管理する概念の理解</li><li>（初めての方でも、記事を読み進めることで理解できます）</li></ul></li></ul><h3><span>本記事で扱わないこと</span></h3><p>❌ モノレポツール（Turborepo、Nx 等）の詳細比較<br>❌ Azure 環境の詳細なセットアップ手順<br>❌ 各フレームワーク（NestJS、Next.js 等）の実装詳細<br>❌ 型安全パイプラインの実装詳細（<a href="https://tech-lab.sios.jp/archives/49157" target="_blank" rel="noopener" title="">型安全パイプラインの記事</a>で解説）</p><p><strong>※本記事は構成と設計に焦点を当てており、実装の詳細は関連記事で解説しています。</strong></p><h2><span>プロジェクト全体像</span></h2><p>まずは、実際のプロジェクト構成を見ていきましょう。</p><h3><span>モノレポ構成の 4 つのアプリケーション</span></h3><p>このプロジェクトは、<strong>4 つの独立したアプリケーション</strong>をモノレポで管理しています。</p><div><figure><table><thead><tr><th>アプリケーション</th><th>技術スタック</th><th>デプロイ先</th><th>GitHub Actions</th></tr></thead><tbody><tr><td><strong>Frontend</strong></td><td>Next.js 15, React 19, TypeScript 5</td><td>Azure Static Web Apps</td><td><code>frontend-swa-deploy.yml</code></td></tr><tr><td><strong>Backend</strong></td><td>NestJS 11, Node.js 22, TypeScript 5</td><td>Azure Web Apps (Docker)</td><td><code>backend-docker-build.yml</code></td></tr><tr><td><strong>X Scheduler Functions</strong></td><td>Azure Functions v4, Node.js 22, TypeScript</td><td>Azure Functions</td><td><code>deploy-x-scheduler-functions.yml</code></td></tr><tr><td><strong>Blog Search MCP Functions</strong></td><td>Azure Functions v4, Node.js 22, MCP Protocol</td><td>Azure Functions</td><td><code>deploy-blog-search-mcp-functions.yml</code></td></tr></tbody></table></figure></div><h3><span>ディレクトリ構造の全体像</span></h3><div><pre data-lang="Bash"><code>プロジェクトルート/
+├── docs/                    # 計画・設計フェーズ（実装コードなし）
+│   ├── CLAUDE.md            # 計画フェーズガイドライン
+│   ├── project-core.md      # インフラ全体構成
+│   ├── features/            # 新機能開発計画
+│   ├── bugs/                # バグ調査・修正計画
+│   ├── research/            # 実装検証結果・知見
+│   ├── article/             # ブログ記事執筆用調査
+│   │   └── CLAUDE.md        # 記事執筆ガイド
+│   ├── tools/               # Docs専用ツール
+│   │   └── CLAUDE.md        # ツール使用ガイド
+│   └── api/                 # OpenAPI仕様
+├── application/             # 実装フェーズ
+│   ├── backend/             # NestJS APIサーバー
+│   │   └── CLAUDE.md        # バックエンド開発ガイド
+│   ├── frontend/            # Next.js フロントエンド
+│   │   └── CLAUDE.md        # フロントエンド開発ガイド
+│   ├── functions/           # X Scheduler
+│   │   └── CLAUDE.md        # Functions開発ガイド
+│   └── blog-search-mcp-functions/  # MCP Server
+│       └── CLAUDE.md        # MCP Functions開発ガイド
+├── infrastructure/          # IaCテンプレート
+│   └── CLAUDE.md            # インフラ開発ガイド
+├── CLAUDE.md                # ルートガイドライン（全体像）
+└── .github/
+    └── workflows/           # CI/CDパイプライン
+        ├── frontend-swa-deploy.yml
+        ├── backend-docker-build.yml
+        ├── deploy-x-scheduler-functions.yml
+        └── deploy-blog-search-mcp-functions.yml</code></pre></div><h3><span>システム構成図</span></h3><p>モノレポ全体の構成を視覚化するとこうなります：</p><figure><img data-recalc-dims="1" decoding="async" width="880" height="495" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/26f0c86218c7d1aa926995a496998cab.png?resize=880%2C495&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/26f0c86218c7d1aa926995a496998cab.png?w=1920&amp;ssl=1 1920w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/26f0c86218c7d1aa926995a496998cab.png?resize=1536%2C864&amp;ssl=1 1536w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/26f0c86218c7d1aa926995a496998cab.png?resize=940%2C529&amp;ssl=1 940w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/26f0c86218c7d1aa926995a496998cab.png?w=1760&amp;ssl=1 1760w" sizes="(max-width: 880px) 100vw, 880px"> [画像: graph TD
+    A[プロジェクトルート] --&gt; B[/docs/]
+    A --&gt; C[/application/]
+    A --&gt; D[/infrastructure/]
+    A --&gt; E[/.github/workflows/]
+    A --&gt; F[CLAUDE.md<br>全体ガイドライン]
+
+    B --&gt; B1[features/<br>新機能計画]
+    B --&gt; B2[bugs/<br>バグ調査]
+    B --&gt; B3[research/<br>検証結果]
+    B --&gt; B4[article/<br>記事執筆調査]
+    B --&gt; B5[CLAUDE.md<br>計画フェーズルール]
+
+    C --&gt; C1[backend/<br>NestJS 11]
+    C --&gt; C2[frontend/<br>Next.js 15]
+    C --&gt; C3[functions/<br>X Scheduler]
+    C --&gt; C4[blog-search-mcp-functions/<br>MCP Server]
+
+    E --&gt; E1[frontend-swa-deploy.yml]
+    E --&gt; E2[backend-docker-build.yml]
+    E --&gt; E3[deploy-x-scheduler-functions.yml]
+    E --&gt; E4[deploy-blog-search-mcp-functions.yml]
+
+    style F fill:#f9f,stroke:#333,stroke-width:2px
+    style B5 fill:#bbf,stroke:#333,stroke-width:2px
+    style C1 fill:#bfb,stroke:#333,stroke-width:2px
+    style C2 fill:#bfb,stroke:#333,stroke-width:2px
+    style C3 fill:#bfb,stroke:#333,stroke-width:2px
+    style C4 fill:#bfb,stroke:#333,stroke-width:2px] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/26f0c86218c7d1aa926995a496998cab.png?resize=880%2C495&amp;ssl=1) </figure><h3><span>なぜモノレポなのか？</span></h3><p>モノレポ構成を採用した理由は、<strong>AI 協業開発との相性の良さ</strong>にあります。</p><h4><span>✅ モノレポのメリット</span></h4><p><strong>1. AI に 1 つのリポジトリで全体像を提供</strong></p><p>別リポジトリにすると、AI は各リポジトリのコンテキストを個別に理解する必要があります。モノレポなら、<strong>ルートの CLAUDE.md で全体像を一度に提供</strong>できます。</p><div><pre data-lang="Bash"><code># 別リポジトリの場合（AIが混乱）
+frontend-repo/ ← AIはこのリポジトリのコンテキストのみ
+backend-repo/  ← 別のセッションで別のコンテキスト
+functions-repo/ ← また別のコンテキスト
+
+# モノレポの場合（AIが全体を把握）
+monorepo/
+├── CLAUDE.md ← 全体像をAIに提供
+├── application/
+│   ├── frontend/
+│   ├── backend/
+│   └── functions/</code></pre></div><p><strong>2. ディレクトリ構造の一貫性</strong></p><p>すべてのアプリケーションが同じルールに従うため、AI が理解しやすくなります。</p><div><pre data-lang="Bash"><code># すべてのアプリケーションにそれぞれのCLAUDE.mdがある
+/application/backend/CLAUDE.md
+/application/frontend/CLAUDE.md
+/application/functions/CLAUDE.md
+/application/blog-search-mcp-functions/CLAUDE.md</code></pre></div><p><strong>3. コード共有が容易</strong></p><p>共通ライブラリ、型定義、ユーティリティ関数を複数のアプリで共有できます。</p><h3><span>AI 協業開発を支える設計思想</span></h3><p>このモノレポ環境には、3 つの核となる設計思想があります。</p><h4><span>1. 計画と実装の分離</span></h4><p><code>/docs/</code>（設計・仕様）と<code>/application/</code>（実装コード）を明確に分離しています。</p><p><strong>目的</strong>:</p><ul><li>AI に「計画フェーズ」と「実装フェーズ」を明確に区別させる</li><li>実装前に設計を固めることで、手戻りを減らす</li></ul><div><pre data-lang="Bash"><code>/docs/features/my-new-feature/
+├── README.md           # 機能概要
+├── api-spec.md         # API設計（実装コードなし）
+└── type-definition.md  # 型定義（実装コードなし）
+
+/application/backend/src/my-new-feature/
+├── my-new-feature.controller.ts  # 実装コード
+├── my-new-feature.service.ts     # 実装コード
+└── dto/                          # 実装された型定義</code></pre></div><h4><span>2. CLAUDE.md 階層構造</span></h4><p>ルートで全体像、サブディレクトリで詳細ルールを提供します。</p><p><strong>目的</strong>:</p><ul><li>AI が必要な粒度でコンテキストを取得できる</li><li>各領域の専門的なルールを明確にする</li></ul><div><pre data-lang="Bash"><code>/CLAUDE.md ← プロジェクト全体像
+  ↓
+/docs/CLAUDE.md ← 計画フェーズのルール
+  ↓
+/application/backend/CLAUDE.md ← バックエンド実装の詳細ルール</code></pre></div><h4><span>3. Single Source of Truth（型安全パイプライン）</span></h4><p>Backend DTOs を唯一の真実とし、Frontend の型定義は自動生成します。</p><p><strong>詳細</strong>: <a href="https://tech-lab.sios.jp/archives/49157" target="_blank" rel="noopener" title="">AI と爆速開発！Next.js×Nest.js 型定義同期の自動生成パイプライン構築術</a>を参照</p><div><pre data-lang="Bash"><code>Backend DTOs (@ApiProperty)
+  ↓
+OpenAPI 仕様生成 (generate:openapi)
+  ↓
+Frontend 型定義生成 (generate:api with Orval)
+  ↓
+型安全なAPI呼び出し</code></pre></div><p>これら 3 つの設計思想により、<strong>AI との協業開発が劇的にスムーズ</strong>になりました。</p><h2><span>CLAUDE.md 階層構造の設計</span></h2><p>ここからは、AI 協業開発の核となる<strong>CLAUDE.md 階層構造</strong>について詳しく解説します。</p><h3><span>CLAUDE.md とは？</span></h3><p><strong>CLAUDE.md</strong>は、AI（Claude Code）にプロジェクトのコンテキストを提供するドキュメントです。</p><p>従来、AI に「このプロジェクトはどういう構成？」「どのルールに従えばいい？」と聞かれるたびに、手動で説明する必要がありました。CLAUDE.md を配置することで、<strong>AI が自律的にガイドラインを読み、適切な判断をする</strong>ようになります。</p><h3><span>9 つの CLAUDE.md ファイル</span></h3><p>このプロジェクトには、<strong>合計 9 つの CLAUDE.md ファイル</strong>が配置されています。</p><div><pre data-lang="Bash"><code># すべてのCLAUDE.mdファイルを確認
+$ find . -maxdepth 3 -name "CLAUDE.md" | sort
+
+./CLAUDE.md
+./application/backend/CLAUDE.md
+./application/blog-search-mcp-functions/CLAUDE.md
+./application/frontend/CLAUDE.md
+./application/functions/CLAUDE.md
+./docs/article/CLAUDE.md
+./docs/CLAUDE.md
+./docs/tools/CLAUDE.md
+./infrastructure/CLAUDE.md</code></pre></div><p><strong>各 CLAUDE.md の役割</strong>:</p><div><figure><table><thead><tr><th>ファイルパス</th><th>役割</th><th>主な内容</th></tr></thead><tbody><tr><td><code>/CLAUDE.md</code></td><td><strong>ルートガイドライン</strong></td><td>プロジェクト全体像、ディレクトリ構造、4 フェーズワークフロー、共通開発コマンド</td></tr><tr><td><code>/docs/CLAUDE.md</code></td><td><strong>計画フェーズルール</strong></td><td>型定義、API 設計、データベース設計のルール（実装コード禁止）</td></tr><tr><td><code>/docs/article/CLAUDE.md</code></td><td><strong>記事執筆ガイド</strong></td><td>ブログ記事執筆の文体、構成、ドキュメント構造</td></tr><tr><td><code>/docs/tools/CLAUDE.md</code></td><td><strong>ツール使用ガイド</strong></td><td>Docs 専用ツール（ブログ HTML 抽出等）の使用方法</td></tr><tr><td><code>/application/backend/CLAUDE.md</code></td><td><strong>バックエンド開発ガイド</strong></td><td>NestJS 開発ルール、環境変数管理、テスト実行方法</td></tr><tr><td><code>/application/frontend/CLAUDE.md</code></td><td><strong>フロントエンド開発ガイド</strong></td><td>Next.js 開発ルール、インポートパス規則</td></tr><tr><td><code>/application/functions/CLAUDE.md</code></td><td><strong>X Scheduler 開発ガイド</strong></td><td>Azure Functions 開発ルール、Timer Trigger 設定</td></tr><tr><td><code>/application/blog-search-mcp-functions/CLAUDE.md</code></td><td><strong>MCP Functions 開発ガイド</strong></td><td>MCP Server 開発ルール、Supabase 連携</td></tr><tr><td><code>/infrastructure/CLAUDE.md</code></td><td><strong>インフラ開発ガイド</strong></td><td>Azure Bicep 開発ルール、デプロイ手順</td></tr></tbody></table></figure></div><h3><span>コンテキスト継承パターン</span></h3><p>CLAUDE.md は、<strong>階層的にコンテキストを継承</strong>します。</p><figure><img data-recalc-dims="1" decoding="async" width="880" height="585" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/b7c22fa6963e7ee1943ea6da10fad98d.jpg?resize=880%2C585&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/b7c22fa6963e7ee1943ea6da10fad98d.jpg?w=1920&amp;ssl=1 1920w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/b7c22fa6963e7ee1943ea6da10fad98d.jpg?resize=1536%2C1022&amp;ssl=1 1536w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/b7c22fa6963e7ee1943ea6da10fad98d.jpg?resize=940%2C625&amp;ssl=1 940w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/b7c22fa6963e7ee1943ea6da10fad98d.jpg?w=1760&amp;ssl=1 1760w" sizes="(max-width: 880px) 100vw, 880px"> [画像: graph TD
+    A["/CLAUDE.md<br>プロジェクト全体像"] --&gt; B["/docs/CLAUDE.md<br>計画フェーズルール"]
+    A --&gt; C["/application/backend/CLAUDE.md<br>バックエンド詳細ルール"]
+    A --&gt; D["/application/frontend/CLAUDE.md<br>フロントエンド詳細ルール"]
+
+    B --&gt; B1["/docs/article/CLAUDE.md<br>記事執筆ガイド"]
+    B --&gt; B2["/docs/tools/CLAUDE.md<br>ツール使用ガイド"]
+
+    style A fill:#f9f,stroke:#333,stroke-width:3px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#bfb,stroke:#333,stroke-width:2px] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/b7c22fa6963e7ee1943ea6da10fad98d.jpg?resize=880%2C585&amp;ssl=1) </figure><p><strong>継承の例</strong>:</p><ol><li><strong>ルート CLAUDE.md</strong>を読む → プロジェクト全体構成を理解</li><li><strong>サブディレクトリの CLAUDE.md</strong>を読む → 各領域の詳細ルールを理解</li><li>AI が適切な判断を下す</li></ol><p><strong>実際の動き</strong>:</p><div><pre data-lang="Bash"><code>AI: 「ユーザーがフロントエンドの開発を依頼してきた」
+↓
+AI: 「まず /CLAUDE.md を読んで全体像を把握しよう」
+↓
+AI: 「次に /application/frontend/CLAUDE.md を読んで詳細ルールを確認」
+↓
+AI: 「インポートパスは @/* を使うべきだな」
+AI: 「API型定義は自動生成されるから、手動で書いちゃダメだな」
+↓
+AI: 適切なコードを提案</code></pre></div><h3><span>ルート CLAUDE.md の重要性</span></h3><p><strong>ルート CLAUDE.md</strong>（<code>/CLAUDE.md</code>）は、最も重要なドキュメントです。</p><h4><span>記載内容の例</span></h4><div><pre data-lang="Markdown"><code># CLAUDE.md
+
+## Project Architecture Overview
+
+LINE LIFF AI Prompt Battle - An AI-powered game platform...
+
+### Directory Structure &amp; Responsibilities
+
+/
+├── docs/ # Planning &amp; Design Phase
+│ ├── features/ # Feature specifications
+│ ├── bugs/ # Bug investigation &amp; fix plans
+│ ├── research/ # Implementation validation
+│ └── article/ # Blog article research
+├── application/
+│ ├── backend/ # NestJS 11 API Server
+│ ├── frontend/ # Next.js 15 App Router
+│ ├── functions/ # Azure Functions
+│ └── blog-search-mcp-functions/ # MCP Server
+└── infrastructure/ # Azure Bicep IaC
+
+**Workflow Pattern (4-Phase Workflow)**:
+
+1. **計画フェーズ** - Plan in `/docs/`
+2. **実装フェーズ** - Implement in `/application/`
+3. **研究記録フェーズ** - Document findings in `/docs/research/`
+4. **記事化フェーズ** - Gather materials in `/docs/article/`
+
+## Common Development Commands
+
+### Backend (NestJS)
+
+npm run start:dev # Development with watch mode
+npm run generate:openapi # Generate OpenAPI spec
+
+### Frontend (Next.js)
+
+npm run generate:api # Generate types from OpenAPI
+npm run dev:full # generate:api + dev server
+
+## Critical Import Path Rules
+
+### Frontend: Use `@/*` Path Aliases
+
+// ✅ CORRECT
+import { Button } from '@/components/ui/button';
+
+// ❌ WRONG
+import { Button } from '../components/ui/button';</code></pre></div><p><strong>ポイント</strong>:</p><ul><li><strong>プロジェクト全体構成</strong>を一目で理解できる</li><li><strong>4 フェーズワークフロー</strong>を明記</li><li><strong>共通開発コマンド</strong>を記載</li><li><strong>インポートパス規則</strong>等の重要ルールを記載</li></ul><p><strong>※注</strong>: 上記コード例は、実際のプロジェクト CLAUDE.md での記載例です。本記事では「4 フェーズワークフロー」または「ドキュメント駆動型開発」と呼称しています。</p><p>このルート CLAUDE.md があることで、AI は<strong>初めてプロジェクトに触れた時でも、全体像を即座に理解</strong>できます。</p><h3><span>CLAUDE.md 階層構造の効果</span></h3><p>この階層構造により、以下の効果が得られました：</p><p>✅ <strong>AI の理解速度が向上</strong><br>ルート CLAUDE.md で全体像を把握し、サブディレクトリで詳細を理解</p><p>✅ <strong>一貫性のあるコード生成</strong><br>すべての開発者（人間も AI も）が同じルールに従う</p><p>✅ <strong>手動説明の削減</strong><br>「どういうプロジェクト？」と聞かれることがなくなった</p><p>✅ <strong>オンボーディング時間の短縮</strong><br>新しい AI セッション、新しい開発者が即座に理解できる</p><h2><span>ドキュメント駆動型開発の実践（3 フェーズ →4 フェーズへの進化）</span></h2><p>Claude Code での開発を効率化するため、<strong>計画 → 実装 → 研究記録 → 記事化の 4 フェーズワークフロー</strong>を構築しました。</p><h3><span>3 フェーズ開発から 4 フェーズ開発への進化</span></h3><p>このワークフローは、<strong>既存の 3 フェーズ開発を基盤に構築</strong>されています：</p><p><strong>元々の 3 フェーズ開発</strong>（<a href="https://tech-lab.sios.jp/archives/49140" target="_blank" rel="noopener" title="">計画 → 実装 → 検証術</a>、<a href="https://tech-lab.sios.jp/archives/49148" target="_blank" rel="noopener" title="">仕様書アレルギー克服</a>で解説）:</p><ol><li><strong>計画</strong>: <code>/docs/</code> で仕様策定（実装コードは書かない）</li><li><strong>実装</strong>: <code>/application/</code> で実装</li><li><strong>検証</strong>: 計画と実装の差異を分析</li></ol><p><strong>4 フェーズへの拡張</strong>（<a href="https://tech-lab.sios.jp/archives/50103" target="_blank" rel="noopener" title="">知見を資産化する記事</a>で詳細解説）:</p><ul><li><strong>フェーズ 3 を「研究記録」として体系化</strong>: 検証フェーズで得た知見を <code>/docs/research/</code> に記録</li><li><strong>フェーズ 4「記事化」を追加</strong>: 研究記録を元に <code>/docs/article/</code> で記事執筆</li><li><strong>RAG もどきシステム</strong>: 既存記事参照でトークン数 50-60%削減</li><li><strong>文体補正システム</strong>: 一貫した記事品質を実現</li></ul><figure><img data-recalc-dims="1" loading="lazy" decoding="async" width="880" height="280" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/820942403bb694d3f8954c296e61935d-1.png?resize=880%2C280&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/820942403bb694d3f8954c296e61935d-1.png?w=1920&amp;ssl=1 1920w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/820942403bb694d3f8954c296e61935d-1.png?resize=1536%2C489&amp;ssl=1 1536w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/820942403bb694d3f8954c296e61935d-1.png?resize=940%2C299&amp;ssl=1 940w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/820942403bb694d3f8954c296e61935d-1.png?w=1760&amp;ssl=1 1760w" sizes="auto, (max-width: 880px) 100vw, 880px"> [画像: graph LR
+    A[フェーズ1<br>計画<br>/docs/features/] --&gt; B[フェーズ2<br>実装<br>/application/]
+    B --&gt; C[フェーズ3<br>研究記録<br>/docs/research/]
+    C --&gt; D[フェーズ4<br>記事化<br>/docs/article/]
+
+    style A fill:#fff3cd,stroke:#333,stroke-width:2px
+    style B fill:#d1ecf1,stroke:#333,stroke-width:2px
+    style C fill:#d4edda,stroke:#333,stroke-width:2px
+    style D fill:#f8d7da,stroke:#333,stroke-width:2px] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/820942403bb694d3f8954c296e61935d-1.png?resize=880%2C280&amp;ssl=1) </figure><h3><span>各フェーズの概要</span></h3><h4><span>フェーズ 1: 計画 (<code>/docs/features/</code>)</span></h4><p><strong>目的</strong>: 実装前の設計・仕様策定（実装コードは一切書かない）</p><p><strong>成果物</strong>: 型定義、API 設計、データベース構造、アーキテクチャ設計</p><p><strong>効果</strong>: 開発時間 1 週間 →2 日に短縮（<a href="https://tech-lab.sios.jp/archives/49148" target="_blank" rel="noopener" title="">仕様書アレルギー克服の記事</a>で詳細解説）</p><p><strong>重要ルール</strong>: CLAUDE.md で実装コード記述を禁止することで、AI が設計に集中</p><h4><span>フェーズ 2: 実装 (<code>/application/</code>)</span></h4><p><strong>目的</strong>: 計画に基づいた実装</p><p><strong>実装順序</strong>: Backend → Frontend → Functions</p><p><strong>効果</strong>: 小規模システムで 30 分、中規模で 2 日程度（<a href="https://tech-lab.sios.jp/archives/49140" target="_blank" rel="noopener" title="">3 フェーズ開発の記事</a>で実例紹介）</p><h4><span>フェーズ 3: 研究記録 (<code>/docs/research/</code>)</span></h4><p><strong>目的</strong>: 実装完了後の知見・アーキテクチャ検証結果をドキュメント化</p><p><strong>記載内容</strong>: 設計思想、アーキテクチャパターン、検証結果</p><p><strong>重要性</strong>: 計画と実装の差異を分析し、仕様漏れを特定</p><p><strong>※補足</strong>: <a href="https://tech-lab.sios.jp/archives/49140" target="_blank" rel="noopener" title="">3 フェーズ開発の記事</a>で「検証フェーズ」として解説している内容を、このプロジェクトでは「研究記録フェーズ」として体系化しています。実装完了後に計画と実装の差異を分析し、知見として記録します。</p><h4><span>フェーズ 4: 記事化 (<code>/docs/article/</code>)</span></h4><p><strong>目的</strong>: 技術ブログ執筆に必要な情報収集・調査、<strong>知見の資産化</strong></p><p><strong>成果物</strong>: <code>research-doc.md</code>（調査資料）、<code>no1-article.md</code>（記事本文）</p><p><strong>参照元</strong>: <code>/docs/features/</code> + <code>/docs/research/</code> + <code>/application/</code></p><p><strong>効率化ツール</strong>（<a href="https://tech-lab.sios.jp/archives/50103" target="_blank" rel="noopener" title="">知見を資産化する記事</a>で詳細解説）:</p><ul><li><strong>RAG もどき</strong>（fetch-blog-html.ts）: 既存記事参照でトークン数 50-60%削減</li><li><strong>文体補正</strong>（writing-style-prompt.md）: 一貫した記事品質</li><li><strong>記事執筆時間 50%削減</strong>: 調査資料から記事執筆までの自動化</li><li><strong>重複チェック 83%削減</strong>: 既存記事との重複を自動検出</li></ul><h3><span>このワークフローの効果</span></h3><p>✅ <strong>知見が自然に蓄積</strong> – 実装と同時にドキュメントが作成される</p><p>✅ <strong>記事化がスムーズ</strong> – 計画 → 検証 → 実装コードを参照するだけ</p><p>✅ <strong>手戻りが減少</strong> – 計画フェーズで設計を固めることで、実装時の手戻りが減少</p><ul><li>開発時間 1 週間 →2 日に短縮（計画フェーズの効果）</li></ul><p>✅ <strong>AI との協業が効率化</strong> – 各フェーズで AI に明確な役割を与えられる</p><p>✅ <strong>知見が資産化される</strong> – フェーズ 4（記事化）により、開発知見が再利用可能なブログ記事として蓄積</p><ul><li>既存記事との重複チェック 83%削減</li><li>技術ブログのライブラリが自然に形成される</li></ul><h2><span>型安全な API 開発パイプライン</span></h2><p>Frontend と Backend の型ズレをゼロにする<strong>型安全パイプライン</strong>については、別記事で詳しく解説しています。</p><p><strong>詳細を学ぶ</strong>: <a href="https://tech-lab.sios.jp/archives/49157" target="_blank" rel="noopener" title="">AI と爆速開発！Next.js×Nest.js 型定義同期の自動生成パイプライン構築術</a></p><h3><span>Single Source of Truth の原則</span></h3><p>このプロジェクトでは、<strong>Backend DTOs を唯一の真実</strong>としています。</p><p>Frontend の型定義は、Backend から自動生成するため、<strong>手動で型定義を同期する作業が不要</strong>になります。</p><figure><img data-recalc-dims="1" loading="lazy" decoding="async" width="880" height="214" src="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/2e261226e6375291d1a9ae30a0d90f86.png?resize=880%2C214&amp;ssl=1" srcset="https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/2e261226e6375291d1a9ae30a0d90f86.png?w=1920&amp;ssl=1 1920w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/2e261226e6375291d1a9ae30a0d90f86.png?resize=1536%2C373&amp;ssl=1 1536w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/2e261226e6375291d1a9ae30a0d90f86.png?resize=940%2C228&amp;ssl=1 940w, https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/2e261226e6375291d1a9ae30a0d90f86.png?w=1760&amp;ssl=1 1760w" sizes="auto, (max-width: 880px) 100vw, 880px"> [画像: graph LR
+    A[Backend DTOs<br>@ApiProperty] --&gt; B[generate:openapi<br>NestJS]
+    B --&gt; C[OpenAPI仕様<br>/docs/api/openapi.yaml]
+    C --&gt; D[generate:api<br>Orval]
+    D --&gt; E[Frontend 型定義<br>lib/api/generated.ts]
+    E --&gt; F[カスタムSWRフック<br>hooks/]
+
+    style A fill:#d4edda,stroke:#333,stroke-width:2px
+    style C fill:#fff3cd,stroke:#333,stroke-width:2px
+    style E fill:#d1ecf1,stroke:#333,stroke-width:2px
+    style F fill:#f8d7da,stroke:#333,stroke-width:2px] (https://i0.wp.com/tech-lab.sios.jp/wp-content/uploads/2025/11/2e261226e6375291d1a9ae30a0d90f86.png?resize=880%2C214&amp;ssl=1) </figure><h3><span>型安全パイプラインの効果</span></h3><p>✅ <strong>型ズレゼロ</strong> – Backend と Frontend の型が常に一致<br>✅ <strong>手動同期作業の撲滅</strong> – 型定義を手動でコピー＆ペーストする必要がない<br>✅ <strong>リファクタリング時の安全性</strong> – Backend の型を変更すると、Frontend でコンパイルエラーが出る<br>✅ <strong>開発速度向上</strong> – 型定義を書く時間が不要になり、実装に集中できる</p><h2><span>モノレポ CI/CD パイプライン: paths フィルタの威力</span></h2><p>次に、4 つのアプリケーションを並行デプロイする<strong>最適化された CI/CD パイプライン</strong>について解説します。</p><h3><span>4 つの独立したワークフロー</span></h3><p>このプロジェクトでは、<strong>4 つの独立した GitHub Actions ワークフロー</strong>を使用しています。</p><div><figure><table><thead><tr><th>ワークフロー</th><th>トリガーパス</th><th>デプロイ先</th><th>ビルド時間（平均）</th></tr></thead><tbody><tr><td><code>frontend-swa-deploy.yml</code></td><td><code>application/frontend/**</code></td><td>Azure Static Web Apps</td><td>3 分</td></tr><tr><td><code>backend-docker-build.yml</code></td><td><code>application/backend/**</code></td><td>GitHub Container Registry → Azure Web Apps</td><td>5 分</td></tr><tr><td><code>deploy-x-scheduler-functions.yml</code></td><td><code>application/functions/**</code></td><td>Azure Functions (X Scheduler)</td><td>2 分</td></tr><tr><td><code>deploy-blog-search-mcp-functions.yml</code></td><td><code>application/blog-search-mcp-functions/**</code></td><td>Azure Functions (MCP Server)</td><td>2 分</td></tr></tbody></table></figure></div><h3><span>paths フィルタによる最適化</span></h3><p><strong>課題</strong>: モノレポ全体をビルドすると、変更のないアプリもビルドされ時間がかかる</p><p><strong>解決策</strong>: GitHub Actions の <code>paths</code> フィルタで、変更されたディレクトリのみをトリガー</p><h4><span>例: Frontend SWA Deploy</span></h4><div><pre data-lang="yaml"><code># .github/workflows/frontend-swa-deploy.yml
+name: Frontend SWA Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "application/frontend/**"
+      - ".github/workflows/frontend-swa-deploy.yml"
+  workflow_dispatch:</code></pre></div><p><strong>ポイント</strong>:</p><ul><li><code>paths</code> フィルタで <code>application/frontend/**</code> のみをトリガー</li><li>Backend を変更しても、Frontend のワークフローは実行されない</li></ul><h4><span>Before/After 比較</span></h4><p><strong>Before（paths フィルタなし）</strong></p><div><pre data-lang="Bash"><code>Backend を変更
+↓
+全ワークフロー実行（Frontend, Backend, Functions, MCP Functions）
+↓
+合計ビルド時間: 12分（3 + 5 + 2 + 2）</code></pre></div><p><strong>After（paths フィルタあり）</strong></p><div><pre data-lang="Bash"><code>Backend を変更
+↓
+Backend ワークフローのみ実行
+↓
+合計ビルド時間: 5分（58%削減）</code></pre></div><h3><span>並行デプロイの実現</span></h3><p>4 つのワークフローが<strong>独立している</strong>ため、複数のアプリを同時に変更した場合、<strong>並行デプロイ</strong>が実現されます。</p><div><pre data-lang="Bash"><code>Frontend と Backend を同時に変更
+↓
+frontend-swa-deploy.yml と backend-docker-build.yml が並行実行
+↓
+合計ビルド時間: 5分（逐次実行なら8分）</code></pre></div><h3><span>CI/CD パイプラインの効果</span></h3><p>✅ <strong>ビルド時間 58%削減</strong> – paths フィルタにより、変更のないアプリはビルドされない<br>✅ <strong>並行デプロイ</strong> – 複数のアプリを同時に変更しても、並行実行で時間短縮<br>✅ <strong>安全なデプロイ</strong> – 各アプリが独立しているため、Frontend のデプロイ失敗が Backend に影響しない</p><h2><span>開発体験の変化（Before/After）</span></h2><p>モノレポ ×AI 協業開発環境を導入する前後で、開発体験がどう変わったかを比較します。</p><h3><span>Before（モノレポ ×AI 環境導入前）</span></h3><h4><span>問題点</span></h4><p>❌ <strong>AI に毎回プロジェクト構成を説明</strong></p><div><pre data-lang="Bash"><code>開発者: 「ユーザー管理機能を実装して」
+AI: 「このプロジェクトはどういう構成ですか？」
+開発者: 「Backendは...Frontendは...」（毎回説明）</code></pre></div><p>❌ <strong>CI/CD ビルド時間の増加</strong></p><div><pre data-lang="Bash"><code>Backend を変更
+↓
+全ワークフロー実行（Frontend, Backend, Functions）
+↓
+合計ビルド時間: 12分</code></pre></div><p>❌ <strong>ドキュメントが散らばって、どこに何があるかわからない</strong></p><div><pre data-lang="Bash"><code>計画ドキュメント: Notion
+実装コメント: コード内
+ブログ記事: 別リポジトリ
+
+↓
+情報が散らばって、どこに何があるかわからない</code></pre></div><h3><span>After（モノレポ ×AI 環境導入後）</span></h3><h4><span>改善点</span></h4><p>✅ <strong>AI が自律的にプロジェクト構成を理解</strong></p><div><pre data-lang="Bash"><code>開発者: 「ユーザー管理機能を実装して」
+AI: 「/CLAUDE.md を確認します」
+AI: 「/application/backend/CLAUDE.md を確認します」
+AI: 「型安全パイプラインに従って実装します」</code></pre></div><p>✅ <strong>CI/CD ビルド時間 50%削減</strong></p><div><pre data-lang="Bash"><code>Backend を変更
+↓
+Backend ワークフローのみ実行（pathsフィルタ）
+↓
+合計ビルド時間: 5分（50%削減）</code></pre></div><p>✅ <strong>ドキュメントが自然に蓄積し、資産化される</strong></p><div><pre data-lang="Bash"><code>4フェーズワークフロー
+計画 (/docs/features/)
+  ↓
+実装 (/application/)
+  ↓
+研究記録 (/docs/research/)
+  ↓
+記事化 (/docs/article/)
+  ├─ RAGもどき（fetch-blog-html.ts）でトークン数50-60%削減
+  └─ 文体補正（writing-style-prompt.md）で一貫した記事品質
+
+↓
+情報が整理され、知見が資産化される
+技術ブログのライブラリが自然に形成される</code></pre></div><h3><span>定量的な効果</span></h3><div><figure><table><thead><tr><th>指標</th><th>Before</th><th>After</th><th>改善率</th></tr></thead><tbody><tr><td><strong>初期説明時間</strong></td><td>10 分/セッション</td><td>ほぼ不要（CLAUDE.md で自律理解）</td><td>大幅削減</td></tr><tr><td><strong>CI/CD ビルド時間</strong></td><td>12 分</td><td>5 分</td><td>58%削減</td></tr><tr><td><strong>ドキュメントメンテナンス時間</strong></td><td>週 5 時間</td><td>週 2 時間</td><td>60%削減</td></tr><tr><td><strong>新機能開発スピード</strong></td><td>2 週間</td><td>1 週間</td><td>50%短縮</td></tr><tr><td><strong>記事執筆時間</strong></td><td>6-8 時間</td><td>3-4 時間</td><td>50%削減</td></tr></tbody></table></figure></div><p><strong>※測定条件</strong>: 小規模〜中規模機能開発（バックエンド API エンドポイント 2-4 個、フロントエンド画面 1-2 個規模）での実測値です。プロジェクトの規模や複雑さによって効果は変動します。記事執筆時間は、調査資料作成から記事本文執筆までの合計時間です。</p><h3><span>龍ちゃんの所感</span></h3><p><strong>導入前の課題</strong>:</p><p>プロジェクトが小さいうちは問題なかったんですが、いろんな検証を詰め込んでプロジェクトが大きくなってくると、<strong>ドキュメントを編集するだけでビルドが走る</strong>という問題が出てきました。適切にビルドを分割することで、不要な CI/CD の実行を抑える必要が出てきたんです。</p><p>また、フロントエンド・バックエンド・Functions（バッチ処理）という複数の構成でアプリを作っていたので、<strong>API 連携やデータベース連携がスムーズに行える環境</strong>が必要でした。例えば、バックエンドでデータベースに情報を入れて、それをバッチ処理で取得して実行するような連携ですね。</p><p><strong>AI 協業開発での気づき</strong>:</p><p>AI と開発する上で、フロントエンドとバックエンドの型ズレを解消するためにも、<strong>アプリケーション全体を AI に見える形で一つに集約する</strong>ことがやはり大事だなと実感しました。これは自分の中でもすごく効果的でしたね。</p><p><strong>検証とブログ執筆の課題</strong>:</p><p>自分の検証スタイルとして、「インプットを入れたらアウトプットを出す」というのが弊社の理念でもあり、このブログの意義でもあるので、検証とブログ執筆はセットで考えていました。</p><p>ただ、検証が終わった後に、別でブログを書くためのシステムを立ち上げて…というのが割と面倒になってきたんです。もう 3 年で 200 記事くらい書いているんですが、だんだん検証する内容も大きくなってきて、記事も長くなってきました。</p><p><strong>ソースコード参照の課題と解決策</strong>:</p><p>記事を書く際に<strong>ソースコードを参照することが増えて</strong>きたんですが、参照するファイルが増えれば増えるほど、ブログを書く障壁がどんどん上がってきました。</p><p>そこで、<strong>リポジトリから直接情報を吸い出してブログを書くシステム</strong>（4 フェーズワークフロー、RAG もどき、文体補正）を構築したことで、ブログ執筆の効率化がさらに進んだと感じています（詳細は<a href="https://tech-lab.sios.jp/archives/50103" target="_blank" rel="noopener" title="">検証 → 記事化で知見を資産化！Claude Code×RAG もどきで AI 技術ブログ執筆を効率化</a>を参照）。</p><h2><span>まとめ</span></h2><p>この記事では、<strong>モノレポ ×AI 協業開発環境</strong>の構築術について解説しました。</p><h3><span>モノレポ ×AI 協業開発環境のポイント</span></h3><p>✅ <strong>CLAUDE.md 階層構造でコンテキスト管理</strong><br>9 つの CLAUDE.md ファイルで、AI に適切な粒度の情報を提供</p><p>✅ <strong>4 フェーズワークフロー（計画 → 実装 → 研究記録 → 記事化）</strong><br>ドキュメント駆動型開発で、知見が自然に蓄積され、資産化される</p><ul><li>3 フェーズ開発を基盤に、フェーズ 4（記事化）を追加</li><li>RAG もどき、文体補正による記事執筆効率化</li></ul><p>✅ <strong>型安全パイプライン（Backend DTOs → OpenAPI → Frontend Types）</strong><br>Single Source of Truth で、型ズレゼロを実現（<a href="https://tech-lab.sios.jp/archives/49157" target="_blank" rel="noopener" title="">型安全パイプラインの詳細記事</a>）</p><p>✅ <strong>paths フィルタによる最適化 CI/CD</strong><br>4 つの独立ワークフローで、ビルド時間 58%削減</p><h3><span>開発体験の変化</span></h3><div><figure><table><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>AI に毎回プロジェクト構成を説明</td><td>CLAUDE.md で自律的に理解</td></tr><tr><td>CI/CD ビルド時間 12 分</td><td>paths フィルタで 5 分（58%削減）</td></tr><tr><td>ドキュメントが散らばる</td><td>4 フェーズワークフローで自然に蓄積、資産化</td></tr><tr><td>記事執筆に時間がかかる</td><td>RAG もどき、文体補正で 50%削減</td></tr></tbody></table></figure></div><h3><span>次のステップ</span></h3><p>この記事を読んで、モノレポ ×AI 協業開発環境に興味を持った方は、以下のステップで実践してみてください：</p><h4><span>1. CLAUDE.md を作成</span></h4><p>まずは、プロジェクトルートに<code>CLAUDE.md</code>を作成し、プロジェクト全体像を記載します。</p><div><pre data-lang="Markdown"><code># CLAUDE.md
+
+## Project Architecture Overview
+
+（プロジェクトの概要）
+
+### Directory Structure
+
+（ディレクトリ構造）
+
+## Workflow Pattern (4-Phase Workflow)
+
+1. **計画フェーズ** - Plan in `/docs/`
+2. **実装フェーズ** - Implement in `/application/`
+3. **研究記録フェーズ** - Document findings in `/docs/research/`
+4. **記事化フェーズ** - Gather materials in `/docs/article/`</code></pre></div><h4><span>2. paths フィルタを導入</span></h4><p>GitHub Actions ワークフローに <code>paths</code> フィルタを追加します。</p><div><pre data-lang="yaml"><code>on:
+  push:
+    branches:
+      - main
+    paths:
+      - "application/frontend/**"</code></pre></div><h4><span>3. 4 フェーズワークフローを実践</span></h4><p>新機能開発時は、計画 → 実装 → 研究記録 → 記事化の 4 フェーズを順に進めます。</p><p>詳細は<a href="https://tech-lab.sios.jp/archives/49140" target="_blank" rel="noopener" title="">3 フェーズ開発の基本を学ぶ記事</a>を参照してください。</p><h2><span>参考リンク</span></h2><h3><span>関連記事（本サイト）</span></h3><h4><span>AI 協業開発手法シリーズ</span></h4><ul><li><a href="https://tech-lab.sios.jp/archives/49140">Claude Code 革命！3 フェーズ開発で効率的な開発：計画 → 実装 → 検証術</a></li><li><a href="https://tech-lab.sios.jp/archives/49148">AI 協働で仕様書アレルギー克服！開発時間を 1 週間 →2 日に短縮する実践法</a></li><li><a href="https://tech-lab.sios.jp/archives/50103">検証 → 記事化で知見を資産化！Claude Code×RAG もどきで AI 技術ブログ執筆を効率化</a></li></ul><h4><span>型安全パイプライン</span></h4><ul><li><a href="https://tech-lab.sios.jp/archives/49157">AI と爆速開発！Next.js×Nest.js 型定義同期の自動生成パイプライン構築術</a></li></ul><h3><span>公式ドキュメント</span></h3><ul><li><a href="https://docs.claude.com/en/docs/claude-code">Claude Code 公式ドキュメント</a></li><li><a href="https://docs.nestjs.com/">NestJS 公式ドキュメント</a></li><li><a href="https://nextjs.org/docs">Next.js 公式ドキュメント</a></li><li><a href="https://docs.github.com/en/actions">GitHub Actions 公式ドキュメント</a></li><li><a href="https://orval.dev/">Orval 公式ドキュメント</a></li></ul><hr><p>ここまで読んでいただき、ありがとうございました！</p><p>モノレポ ×AI 協業開発環境を構築することで、開発体験が劇的に向上します。ぜひ、この記事を参考に、あなたのプロジェクトでも実践してみてください。</p><p>質問や感想は、コメント欄でお待ちしております。また、Twitter のほうもよろしくお願いします！</p><!-- Anyway Feedback Container //--><div>ご覧いただきありがとうございます！
+
+<span>この投稿はお役に立ちましたか？</span><br><br><a href="#afb-post-50109">役に立った</a><a href="#afb-post-50109">役に立たなかった</a><br><br><span>0人がこの投稿は役に立ったと言っています。</span><input type="hidden" name="post_type" value="post"><input type="hidden" name="object_id" value="50109"></div><!-- //Anyway Feedback Container -->
