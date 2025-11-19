@@ -3,7 +3,7 @@ marp: true
 theme: github-dark
 paginate: true
 size: 16:9
-image: assets/thumbnail.png
+image: https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/slides/assets/thumbnail.png
 style: |
   section {
     font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', '游ゴシック', 'Noto Sans JP', sans-serif;
