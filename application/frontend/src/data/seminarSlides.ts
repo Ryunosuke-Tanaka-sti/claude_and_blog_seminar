@@ -29,15 +29,6 @@ export const seminarSlides: SeminarSlide[] = [
     categories: ['音声認識', 'AI文体補正', 'ブログ執筆'],
   },
   {
-    id: 'ai_spec_driven_development_slides',
-    title: 'AI開発手法セミナー',
-    url: '/claude_and_blog_seminar/slides/ai_spec_driven_development_slides.html',
-    description: 'AI時代の新しい開発手法「仕様書ベース開発」を解説。計画・実装・検証の3フェーズで開発時間を大幅短縮する実践的テクニックを学べます。',
-    targetAudience: ['ソフトウェアエンジニア', 'AI開発ツールに興味がある人', 'プロジェクトマネージャー'],
-    theme: 'github-dark',
-    categories: ['AI開発', '開発手法', '仕様書ベース開発'],
-  },
-  {
     id: 'blog_to_marp_workflow',
     title: 'ブログからプレゼン資料へ',
     url: '/claude_and_blog_seminar/slides/blog_to_marp_workflow.html',
