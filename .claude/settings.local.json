@@ -26,7 +26,16 @@
       "WebFetch(domain:code.claude.com)",
       "Bash(git mv:*)",
       "Bash(npm run build:marp:*)",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_close",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "Skill(marp-html-to-png)"
     ],
     "deny": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
 }

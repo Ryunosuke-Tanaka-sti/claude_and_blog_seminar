@@ -3,7 +3,9 @@
     "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
     "workspaceFolder": "/home/node/workspace",
     "remoteUser": "node",
-    "forwardPorts": [4321],
+    "forwardPorts": [
+        4321
+    ],
     "portsAttributes": {
         "4321": {
             "label": "Astro Dev Server",
@@ -21,7 +23,7 @@
             "settings": {}
         }
     },
-    "postCreateCommand": "npm install -g npm@11.5.1 @anthropic-ai/claude-code @marp-team/marp-cli",
+    "postCreateCommand": "npm install -g npm@11.5.1 @marp-team/marp-cli | curl -fsSL https://claude.ai/install.sh | bash",
     "updateRemoteUserUID": true,
     "mounts": [
         "source=${localEnv:HOME}/.claude,target=/home/node/.claude,type=bind,consistency=cached",

@@ -1,3 +1,9 @@
 node_modules
 dist
 .astro
+
+# Playwright MCP
+.playwright-mcp/
+.playwright-auth/
+*.webm
+trace.zip
