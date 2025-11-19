@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>従来の手法との比較</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "游ゴシック", "Noto Sans JP", sans-serif;
+            background-color: #0d1117;
+            color: #f0f6fc;
+            width: 1100px;
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .title h1 {
+            font-size: 32px;
+            color: #f0f6fc;
+            margin-bottom: 3px;
+        }
+
+        .title p {
+            font-size: 16px;
+            color: #7d8590;
+        }
+
+        .comparison {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .column {
+            flex: 1;
+            border: 2px solid;
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column.before {
+            background-color: rgba(218, 54, 51, 0.15);
+            border-color: #da3633;
+        }
+
+        .column.after {
+            background-color: rgba(35, 134, 54, 0.15);
+            border-color: #238636;
+        }
+
+        .column-header {
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid;
+        }
+
+        .column.before .column-header {
+            border-color: #da3633;
+        }
+
+        .column.after .column-header {
+            border-color: #238636;
+        }
+
+        .column-icon {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .column-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .column.before .column-title {
+            color: #da3633;
+        }
+
+        .column.after .column-title {
+            color: #238636;
+        }
+
+        .column-subtitle {
+            font-size: 12px;
+            color: #7d8590;
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .item-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .item-content h3 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #f0f6fc;
+            margin-bottom: 1px;
+        }
+
+        .item-content p {
+            font-size: 11px;
+            color: #7d8590;
+        }
+
+        .conclusion {
+            background-color: #1f6feb;
+            border: 2px solid #1f6feb;
+            border-radius: 6px;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .conclusion-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .conclusion-icon {
+            font-size: 28px;
+        }
+
+        .conclusion-text h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .conclusion-text p {
+            font-size: 12px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>従来 vs 音声入力</h1>
+            <p>執筆方法の革命的変化</p>
+        </div>
+
+        <div class="comparison">
+            <!-- 従来の手法 -->
+            <div class="column before">
+                <div class="column-header">
+                    <div class="column-icon">⌨️</div>
+                    <div class="column-title">従来の手法</div>
+                    <div class="column-subtitle">タイピング中心の執筆</div>
+                </div>
+
+                <div class="items">
+                    <div class="item">
+                        <div class="item-icon">🐌</div>
+                        <div class="item-content">
+                            <h3>速度制限</h3>
+                            <p>60-80文字/分が上限</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-icon">🧠</div>
+                        <div class="item-content">
+                            <h3>思考の分散</h3>
+                            <p>キーボード操作に集中</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-icon">😫</div>
+                        <div class="item-content">
+                            <h3>身体的疲労</h3>
+                            <p>手首・肩・首の負担</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-icon">⏰</div>
+                        <div class="item-content">
+                            <h3>時間消費</h3>
+                            <p>12時間の執筆時間</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 音声入力 -->
+            <div class="column after">
+                <div class="column-header">
+                    <div class="column-icon">🎙️</div>
+                    <div class="column-title">音声入力</div>
+                    <div class="column-subtitle">思考速度の執筆</div>
+                </div>
+
+                <div class="items">
+                    <div class="item">
+                        <div class="item-icon">🚀</div>
+                        <div class="item-content">
+                            <h3>高速入力</h3>
+                            <p>150-200文字/分</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-icon">💭</div>
+                        <div class="item-content">
+                            <h3>思考の流れ</h3>
+                            <p>自然な発想を維持</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-icon">🌟</div>
+                        <div class="item-content">
+                            <h3>疲労ゼロ</h3>
+                            <p>身体的負担なし</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-icon">⚡</div>
+                        <div class="item-content">
+                            <h3>時短実現</h3>
+                            <p>1時間で完成</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <div class="conclusion-content">
+                <div class="conclusion-icon">🚀</div>
+                <div class="conclusion-text">
+                    <h3>2.5倍の速度向上</h3>
+                    <p>思考速度での執筆を実現</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

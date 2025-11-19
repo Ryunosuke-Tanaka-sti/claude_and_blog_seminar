@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自動生成パイプラインの全体像</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center font-sans" style="width: 1100px; height: 550px; overflow: hidden;">
+
+    <div class="w-full max-w-6xl mx-auto px-6">
+
+        <!-- タイトル -->
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-white mb-2">自動生成パイプラインの全体像</h1>
+            <p class="text-lg text-blue-200">DTO → OpenAPI → 型・関数のパーツ化</p>
+        </div>
+
+        <!-- パイプラインフロー -->
+        <div class="flex flex-col items-center space-y-6">
+
+            <!-- ステップ1: NestJS DTO -->
+            <div class="w-full">
+                <div class="bg-blue-500/20 backdrop-blur-sm border-2 border-blue-400 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl">📦</div>
+                            <div>
+                                <h2 class="text-xl font-bold text-blue-300">NestJS DTO</h2>
+                                <p class="text-sm text-blue-200">バックエンド（DTOクラス）</p>
+                            </div>
+                        </div>
+                        <div class="text-white text-sm bg-blue-600/40 px-4 py-2 rounded">
+                            <code>@ApiProperty デコレーター</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="text-3xl text-blue-400">↓</div>
+
+            <!-- ステップ2: OpenAPI Spec -->
+            <div class="w-full">
+                <div class="bg-purple-500/20 backdrop-blur-sm border-2 border-purple-400 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl">📄</div>
+                            <div>
+                                <h2 class="text-xl font-bold text-purple-300">OpenAPI Spec</h2>
+                                <p class="text-sm text-purple-200">自動生成された API 仕様</p>
+                            </div>
+                        </div>
+                        <div class="text-white text-sm bg-purple-600/40 px-4 py-2 rounded">
+                            <code>/docs/api/openapi.yaml</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="text-3xl text-purple-400">↓</div>
+
+            <!-- ステップ3: Orval -->
+            <div class="w-full">
+                <div class="bg-green-500/20 backdrop-blur-sm border-2 border-green-400 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl">⚙️</div>
+                            <div>
+                                <h2 class="text-xl font-bold text-green-300">Orval</h2>
+                                <p class="text-sm text-green-200">TypeScript コード自動生成</p>
+                            </div>
+                        </div>
+                        <div class="text-white text-sm space-y-1">
+                            <div class="bg-green-600/40 px-3 py-1 rounded"><code>mode: "single"</code></div>
+                            <div class="bg-green-600/40 px-3 py-1 rounded"><code>client: "axios-functions"</code></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="text-3xl text-green-400">↓</div>
+
+            <!-- ステップ4: Next.js -->
+            <div class="w-full">
+                <div class="bg-orange-500/20 backdrop-blur-sm border-2 border-orange-400 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl">🎨</div>
+                            <div>
+                                <h2 class="text-xl font-bold text-orange-300">Next.js</h2>
+                                <p class="text-sm text-orange-200">フロントエンド（型定義 + API関数）</p>
+                            </div>
+                        </div>
+                        <div class="text-white text-xs space-y-1">
+                            <div class="bg-orange-600/40 px-2 py-1 rounded">型定義: <code>types/generated/</code></div>
+                            <div class="bg-orange-600/40 px-2 py-1 rounded">API関数: <code>lib/api/generated.ts</code></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 注記 -->
+        <div class="mt-4">
+            <div class="bg-yellow-500/20 backdrop-blur-sm border border-yellow-400/50 rounded-xl p-3 text-center">
+                <p class="text-white text-sm">
+                    <span class="font-bold text-yellow-300">⚠️ 人間もAIも触らないファイルを作成</span>
+                    <span class="ml-2">→ DO NOT EDIT + CLAUDE.md で明文化</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

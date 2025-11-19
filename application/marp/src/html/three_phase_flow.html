@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3フェーズ開発手法の全体像</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center font-sans" style="width: 1100px; height: 550px; overflow: hidden;">
+
+    <div class="w-full max-w-6xl mx-auto px-8">
+
+        <!-- タイトル -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">3フェーズ開発手法</h1>
+            <p class="text-xl text-blue-200">計画 → 実装 → 検証のフロー</p>
+        </div>
+
+        <!-- フローチャート -->
+        <div class="flex items-center justify-between">
+
+            <!-- フェーズ1: 計画 -->
+            <div class="flex-1">
+                <div class="bg-blue-500/20 backdrop-blur-sm border-2 border-blue-400 rounded-xl p-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">📋</div>
+                        <h2 class="text-2xl font-bold text-blue-300 mb-2">計画フェーズ</h2>
+                        <p class="text-sm text-blue-200 mb-3">Planning</p>
+                        <div class="text-left space-y-1.5 text-white text-sm">
+                            <p>• 仕様書をAIに作成させる</p>
+                            <p>• 人間がレビュー・修正</p>
+                            <p>• コードは一切書かせない</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 矢印1 -->
+            <div class="flex items-center justify-center px-4">
+                <div class="text-4xl text-blue-400">→</div>
+            </div>
+
+            <!-- フェーズ2: 実装 -->
+            <div class="flex-1">
+                <div class="bg-green-500/20 backdrop-blur-sm border-2 border-green-400 rounded-xl p-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">⚙️</div>
+                        <h2 class="text-2xl font-bold text-green-300 mb-2">実装フェーズ</h2>
+                        <p class="text-sm text-green-200 mb-3">Implementation</p>
+                        <div class="text-left space-y-1.5 text-white text-sm">
+                            <p>• 仕様書を読み込ませる</p>
+                            <p>• AIが実装</p>
+                            <p>• 人間は監視役</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 矢印2 -->
+            <div class="flex items-center justify-center px-4">
+                <div class="text-4xl text-green-400">→</div>
+            </div>
+
+            <!-- フェーズ3: 検証 -->
+            <div class="flex-1">
+                <div class="bg-purple-500/20 backdrop-blur-sm border-2 border-purple-400 rounded-xl p-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🔍</div>
+                        <h2 class="text-2xl font-bold text-purple-300 mb-2">検証フェーズ</h2>
+                        <p class="text-sm text-purple-200 mb-3">Research</p>
+                        <div class="text-left space-y-1.5 text-white text-sm">
+                            <p>• 計画と実装の差分分析</p>
+                            <p>• 学びを蓄積</p>
+                            <p>• ドキュメント化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 実測データ -->
+        <div class="mt-8">
+            <div class="bg-gradient-to-r from-yellow-400/20 to-orange-500/20 backdrop-blur-sm border border-yellow-400/50 rounded-xl p-4">
+                <div class="flex items-center justify-center space-x-8 text-white">
+                    <div class="flex items-center space-x-2">
+                        <div class="text-3xl">⚡</div>
+                        <div>
+                            <p class="text-sm text-yellow-200">開発時間</p>
+                            <p class="text-xl font-bold">1週間 → 2日</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="text-3xl">✨</div>
+                        <div>
+                            <p class="text-sm text-yellow-200">手戻り</p>
+                            <p class="text-xl font-bold">平均3-4回 → 平均1回</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

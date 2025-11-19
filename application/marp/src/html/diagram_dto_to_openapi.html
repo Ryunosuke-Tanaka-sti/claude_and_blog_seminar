@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTO → OpenAPI Spec変換</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    },
+                    colors: {
+                        'github-dark-bg': '#0d1117',
+                        'github-dark-border': '#58A6FF',
+                        'github-dark-text': '#C9D1D9',
+                        'github-success': '#3FB950',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1100px;
+            height: 550px;
+            background-color: #0d1117;
+            overflow: hidden;
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 48px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .material-icons.md-64 { font-size: 64px; }
+        .material-icons.md-48 { font-size: 48px; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center font-sans p-8">
+
+
+    <!-- メインフロー -->
+    <div class="flex items-center justify-center space-x-6 w-full max-w-5xl">
+
+        <!-- ステップ1: Backend DTOs -->
+        <div class="flex-1">
+            <div class="border-2 border-github-dark-border rounded-lg p-6 bg-github-dark-bg h-full">
+                <div class="text-center">
+                    <div class="text-5xl mb-3">📦</div>
+                    <h2 class="text-2xl font-bold text-github-dark-border mb-3">Backend DTOs</h2>
+                    <div class="text-sm text-github-dark-text space-y-2">
+                        <p class="font-semibold text-github-success">唯一の型定義源</p>
+                        <p class="text-xs">NestJS クラス</p>
+                        <p class="text-xs font-mono">@ApiProperty</p>
+                        <p class="text-xs font-mono">@IsString()</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 矢印1 -->
+        <div class="text-github-dark-border">
+            <span class="material-icons md-64">arrow_forward</span>
+        </div>
+
+        <!-- ステップ2: OpenAPI Spec -->
+        <div class="flex-1">
+            <div class="border-2 border-github-dark-border rounded-lg p-6 bg-github-dark-bg h-full">
+                <div class="text-center">
+                    <div class="text-5xl mb-3">📄</div>
+                    <h2 class="text-2xl font-bold text-github-dark-border mb-3">OpenAPI Spec</h2>
+                    <div class="text-sm text-github-dark-text space-y-2">
+                        <p class="font-semibold text-github-success">自動生成</p>
+                        <p class="text-xs">YAML形式</p>
+                        <p class="text-xs font-mono">schemas</p>
+                        <p class="text-xs font-mono">paths</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 矢印2 -->
+        <div class="text-github-dark-border">
+            <span class="material-icons md-64">arrow_forward</span>
+        </div>
+
+        <!-- ステップ3: Frontend Types -->
+        <div class="flex-1">
+            <div class="border-2 border-github-dark-border rounded-lg p-6 bg-github-dark-bg h-full">
+                <div class="text-center">
+                    <div class="text-5xl mb-3">⚙️</div>
+                    <h2 class="text-2xl font-bold text-github-dark-border mb-3">Frontend Types</h2>
+                    <div class="text-sm text-github-dark-text space-y-2">
+                        <p class="font-semibold text-github-success">Orval生成</p>
+                        <p class="text-xs">TypeScript型</p>
+                        <p class="text-xs font-mono">types/generated/</p>
+                        <p class="text-xs font-mono">API関数</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 補足説明 -->
+    <div class="mt-8 w-full max-w-5xl">
+        <div class="flex flex-col gap-3">
+            <div class="bg-github-dark-border/20 border border-github-dark-border/50 rounded px-4 py-3">
+                <p class="text-xl text-github-dark-text">
+                    <span class="font-bold text-github-success">🔄 自動同期:</span>
+                    DTO変更 → OpenAPI更新 → 型定義更新
+                </p>
+            </div>
+            <div class="bg-github-dark-border/20 border border-github-dark-border/50 rounded px-4 py-3">
+                <p class="text-xl text-github-dark-text">
+                    <span class="font-bold text-github-success">🤖 AI協働:</span>
+                    自動生成ファイルは触らない
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

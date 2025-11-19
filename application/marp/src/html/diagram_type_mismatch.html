@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>型定義の不整合</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif'],
+                        'mono': ['"Source Code Pro"', '"SFMono-Regular"', 'Consolas', 'monospace']
+                    },
+                    colors: {
+                        'github-dark-bg': '#0d1117',
+                        'github-dark-border': '#58A6FF',
+                        'github-dark-text': '#C9D1D9',
+                        'github-success': '#3FB950',
+                        'github-error': '#F85149',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1100px;
+            height: 550px;
+            background-color: #0d1117;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center font-sans p-8">
+
+    <!-- メイン比較エリア -->
+    <div class="grid grid-cols-2 gap-8 w-full max-w-6xl">
+
+        <!-- 左側: バックエンド（DTO） -->
+        <div class="border-2 border-github-dark-border rounded-lg p-6 bg-github-dark-bg">
+            <div class="text-center mb-4">
+                <div class="text-4xl mb-2">🔷</div>
+                <h2 class="text-2xl font-bold text-github-dark-border mb-2">バックエンド（DTO）</h2>
+                <p class="text-sm text-github-success font-semibold">正しい定義</p>
+            </div>
+
+            <!-- コードブロック風 -->
+            <div class="bg-github-dark-bg border border-github-dark-border/50 rounded p-4 font-mono text-sm text-github-dark-text">
+                <div class="mb-3">
+                    <span class="text-blue-400">class</span>
+                    <span class="text-yellow-300"> CreatePostDto</span>
+                    <span class="text-gray-400"> {</span>
+                </div>
+                <div class="ml-4 space-y-2">
+                    <div>
+                        <span class="text-github-success font-bold">text: string;</span>
+                        <span class="text-xs text-github-success ml-2">// 必須</span>
+                    </div>
+                    <div>
+                        <span class="text-github-dark-text">mediaIds?: string[];</span>
+                        <span class="text-xs text-gray-400 ml-2">// オプション</span>
+                    </div>
+                </div>
+                <div class="text-gray-400">}</div>
+            </div>
+
+            <!-- 説明 -->
+            <div class="mt-4 text-sm text-github-dark-text">
+                <p class="text-github-success font-semibold mb-1">✓ 意図通り</p>
+                <p class="text-xs">text: 必須</p>
+                <p class="text-xs">mediaIds: 任意</p>
+            </div>
+        </div>
+
+        <!-- 右側: フロントエンド（再定義） -->
+        <div class="border-2 border-github-error rounded-lg p-6 bg-github-dark-bg">
+            <div class="text-center mb-4">
+                <div class="text-4xl mb-2">⚠️</div>
+                <h2 class="text-2xl font-bold text-github-error mb-2">フロントエンド（再定義）</h2>
+                <p class="text-sm text-github-error font-semibold">不整合が発生</p>
+            </div>
+
+            <!-- コードブロック風 -->
+            <div class="bg-github-dark-bg border border-github-error/50 rounded p-4 font-mono text-sm text-github-dark-text">
+                <div class="mb-3">
+                    <span class="text-blue-400">interface</span>
+                    <span class="text-yellow-300"> CreatePostDto</span>
+                    <span class="text-gray-400"> {</span>
+                </div>
+                <div class="ml-4 space-y-2">
+                    <div>
+                        <span class="text-github-error font-bold">text?: string;</span>
+                        <span class="text-xs text-github-error ml-2">// オプション?!</span>
+                    </div>
+                    <div>
+                        <span class="text-github-error font-bold">mediaIds: string[];</span>
+                        <span class="text-xs text-github-error ml-2">// 必須?!</span>
+                    </div>
+                </div>
+                <div class="text-gray-400">}</div>
+            </div>
+
+            <!-- 説明 -->
+            <div class="mt-4 text-sm text-github-dark-text">
+                <p class="text-github-error font-semibold mb-1">✗ 不整合</p>
+                <p class="text-xs">必須/任意が逆転！</p>
+                <p class="text-xs">実行時エラー発生</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 下部: 結果 -->
+    <div class="absolute bottom-8 left-0 right-0 px-8">
+        <div class="bg-github-error/20 border border-github-error/50 rounded px-6 py-3 text-center">
+            <p class="text-sm text-github-dark-text">
+                <span class="font-bold text-github-error">結果:</span>
+                コンパイルは通るが、ランタイムでエラー
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

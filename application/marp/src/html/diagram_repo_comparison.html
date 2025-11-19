@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>別リポジトリ vs モノレポ</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    },
+                    colors: {
+                        'github-dark-bg': '#0d1117',
+                        'github-dark-border': '#58A6FF',
+                        'github-dark-text': '#C9D1D9',
+                        'github-success': '#3FB950',
+                        'github-error': '#F85149',
+                        'github-warning': '#D29922',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1100px;
+            height: 550px;
+            background-color: #0d1117;
+            overflow: hidden;
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 48px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center font-sans p-8">
+
+    <!-- メイン比較エリア ---->
+    <div class="grid grid-cols-2 gap-12 w-full max-w-6xl">
+
+        <!-- 左側: 別リポジトリ（問題あり） ---->
+        <div class="border-2 border-github-error rounded-lg p-8 bg-github-dark-bg flex flex-col items-center justify-start">
+            <div class="text-center mb-8 h-32 flex flex-col justify-start">
+                <div class="text-6xl mb-3">📁</div>
+                <h2 class="text-3xl font-bold text-github-error leading-tight">別リポジトリ</h2>
+                <p class="text-xl text-github-error/80 mt-1">（分散管理）</p>
+            </div>
+
+            <!-- リポジトリ構造 ---->
+            <div class="space-y-4 w-full">
+                <div class="bg-github-dark-bg border-2 border-github-error/50 rounded-lg p-6">
+                    <p class="font-mono text-github-dark-text text-xl text-center">backend/</p>
+                </div>
+                <div class="bg-github-dark-bg border-2 border-github-error/50 rounded-lg p-6">
+                    <p class="font-mono text-github-dark-text text-xl text-center">frontend/</p>
+                </div>
+                <div class="bg-github-dark-bg border-2 border-github-error/50 rounded-lg p-6">
+                    <p class="font-mono text-github-dark-text text-xl text-center">docs/</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右側: モノレポ（推奨） ---->
+        <div class="border-2 border-github-success rounded-lg p-8 bg-github-dark-bg flex flex-col items-center justify-start">
+            <div class="text-center mb-8 h-32 flex flex-col justify-start">
+                <div class="text-6xl mb-3">📦</div>
+                <h2 class="text-3xl font-bold text-github-success leading-tight">モノレポ</h2>
+                <p class="text-xl text-github-success/80 mt-1">（一元管理）</p>
+            </div>
+
+            <!-- 1つの大きなリポジトリ ---->
+            <div class="w-full">
+                <div class="bg-github-dark-bg border-4 border-github-success rounded-lg p-12">
+                    <p class="font-mono text-github-success text-2xl text-center font-bold mb-6">プロジェクト全体</p>
+                    <div class="border-t border-github-success/30 pt-6">
+                        <div class="grid grid-cols-3 gap-4 text-base">
+                            <div class="text-center">
+                                <p class="text-gray-400">backend/</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-gray-400">frontend/</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-gray-400">docs/</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

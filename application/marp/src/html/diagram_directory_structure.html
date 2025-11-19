@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ディレクトリ構造</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif'],
+                        'mono': ['"Source Code Pro"', '"SFMono-Regular"', 'Consolas', 'monospace']
+                    },
+                    colors: {
+                        'github-dark-bg': '#0d1117',
+                        'github-dark-border': '#58A6FF',
+                        'github-dark-text': '#C9D1D9',
+                        'github-success': '#3FB950',
+                        'github-warning': '#D29922',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1100px;
+            height: 550px;
+            background-color: #0d1117;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center font-sans p-8">
+
+    <!-- メイン構造エリア -->
+    <div class="grid grid-cols-2 gap-8 w-full max-w-6xl">
+
+        <!-- 左側: docs/ ディレクトリ -->
+        <div class="border-2 border-github-dark-border rounded-lg p-6 bg-github-dark-bg">
+            <div class="text-center mb-4">
+                <div class="text-5xl mb-2">📚</div>
+                <h2 class="text-2xl font-bold text-github-dark-border mb-2">docs/</h2>
+                <p class="text-sm text-github-dark-text">ドキュメント領域</p>
+            </div>
+
+            <!-- ディレクトリツリー -->
+            <div class="bg-github-dark-bg border border-github-dark-border/50 rounded p-4 font-mono text-sm text-github-dark-text space-y-2">
+                <div>
+                    <span class="text-github-warning">📁 features/</span>
+                    <p class="text-xs text-gray-400 ml-6">仕様書（計画フェーズ）</p>
+                </div>
+                <div>
+                    <span class="text-github-warning">📁 research/</span>
+                    <p class="text-xs text-gray-400 ml-6">知見（研究フェーズ）</p>
+                </div>
+                <div>
+                    <span class="text-github-warning">📁 article/</span>
+                    <p class="text-xs text-gray-400 ml-6">ブログ記事（執筆）</p>
+                </div>
+                <div>
+                    <span class="text-github-warning">📁 spec/</span>
+                    <p class="text-xs text-gray-400 ml-6">技術仕様</p>
+                </div>
+            </div>
+
+            <!-- 説明 -->
+            <div class="mt-4 text-sm text-github-dark-text">
+                <p class="text-github-success font-semibold mb-1">✓ 人間が書く領域</p>
+                <p class="text-xs">AI参照、人間が編集</p>
+            </div>
+        </div>
+
+        <!-- 右側: application/ ディレクトリ -->
+        <div class="border-2 border-github-dark-border rounded-lg p-6 bg-github-dark-bg">
+            <div class="text-center mb-4">
+                <div class="text-5xl mb-2">⚙️</div>
+                <h2 class="text-2xl font-bold text-github-dark-border mb-2">application/</h2>
+                <p class="text-sm text-github-dark-text">コード領域</p>
+            </div>
+
+            <!-- ディレクトリツリー -->
+            <div class="bg-github-dark-bg border border-github-dark-border/50 rounded p-4 font-mono text-sm text-github-dark-text space-y-2">
+                <div>
+                    <span class="text-github-success">📁 backend/</span>
+                    <p class="text-xs text-gray-400 ml-6">NestJS, DTOs</p>
+                </div>
+                <div>
+                    <span class="text-github-success">📁 frontend/</span>
+                    <p class="text-xs text-gray-400 ml-6">React, 生成型</p>
+                </div>
+                <div>
+                    <span class="text-github-success">📁 marp/</span>
+                    <p class="text-xs text-gray-400 ml-6">プレゼン資料</p>
+                </div>
+                <div>
+                    <span class="text-github-success">📁 tools/</span>
+                    <p class="text-xs text-gray-400 ml-6">ユーティリティ</p>
+                </div>
+            </div>
+
+            <!-- 説明 -->
+            <div class="mt-4 text-sm text-github-dark-text">
+                <p class="text-github-success font-semibold mb-1">✓ AIが書く領域</p>
+                <p class="text-xs">実装フェーズの成果物</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

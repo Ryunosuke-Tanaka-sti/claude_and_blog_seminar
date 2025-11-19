@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>モノレポ vs 別リポジトリ比較</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center font-sans" style="width: 1100px; height: 550px; overflow: hidden;">
+
+    <div class="w-full max-w-6xl mx-auto px-8">
+
+        <!-- タイトル -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">別リポジトリ vs モノレポ</h1>
+            <p class="text-xl text-blue-200">AIのコンテキスト理解の違い</p>
+        </div>
+
+        <!-- メイン比較エリア -->
+        <div class="grid grid-cols-2 gap-12">
+
+            <!-- 別リポジトリ -->
+            <div class="bg-red-500/20 backdrop-blur-sm border-2 border-red-400 rounded-2xl p-6">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-3">📁📁📁</div>
+                    <h2 class="text-3xl font-bold text-red-300 mb-2">別リポジトリ</h2>
+                    <p class="text-lg text-red-200">分散管理</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">❌</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-red-300">コンテキスト分断</h3>
+                            <p class="text-sm text-red-200">各リポジトリを個別に理解</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">❌</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-red-300">手動説明が必要</h3>
+                            <p class="text-sm text-red-200">全体像を毎回説明</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">❌</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-red-300">型定義の同期困難</h3>
+                            <p class="text-sm text-red-200">リポジトリ間での共有が複雑</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- モノレポ -->
+            <div class="bg-green-500/20 backdrop-blur-sm border-2 border-green-400 rounded-2xl p-6">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-3">📦</div>
+                    <h2 class="text-3xl font-bold text-green-300 mb-2">モノレポ</h2>
+                    <p class="text-lg text-green-200">一元管理</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">✅</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-300">全体像を一度に提供</h3>
+                            <p class="text-sm text-green-200">AIが全体を理解</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">✅</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-300">CLAUDE.md階層構造</h3>
+                            <p class="text-sm text-green-200">必要な粒度で情報提供</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">✅</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-300">型定義の自動同期</h3>
+                            <p class="text-sm text-green-200">Backend → Frontend</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結論 -->
+        <div class="mt-6">
+            <div class="bg-gradient-to-r from-yellow-400/20 to-orange-500/20 backdrop-blur-sm border border-yellow-400/50 rounded-xl p-4">
+                <div class="flex items-center justify-center space-x-4 text-white">
+                    <div class="text-4xl">🚀</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">AI協業開発との相性</h3>
+                        <p class="text-lg">モノレポ構成がパイプライン構築の基盤となる</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
