@@ -1425,22 +1425,6 @@ A: 実測で20-30%削減を確認しています。不要なSWRフックを生�
 
 ---
 
-# 参考記事・リソース
-
-## AI協業開発手法シリーズ
-
-- [モノレポ×AI協業環境構築術](https://tech-lab.sios.jp/archives/50109)
-- [3フェーズ開発手法](https://tech-lab.sios.jp/archives/49140)
-- [仕様書ベース開発](https://tech-lab.sios.jp/archives/49148)
-- [4フェーズワークフロー](https://tech-lab.sios.jp/archives/50103)
-
-## 技術基盤
-
-- [自動化パイプライン構築術](https://tech-lab.sios.jp/archives/49157)
-- [Orval最適化](https://tech-lab.sios.jp/archives/49591)
-
----
-
 <!-- _class: subTitle -->
 
 # Appendix: 拡張版 4フェーズワークフロー
@@ -1577,3 +1561,73 @@ A: 実測で20-30%削減を確認しています。不要なSWRフックを生�
 ## 質問・ディスカッションタイム
 
 **今日から始める環境整備で、AI協働開発を加速させましょう**
+
+---
+
+<!-- _class: subTitle -->
+
+# Appendix: 参考ブログ・リソース
+
+## 詳細情報はこちらから
+
+---
+
+# AI協業開発手法シリーズ
+
+## 環境構築・ワークフロー
+
+- **[モノレポ×AI協業環境構築術](https://tech-lab.sios.jp/archives/50109)**
+  CLAUDE.md階層構造、モノレポとAI協業の相性、コンテキスト管理
+
+- **[明日から始められる3フェーズ開発手法](https://tech-lab.sios.jp/archives/49140)**
+  計画・実装・検証の3フェーズ詳細、フェーズ分離のメリット
+
+- **[AI協働で仕様書アレルギー克服！開発時間を1週間→2日に短縮](https://tech-lab.sios.jp/archives/49148)**
+  仕様書ベース開発の効果測定、手戻り削減の実測データ
+
+- **[検証→記事化で知見を資産化！Claude Code×RAGもどき](https://tech-lab.sios.jp/archives/50103)**
+  4フェーズワークフロー、RAGもどきシステム、記事執筆効率化
+
+---
+
+# 技術実装・パイプライン構築
+
+## 自動生成パイプライン
+
+- **[AI開発で型定義を同期！DTOからOpenAPI・Frontendまで完全自動化](https://tech-lab.sios.jp/archives/49157)**
+  DTO → OpenAPI → Frontend型定義の自動生成、エラー型設計の重要性
+
+- **[Orval設定最適化でバンドル20-30%削減！](https://tech-lab.sios.jp/archives/49591)**
+  SWRフック自動生成からパーツ提供へ移行、47ファイル移行で70-79%効率化
+
+## プロジェクト事例
+
+- **[AIチャットで話すだけ!X予約投稿を完全自動化](https://tech-lab.sios.jp/archives/49981)**
+  Azure Functions v4、Next.js 15 + NestJS 11、本セミナーの実例プロジェクト
+
+---
+
+# Spec駆動開発関連リソース
+
+## ツール・フレームワーク
+
+- **[AWS Kiro](https://aws.amazon.com/kiro/)** - エージェント型AI IDE（AWS、2025年一般提供）
+- **[GitHub Spec Kit](https://github.blog/ai-and-ml/github-copilot/)** - 仕様駆動ツールキット（GitHub Copilot統合）
+- **[OpenAPI Initiative](https://www.openapis.org/)** - API仕様の標準フォーマット（Linux Foundation）
+- **[RFC 7807](https://tools.ietf.org/html/rfc7807)** - HTTP APIのエラー型標準（IETF）
+
+## 使用技術
+
+- **[Orval](https://orval.dev/)** - OpenAPI仕様からTypeScriptコード自動生成
+- **[NestJS](https://nestjs.com/)** - Node.jsフレームワーク（DTO・OpenAPI生成）
+- **[shadcn/ui](https://ui.shadcn.com/)** - パーツ提供思想のUIライブラリ
+
+---
+
+# さらに学ぶためのリソース
+
+- **[SIOS Tech Lab（技術ブログ）](https://tech-lab.sios.jp/)**
+  AI協業開発シリーズを連載中、実測データに基づく実践的な記事
+
+- **[本セミナーのスライド](https://ryunosuke-tanaka-sti.github.io/claude_and_blog_seminar/)**
+  本日の資料をWeb公開、SVG図解もすべて利用可能
