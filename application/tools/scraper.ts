@@ -2,8 +2,23 @@ import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import * as fs from 'fs';
 import * as path from 'path';
+import TurndownService from 'turndown';
 
 type CheerioAPI = ReturnType<typeof cheerio.load>;
+
+interface OgpInfo {
+    title: string;
+    image: string;
+    url: string;
+}
+
+interface ExtractionResult {
+    html: string;
+    ogpInfo: OgpInfo;
+    originalTokens: number;
+    extractedTokens: number;
+    compressedTokens: number;
+}
 
 /**
  * URLからHTMLを取得してパースする関数
@@ -78,7 +93,7 @@ function estimateClaudeTokens(text: string): number {
  * @param $ Cheerio instance
  * @returns OGP情報オブジェクト
  */
-function extractOgpInfo($: CheerioAPI): { title: string; image: string; url: string } {
+function extractOgpInfo($: CheerioAPI): OgpInfo {
     const ogTitle = $('meta[property="og:title"]').attr('content') || '';
     const ogImage = $('meta[property="og:image"]').attr('content') || '';
     const ogUrl = $('meta[property="og:url"]').attr('content') || '';
@@ -91,13 +106,88 @@ function extractOgpInfo($: CheerioAPI): { title: string; image: string; url: str
 }
 
 /**
+ * YAML frontmatterを生成する関数
+ * @param ogpInfo OGP情報
+ * @param extractedAt 抽出日時
+ * @returns YAML frontmatter文字列
+ */
+function createYamlFrontmatter(ogpInfo: OgpInfo, extractedAt: Date): string {
+    const yaml = `---
+title: "${ogpInfo.title.replace(/"/g, '\\"')}"
+url: ${ogpInfo.url}
+image: ${ogpInfo.image}
+extracted_at: ${extractedAt.toISOString()}
+---
+
+`;
+    return yaml;
+}
+
+/**
+ * HTMLをMarkdownに変換する関数
+ * @param html HTML文字列
+ * @param ogpInfo OGP情報
+ * @returns Markdown文字列（YAML frontmatter付き）
+ */
+function convertHtmlToMarkdown(html: string, ogpInfo: OgpInfo): string {
+    // Turndownサービスの初期化
+    const turndownService = new TurndownService({
+        headingStyle: 'atx',
+        hr: '---',
+        bulletListMarker: '-',
+        codeBlockStyle: 'fenced',
+        emDelimiter: '*',
+        strongDelimiter: '**',
+        linkStyle: 'inlined'
+    });
+
+    // カスタムルール1: 長いalt属性の簡略化
+    turndownService.addRule('simplifyImageAlt', {
+        filter: 'img',
+        replacement: (_content, node) => {
+            const element = node as HTMLImageElement;
+            const src = element.getAttribute('src') || '';
+            const alt = element.getAttribute('alt') || '';
+
+            // alt属性が100文字以上の場合は簡略化
+            if (alt.length > 100) {
+                return `![image](${src})`;
+            }
+
+            return alt ? `![${alt}](${src})` : `![](${src})`;
+        }
+    });
+
+    // カスタムルール2: div/spanタグはテキストのみ抽出
+    turndownService.addRule('removeDivSpan', {
+        filter: ['div', 'span'],
+        replacement: (content) => content
+    });
+
+    // HTMLコメントを除去してからMarkdown変換
+    const cleanHtml = html.replace(/<!--[\s\S]*?-->/g, '');
+
+    // Markdown変換
+    const markdown = turndownService.turndown(cleanHtml);
+
+    // YAML frontmatterを追加
+    const frontmatter = createYamlFrontmatter(ogpInfo, new Date());
+
+    return frontmatter + markdown;
+}
+
+/**
  * コンテンツを抽出して圧縮する関数
  * @param $ Cheerio instance
  * @param targetSelector 抽出対象のCSSセレクタ
  * @param sourceUrl ソースURL
- * @returns 圧縮されたコンテンツ
+ * @returns 抽出結果オブジェクト
  */
-function extractAndCompressContent($: CheerioAPI, targetSelector: string = 'section.entry-content', sourceUrl: string = ''): string {
+function extractAndCompressContent(
+    $: CheerioAPI,
+    targetSelector: string = 'section.entry-content',
+    sourceUrl: string = ''
+): ExtractionResult {
     try {
         const title = $('title').text().trim();
         const ogpInfo = extractOgpInfo($);
@@ -106,7 +196,7 @@ function extractAndCompressContent($: CheerioAPI, targetSelector: string = 'sect
 
         if (targetElements.length === 0) {
             console.error(`指定されたセレクタ '${targetSelector}' に該当する要素が見つかりませんでした`);
-            return '';
+            throw new Error('Content extraction failed');
         }
 
         const targetElement = targetElements.first();
@@ -114,31 +204,19 @@ function extractAndCompressContent($: CheerioAPI, targetSelector: string = 'sect
         const originalFullTokens = estimateClaudeTokens($.html());
         const extractedTokens = estimateClaudeTokens(targetElement.html() || '');
 
+        // 既存の処理（script/style削除、属性削除など）
         targetElement.find('script, style, noscript').remove();
 
-        // 画像処理：alt と src URL を保存
+        // 画像処理：alt/src属性は保持（Markdown変換時に使用）
         targetElement.find('img').each((_, elem) => {
             const $img = $(elem);
-            const altText = $img.attr('alt') || '';
-            const srcUrl = $img.attr('src') || '';
-
-            if (altText || srcUrl) {
-                let replacement = '';
-                if (altText) {
-                    replacement += `[画像: ${altText}]`;
-                }
-                if (srcUrl) {
-                    replacement += ` (${srcUrl})`;
-                }
-                $img.after(` ${replacement} `);
-            }
-
-            $img.removeAttr('alt');
+            // alt/src属性は保持（Markdown変換時に使用）
             $img.removeAttr('class');
             $img.removeAttr('id');
             $img.removeAttr('style');
         });
 
+        // その他の属性削除
         targetElement.find('*').each((_, elem) => {
             const $elem = $(elem);
             const tagName = $elem.prop('tagName')?.toLowerCase();
@@ -162,6 +240,7 @@ function extractAndCompressContent($: CheerioAPI, targetSelector: string = 'sect
 
         const finalCompressedTokens = estimateClaudeTokens(compressedContent);
 
+        // ログ出力
         console.log(`元ページ全体のトークン数: ${originalFullTokens.toLocaleString()}`);
         console.log(`抽出後のトークン数: ${extractedTokens.toLocaleString()}`);
         console.log(`最終圧縮後のトークン数: ${finalCompressedTokens.toLocaleString()}`);
@@ -185,23 +264,23 @@ function extractAndCompressContent($: CheerioAPI, targetSelector: string = 'sect
         console.log(`圧縮による削減率: ${compressionOnlyRatio.toFixed(2)}%`);
         console.log(`総合圧縮率: ${totalCompressionRatio.toFixed(2)}%`);
 
-        // ページ情報をコメントとして追加
-        const headerComment = `<!--
-ブログ記事情報:
-タイトル: ${ogpInfo.title || title}
-URL: ${sourceUrl || ogpInfo.url}
-OGP画像: ${ogpInfo.image}
-抽出日時: ${new Date().toISOString()}
--->
+        // ページタイトルを含むHTML（Markdown変換用）
+        const htmlWithTitle = `<h1>${title}</h1>\n\n${compressedContent}`;
 
-`;
-
-        const result = `${headerComment}<h1>${title}</h1>\n\n${compressedContent}`;
-
-        return result;
+        return {
+            html: htmlWithTitle,
+            ogpInfo: {
+                title: ogpInfo.title || title,
+                url: sourceUrl || ogpInfo.url,
+                image: ogpInfo.image
+            },
+            originalTokens: originalFullTokens,
+            extractedTokens: extractedTokens,
+            compressedTokens: finalCompressedTokens
+        };
     } catch (error) {
         console.error(`処理中にエラーが発生しました: ${error}`);
-        return '';
+        throw error;
     }
 }
 
@@ -233,13 +312,15 @@ async function main() {
         .replace(/\//g, '-')
         .replace(/\./g, '-');
 
-    const htmlFilePath = path.join(cacheDir, `${domainPath}.html`);
+    // 拡張子を .md に変更
+    const mdFilePath = path.join(cacheDir, `${domainPath}.md`);
 
-    console.log(`📁 HTMLファイル保存先: ${htmlFilePath}`);
+    console.log(`📁 Markdownファイル保存先: ${mdFilePath}`);
 
-    if (fs.existsSync(htmlFilePath)) {
-        const stats = fs.statSync(htmlFilePath);
-        console.log(`✅ ${htmlFilePath} が既に存在するため、後続の処理をスキップします。`);
+    // キャッシュチェック（.md ファイル）
+    if (fs.existsSync(mdFilePath)) {
+        const stats = fs.statSync(mdFilePath);
+        console.log(`✅ ${mdFilePath} が既に存在するため、後続の処理をスキップします。`);
         console.log(`📊 ファイルサイズ: ${stats.size} bytes`);
         return;
     }
@@ -257,25 +338,47 @@ async function main() {
     }
 
     console.log('🔧 コンテンツ抽出・圧縮開始...');
-    const result = extractAndCompressContent($, 'section.entry-content', targetUrl);
+    const extractionResult = extractAndCompressContent($, 'section.entry-content', targetUrl);
 
-    if (!result) {
+    if (!extractionResult.html) {
         throw new Error('コンテンツの抽出に失敗しました');
     }
 
-    console.log(`💾 HTMLファイル保存中: ${htmlFilePath}`);
-    try {
-        fs.writeFileSync(htmlFilePath, result, 'utf-8');
+    // Markdown変換
+    console.log('📝 Markdown変換開始...');
+    const markdown = convertHtmlToMarkdown(extractionResult.html, extractionResult.ogpInfo);
 
-        if (fs.existsSync(htmlFilePath)) {
-            const fileSize = fs.statSync(htmlFilePath).size;
-            console.log(`✅ HTMLファイルを保存しました: ${htmlFilePath}`);
+    // トークン計測（3段階目）
+    const markdownTokens = estimateClaudeTokens(markdown);
+
+    console.log(`Markdown変換後のトークン数: ${markdownTokens.toLocaleString()}`);
+    console.log(`Markdown変換による削減: ${(extractionResult.compressedTokens - markdownTokens).toLocaleString()}`);
+
+    const markdownReductionRatio = extractionResult.compressedTokens > 0
+        ? ((extractionResult.compressedTokens - markdownTokens) / extractionResult.compressedTokens * 100)
+        : 0;
+
+    const totalReductionRatio = extractionResult.originalTokens > 0
+        ? ((extractionResult.originalTokens - markdownTokens) / extractionResult.originalTokens * 100)
+        : 0;
+
+    console.log(`Markdown変換による削減率: ${markdownReductionRatio.toFixed(2)}%`);
+    console.log(`総合削減率（生HTML→Markdown）: ${totalReductionRatio.toFixed(2)}%`);
+
+    // Markdownファイル保存
+    console.log(`💾 Markdownファイル保存中: ${mdFilePath}`);
+    try {
+        fs.writeFileSync(mdFilePath, markdown, 'utf-8');
+
+        if (fs.existsSync(mdFilePath)) {
+            const fileSize = fs.statSync(mdFilePath).size;
+            console.log(`✅ Markdownファイルを保存しました: ${mdFilePath}`);
             console.log(`📊 ファイルサイズ: ${fileSize} bytes`);
         } else {
-            throw new Error('HTMLファイルの保存に失敗しました');
+            throw new Error('Markdownファイルの保存に失敗しました');
         }
     } catch (error) {
-        console.error(`❌ HTMLファイル保存エラー: ${error}`);
+        console.error(`❌ Markdownファイル保存エラー: ${error}`);
         throw error;
     }
 }
