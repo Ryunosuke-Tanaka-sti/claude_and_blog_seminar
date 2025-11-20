@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究フェーズから執筆フェーズへの流れ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center font-sans overflow-hidden" style="width: 1100px; height: 550px; background-color: #0d1117;">
+
+    <!-- メインコンテナ -->
+    <div class="w-full max-w-6xl mx-auto px-8">
+
+        <!-- フローチャート -->
+        <div class="flex items-center justify-between mt-8">
+
+            <!-- 研究フェーズ -->
+            <div class="bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-2xl p-6 w-96">
+                <div class="text-center mb-4">
+                    <div class="text-6xl mb-2">🔬</div>
+                    <h2 class="text-3xl font-bold text-blue-300 mb-2">研究フェーズ</h2>
+                    <p class="text-lg text-blue-200">/docs/research/</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">📋</div>
+                        <div>
+                            <h3 class="text-xl font-semibold">検証・実装の記録</h3>
+                            <p class="text-sm text-blue-200">試行錯誤のプロセス</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">🎯</div>
+                        <div>
+                            <h3 class="text-xl font-semibold">設計思想と意思決定</h3>
+                            <p class="text-sm text-blue-200">なぜその設計にしたか</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">📊</div>
+                        <div>
+                            <h3 class="text-xl font-semibold">実測データと結果</h3>
+                            <p class="text-sm text-blue-200">パフォーマンス検証</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="flex flex-col items-center mx-6">
+                <div class="text-6xl text-yellow-400">→</div>
+                <p class="text-white text-lg font-semibold mt-2">変換</p>
+            </div>
+
+            <!-- 執筆フェーズ -->
+            <div class="bg-green-500/20 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6 w-96">
+                <div class="text-center mb-4">
+                    <div class="text-6xl mb-2">📝</div>
+                    <h2 class="text-3xl font-bold text-green-300 mb-2">執筆フェーズ</h2>
+                    <p class="text-lg text-green-200">/docs/article/</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">✍️</div>
+                        <div>
+                            <h3 class="text-xl font-semibold">読者向けに再構成</h3>
+                            <p class="text-sm text-green-200">わかりやすく整理</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">💡</div>
+                        <div>
+                            <h3 class="text-xl font-semibold">学びと知見を抽出</h3>
+                            <p class="text-sm text-green-200">実践的なTipsに</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start text-white">
+                        <div class="text-2xl mr-3 mt-1">🌐</div>
+                        <div>
+                            <h3 class="text-xl font-semibold">技術ブログとして公開</h3>
+                            <p class="text-sm text-green-200">知見の資産化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結論 -->
+        <div class="text-center mt-8">
+            <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-4 inline-block">
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-4xl">💎</div>
+                    <div class="text-white">
+                        <h3 class="text-2xl font-bold">検証した内容がそのままブログ化できる</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

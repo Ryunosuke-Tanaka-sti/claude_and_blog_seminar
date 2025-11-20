@@ -171,147 +171,68 @@ AI協働開発で「ハチャメチャなコード」を防ぎ、
 - **意思決定の明文化**: AI に技術選定を委ねる危険性を回避
 - **品質保証**: 計画の品質が成果物の品質を決定
 
-**参考記事**: [AI 協働で仕様書アレルギー克服！開発時間を 1 週間 →2 日に短縮する実践法](https://tech-lab.sios.jp/archives/49148)
+**参考記事**:
+ [AI 協働で仕様書アレルギー克服！開発時間を 1 週間 →2 日に短縮する実践法](https://tech-lab.sios.jp/archives/49148)
 
 ---
 
-# Spec 駆動開発の基礎：TDD
-
-## TDD（Test-Driven Development）
-
-<div class="box green">
-
-**テストファーストで設計の安全網**
-
-- **サイクル**: レッド → グリーン → リファクタリング
-- **実績**: Microsoft 90%バグ削減
-- **利点**: 保守性の高いコード、早期バグ発見
-- **課題**: 学習コスト、テストコード保守
-
-</div>
-
----
-
-# Spec 駆動開発の基礎：BDD
-
-## BDD（Behavior-Driven Development）
+# 2025年のトレンド：仕様駆動開発
 
 <div class="box blue">
 
-**ビジネス要件を自然言語で記述**
+**SDD（Specification-Driven Development）が注目される背景**
 
-- **記法**: Gherkin（Given-When-Then 構文）
-- **対象**: 非技術者も理解可能な仕様
-- **ツール**: Cucumber、SpecFlow
-- **利点**: チーム間コラボレーション強化
-
-</div>
-
----
-
-# Spec 駆動開発の基礎：DbC
-
-## DbC（Design by Contract）
-
-<div class="box yellow">
-
-**契約による設計（Eiffel 言語）**
-
-- **3 つの契約**: 事前条件・事後条件・不変条件
-- **特徴**: ソフトウェア仕様をコード内に記述
-- **検証**: ランタイムチェック可能
-- **効果**: 責任範囲の明確化
+- AI協働開発の普及
+- 「何を作るか」と「どう作るか」の分離の重要性
+- GitHub、AWSなどが積極推進
 
 </div>
 
+## 主要なツール
+
+- **Kiro（AWS）**: エージェント型AI IDE（2025年一般提供）
+- **OpenSpec（GitHub）**: GitHub Copilot統合の仕様駆動ツールキット
+- **OpenAPI Specification**: API仕様の標準フォーマット
+
 ---
 
-# Spec 駆動開発の基礎：SDD
+# 本セミナーのアプローチ
 
-## SDD（Specification-Driven Development）
+<div class="two-columns">
+<div>
+
+## 特定ツールに依存しない
 
 <div class="box green">
 
-**仕様ファーストで開発**
+**なぜツールを限定しないのか**
 
-- **アプローチ**: 仕様から設計・実装・テストを導出
-- **構造**: 要件・設計・実装の明確な分離
-- **相性**: AI 協働開発に最適
-- **2025 年**: GitHub、AWS が積極推進
-
-</div>
-
----
-
-# Spec 駆動開発の基礎：Kiro
-
-## Kiro（AWS）
-
-<div class="box blue">
-
-**エージェント型 AI IDE**
-
-- **提供**: AWS（2025 年一般提供）
-- **ワークフロー**: Spec → Design → Tasks → 実装
-- **EARS 記法**: 要件を構造化
-- **Agent Hooks**: ファイル保存時に自動テスト生成
-- **Property-Based Testing**: 仕様から自動テスト生成
-- **トレーサビリティ**: コードと仕様の完全な紐付け
+- プロジェクトごとに最適なツールは異なる
+- 既存ワークフローへの適応が重要
+- ツールの選択は皆様に任せる
 
 </div>
 
----
-
-# Spec 駆動開発の基礎：Spec Kit
-
-## Spec Kit（GitHub）
-
-<div class="box green">
-
-**仕様駆動ツールキット**
-
-- **提供**: GitHub（2023 年～）
-- **コマンド**: `/specify`、`/plan`、`/tasks`
-- **対話型**: AI との対話で仕様を定義
-- **受入基準**: 明確な合格条件を自動生成
-- **統合**: GitHub Copilot とシームレス連携
-
 </div>
+<div>
 
----
-
-# Spec 駆動開発の基礎：OpenAPI
-
-## OpenAPI Specification
+## 雑多な検証ベース
 
 <div class="box yellow">
 
-**API 仕様の標準フォーマット**
+**実践的なアプローチ**
 
-- **提供**: OpenAPI Initiative（Linux Foundation）
-- **最新版**: 3.1（JSON Schema 互換）、3.2（2025 年 9 月予定）
-- **言語非依存**: どの言語でも利用可能
-- **自動生成**: ドキュメント・SDK・テストコード
-- **Single Source of Truth**: API 設計の唯一の真実の源
+- Claude Codeで試行錯誤
+- 実測データに基づく知見
+- 特定ツールなしでも実現可能な手法
 
 </div>
 
----
-
-# Spec 駆動開発の基礎：本セミナーのアプローチ
-
-## 特定ツールを使わない理由
-
-- プロジェクトに応じた最適な手法選択 → どのツールが良いとかは皆様に任せる
-- ツール依存を避ける
-- 既存ワークフローへの適応
-
-## 2025 年のトレンド
-
-- AI 協働開発での**Spec 駆動の重要性増大**
+</div>
+</div>
 
 <div class="highlight">
-今回はClaude Codeで特定のツールを使わず、雑多に作っていくことを対象
+今回は特定のツールを使わず、雑多に検証した内容ベースで話します
 </div>
 
 ---
@@ -338,10 +259,10 @@ td:nth-child(3) {
 
 | セクション | 時間  | 内容                                    |
 | ---------- | ----- | --------------------------------------- |
-| **前提**   | 5 分  | 仕様書ベース開発・3 フェーズ開発手法    |
-| **Part 1** | 10 分 | AI 開発の課題と環境整備（モノレポ含む） |
-| **Part 2** | 15 分 | 自動生成パイプライン構築                |
-| **Part 3** | 10 分 | パーツ化の最適化実践                    |
+| **前提**   | 5 分  | 仕様書ベース開発・AI開発の3つの課題    |
+| **Part 1** | 10 分 | モノレポ：AIにコンテキストを提供する基盤 |
+| **Part 2** | 10 分 | 3フェーズ開発：モノレポ上でのワークフロー |
+| **Part 3** | 15 分 | 自動型定義：Single Source of Truthの実装 |
 | **まとめ** | 5 分  | 実践への提案                            |
 
 ---
@@ -350,55 +271,30 @@ td:nth-child(3) {
 
 # 前提知識
 
-## 仕様書ベース開発・3 フェーズ開発手法
+## 仕様書ベース開発・AI開発の3つの課題
 
 ---
 
-<!-- _class: diagram -->
+# 前提：仕様書ベースでの開発
 
-# 3 フェーズ開発手法の全体像
+このセミナーは、**計画ドキュメント（仕様書）をもとに実装する開発スタイル**を前提としています。
 
-![3フェーズ開発手法](assets/diagram_3phase_flow.svg)
+## なぜ仕様書が必要なのか
 
----
+- **開発時間の短縮**: 1 週間 → 2 日（実測データ）
+- **手戻りの削減**: 平均 3-4 回 → 平均 1 回
+- **意思決定の明文化**: AI に技術選定を委ねる危険性を回避
+- **品質保証**: 計画の品質が成果物の品質を決定
 
-# なぜフェーズを分けるのか
-
-## 従来のペアコーディング（Vibe Coding）の限界
-
-<div class="box red">
-
-**300 文字で意図を伝えるのは文豪でも困難**
-
-- AI が自由に解釈しすぎて、意図したものが作られない
-- プロンプトが長くなりすぎてコンテキストを圧迫
-- 「何を作るか」と「どう作るか」が混在
-
-</div>
-
----
-
-# フェーズ分離のメリット
-
-## フェーズを分けることで役割を明確化
-
-<div class="box green">
-
-**3 つのフェーズ**
-
-- **計画フェーズ**: AI と共に「何を作るか」を考えさせる
-- **実装フェーズ**: 仕様書を読み込ませて AI が実装
-- **検証フェーズ**: 計画と実装の差分を分析 → **学び**を得る
-
-</div>
+**参考記事**: [AI 協働で仕様書アレルギー克服！開発時間を 1 週間 →2 日に短縮する実践法](https://tech-lab.sios.jp/archives/49148)
 
 ---
 
 <!-- _class: subTitle -->
 
-# Part 1: AI 開発の課題と環境整備
+# Part 1: モノレポ
 
-## モノレポ × パーツ化でハチャメチャなコードを防ぐ
+## AIにコンテキストを提供する基盤
 
 ---
 
@@ -457,101 +353,20 @@ td:nth-child(3) {
 
 ---
 
-# 解決策: 環境整備による制約の設計
-
-## AI に「正しいパーツ」を提供する
+# 解決策: モノレポでコンテキスト一元管理
 
 <div class="box green">
 
-**実現すること**
+**AI に全体像を一度に提供できる環境**
 
-- 再定義を防ぐ仕組みを作る
-- 人間も AI も迷わない設計
-- 型定義を一元管理する
-
-</div>
-
-**ポイント**: AI に自由にコードを書かせるのではなく、**制約を導入する**
-
----
-
-<!-- _class: diagram -->
-
-# Single Source of Truth（人間も AI も迷わない設計）
-
-![DTO→OpenAPI Spec変換](assets/diagram_dto_to_openapi.png)
-
----
-
-# 人間と AI の役割分担
-
-<div class="two-columns">
-<div>
-
-## 人間が注力すること
-
-<div class="box blue">
-
-**良質なパーツを作る or 設計する**
-
-- 型定義（データソース）
-- API 関数の設計
-- エラー型の定義
-- パーツの品質管理
+- すべてのコードが1つのリポジトリに存在
+- AI が全体像を把握しやすい
+- 型定義の同期が自動化可能
+- 変更の影響範囲が明確
 
 </div>
 
-</div>
-<div>
-
-## AI に任せること
-
-<div class="box green">
-
-**パーツを組み立てる**
-
-- 型を使った実装
-- API 関数の呼び出し
-- UI コンポーネントの構築
-- ビジネスロジックの実装
-
-</div>
-
-</div>
-</div>
-
-<div class="highlight">
-パーツの質 = 成果物の質
-</div>
-
----
-
-# 技術的な実装: Before / After
-
-<div class="two-columns">
-<div>
-
-### Before: すべてを自動生成
-
-- フルスタックのコード生成
-- 不要な機能も生成
-- バンドルサイズ肥大化
-- 一本の木から削り出す方式
-
-</div>
-<div>
-
-### After: 必要なものだけ提供
-
-- 型定義 + API 関数のみ生成
-- AI が組み立てる
-- shadcn/ui と同じ思想
-- パーツを組み立てる方式
-
-</div>
-</div>
-
-**AI には「型・関数のパーツ」を提供し、組み立ては任せる**
+**ポイント**: AI に「正しいコンテキスト」を提供する基盤を作る
 
 ---
 
@@ -635,6 +450,126 @@ td:nth-child(3),td:nth-child(2)  {
 
 ---
 
+# CLAUDE.md 階層構造の概要
+
+## 9 つの CLAUDE.md ファイルでコンテキスト管理
+
+<div class="box blue">
+
+**ルート CLAUDE.md** → プロジェクト全体像
+
+**サブディレクトリ CLAUDE.md** → 各領域の詳細ルール
+
+- `/docs/CLAUDE.md` - 計画フェーズルール
+- `/application/backend/CLAUDE.md` - バックエンド開発ガイド
+- `/application/frontend/CLAUDE.md` - フロントエンド開発ガイド
+- など...
+
+</div>
+
+---
+
+# CLAUDE.md 階層構造の効果
+
+<div class="box green">
+
+## AI との協業が劇的に改善
+
+- AI が必要な粒度でコンテキストを取得
+- 手動説明の削減（「どういうプロジェクト？」と聞かれない）
+- フェーズごとの適切なルール提供
+- 作業領域に応じた開発ガイドを自動適用
+
+</div>
+
+**詳細**: [モノレポ ×AI 協業環境構築術](https://tech-lab.sios.jp/archives/50109)
+
+---
+
+# モノレポが次のステップの基盤となる
+
+<div class="highlight">
+モノレポでAIにコンテキストを提供する基盤が整った
+</div>
+
+<div class="box green">
+
+**次のステップ**
+
+この基盤の上で、3フェーズ開発を実践する
+
+</div>
+
+---
+
+<!-- _class: subTitle -->
+
+# Part 2: 3フェーズ開発
+
+## モノレポ上でのワークフロー
+
+---
+
+<!-- _class: diagram -->
+
+# 3 フェーズ開発手法の全体像
+
+![3フェーズ開発手法](assets/diagram_3phase_flow.svg)
+
+---
+
+# なぜフェーズを分けるのか
+
+## 従来のペアコーディング（Vibe Coding）の限界
+
+<div class="box red">
+
+**300 文字で意図を伝えるのは文豪でも困難**
+
+- AI が自由に解釈しすぎて、意図したものが作られない
+- プロンプトが長くなりすぎてコンテキストを圧迫
+- 「何を作るか」と「どう作るか」が混在
+
+</div>
+
+---
+
+# フェーズ分離のメリット
+
+## フェーズを分けることで役割を明確化
+
+<div class="box green">
+
+**3 つのフェーズ**
+
+- **計画フェーズ**: AI と共に「何を作るか」を考えさせる
+- **実装フェーズ**: 仕様書を読み込ませて AI が実装
+- **検証フェーズ**: 計画と実装の差分を分析 → **学び**を得る
+
+</div>
+
+---
+
+# 実際のプロジェクト構造（モノレポ）
+
+```
+workspace/
+├── application/          # 実装コード（4つのアプリ）
+│   ├── frontend/        # Next.js 15 + React 19
+│   ├── backend/         # NestJS 11
+│   ├── x-scheduler/     # Azure Functions
+│   └── mcp-functions/   # Azure Functions
+├── docs/                # 計画・知見
+│   ├── features/        # 機能仕様書
+│   ├── research/        # 実装レビュー
+│   ├── data/            # 調査データ
+│   └── templates/       # テンプレート
+├── CLAUDE.md            # ルートレベル設定
+└── package.json         # モノレポ設定
+```
+
+---
+
 <!-- _class: diagram -->
 
 # docs/ と application/ の分離
@@ -648,7 +583,7 @@ td:nth-child(3),td:nth-child(2)  {
 <div class="two-columns">
 <div>
 
-### docs/ (計画・知見)
+### docs/ (計画)
 
 <div class="box blue">
 
@@ -656,13 +591,8 @@ td:nth-child(3),td:nth-child(2)  {
 
 - 仕様書・設計書
 - 機能要件の定義
+- 行動計画
 - AI との計画作業エリア
-
-**知見収集**
-
-- 調査・研究ドキュメント
-- フロント・バック統括で収集
-- 検証結果の蓄積
 
 </div>
 
@@ -727,45 +657,47 @@ td:nth-child(3),td:nth-child(2)  {
 
 ---
 
-# CLAUDE.md 階層構造の概要
+# モノレポと3フェーズの組み合わせ
 
-## 9 つの CLAUDE.md ファイルでコンテキスト管理
-
-<div class="box blue">
-
-**ルート CLAUDE.md** → プロジェクト全体像
-
-**サブディレクトリ CLAUDE.md** → 各領域の詳細ルール
-
-- `/docs/CLAUDE.md` - 計画フェーズルール
-- `/application/backend/CLAUDE.md` - バックエンド開発ガイド
-- `/application/frontend/CLAUDE.md` - フロントエンド開発ガイド
-- など...
-
+<div class="highlight">
+モノレポが基盤、3フェーズがワークフロー
 </div>
-
----
-
-# CLAUDE.md 階層構造の効果
 
 <div class="box green">
 
-## AI との協業が劇的に改善
+**次のステップ**
 
-- AI が必要な粒度でコンテキストを取得
-- 手動説明の削減（「どういうプロジェクト？」と聞かれない）
-- フェーズごとの適切なルール提供
-- 作業領域に応じた開発ガイドを自動適用
+この基盤とワークフローの上で、型定義を自動化する
 
 </div>
 
-**詳細**: [モノレポ ×AI 協業環境構築術](https://tech-lab.sios.jp/archives/50109)
+---
+
+<!-- _class: subTitle -->
+
+# Part 3: 自動型定義
+
+## Single Source of Truthの実装
 
 ---
 
-# モノレポがパイプライン構築の基盤となる理由
+<!-- _class: diagram -->
 
-## Single Source of Truth: Backend DTOs を唯一の真実とする
+# パイプラインの全体像
+
+![パイプライン全体像](assets/diagram_automation_pipeline.svg)
+
+---
+
+<!-- _class: diagram -->
+
+# Single Source of Truth：人間もAIも迷わない設計
+
+![DTO→OpenAPI Spec変換](assets/diagram_dto_to_openapi.png)
+
+---
+
+# Backend DTOs を唯一の真実とする
 
 <div class="highlight">
 型定義の一元管理
@@ -782,23 +714,77 @@ td:nth-child(3),td:nth-child(2)  {
 
 </div>
 
-**この基盤の上にパイプラインを構築する**
+---
+
+# 人間と AI の役割分担
+
+<div class="two-columns">
+<div>
+
+## 人間が注力すること
+
+<div class="box blue">
+
+**良質なパーツを作る or 設計する**
+
+- 型定義（データソース）
+- API 関数の設計
+- エラー型の定義
+- パーツの品質管理
+
+</div>
+
+</div>
+<div>
+
+## AI に任せること
+
+<div class="box green">
+
+**パーツを組み立てる**
+
+- 型を使った実装
+- API 関数の呼び出し
+- UI コンポーネントの構築
+- ビジネスロジックの実装
+
+</div>
+
+</div>
+</div>
+
+<div class="highlight">
+パーツの質 = 成果物の質
+</div>
 
 ---
 
-<!-- _class: subTitle -->
+# 技術的な実装: Before / After
 
-# Part 2: 自動生成パイプラインの構築
+<div class="two-columns">
+<div>
 
-## DTO → OpenAPI → 型・関数のパーツ化
+### Before: すべてを自動生成
 
----
+- フルスタックのコード生成
+- 不要な機能も生成
+- バンドルサイズ肥大化
+- 一本の木から削り出す方式
 
-<!-- _class: diagram -->
+</div>
+<div>
 
-# パイプラインの全体像
+### After: 必要なものだけ提供
 
-![パイプライン全体像](assets/diagram_automation_pipeline.svg)
+- 型定義 + API 関数のみ生成
+- AI が組み立てる
+- shadcn/ui と同じ思想
+- パーツを組み立てる方式
+
+</div>
+</div>
+
+**AI には「型・関数のパーツ」を提供し、組み立ては任せる**
 
 ---
 
@@ -1034,22 +1020,75 @@ try {
 
 # ステップ 3: AI への通知と制御
 
-## DO NOT EDIT コメントの挿入
+<div class="highlight">
+自動生成ファイルをAIに触らせない仕組みが必要
+</div>
 
-自動生成ファイルの先頭に警告コメント
+## 2つのアプローチ
 
-## CLAUDE.md での明文化
+1. **DO NOT EDIT コメント**：ファイル先頭に警告
+2. **CLAUDE.md での明文化**：AIへのルール提示
 
-- 自動生成ファイル（`lib/api/generated.ts`, `types/generated/`）
-- 変更必要時は `backend/` の定義を修正 → `npm run generate:api` で再生成
+---
+
+# アプローチ 1: DO NOT EDIT コメント
+
+## 自動生成ファイルの先頭に警告コメントを挿入
+
+```typescript
+/**
+ * DO NOT EDIT THIS FILE
+ *
+ * This file is auto-generated from OpenAPI specification.
+ * If you need to make changes, edit the DTO in backend/
+ * and run `npm run generate:api` to regenerate this file.
+ */
+```
+
+**効果**: AIがファイルを読んだ際に、編集してはいけないことを理解
+
+---
+
+# アプローチ 2: CLAUDE.md での明文化
+
+## プロジェクトルールとして記述
+
+```markdown
+## 自動生成ファイル
+
+以下のファイルは自動生成されています。直接編集しないでください：
+
+- `lib/api/generated.ts`
+- `types/generated/`
+
+変更が必要な場合：
+1. `backend/` の DTO を修正
+2. `npm run generate:api` で再生成
+```
+
+**効果**: AIがCLAUDE.mdを読み込んだ時点でルールを把握
+
+---
+
+# 重要：AIは約10-20%の確率で無視する
 
 <div class="box red">
 
-## 注意
+**現実的な課題**
 
-AI は無視する（約 10-20%の確率）→ レビューで確認が必要
+- AIは警告を見落とすことがある
+- 特に長いコンテキストでは忘れやすい
+- 100%の確実性は期待できない
 
-無視されてもめげない！これはめげない！！
+</div>
+
+<div class="box green">
+
+**対策：レビューで確認**
+
+- PRレビュー時に自動生成ファイルの変更をチェック
+- `.gitattributes` で自動生成ファイルをマーク
+- 無視されても**めげない！**これは**めげない！！**
 
 </div>
 
@@ -1486,9 +1525,11 @@ A: 実測で 20-30%削減を確認しています。不要な SWR フックを�
 
 ---
 
+<!-- _class: diagram -->
+
 # 拡張版: 4 フェーズワークフロー
 
-![4フェーズワークフロー](assets/diagram_4phase_workflow.png)
+![検証から記事化へ](assets/diagram_research_to_article.png)
 
 ---
 
@@ -1506,7 +1547,8 @@ A: 実測で 20-30%削減を確認しています。不要な SWR フックを�
 
 </div>
 
-**参考記事**: [検証 → 記事化で知見を資産化！Claude Code×RAG もどきで AI 技術ブログ執筆を効率化](https://tech-lab.sios.jp/archives/50103)
+**参考記事**:
+ [検証 → 記事化で知見を資産化！Claude Code×RAG もどきで AI 技術ブログ執筆を効率化](https://tech-lab.sios.jp/archives/50103)
 
 ---
 
