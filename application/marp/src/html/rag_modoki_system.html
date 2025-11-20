@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAGもどきシステム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans overflow-hidden" style="width: 1100px; height: 550px; margin: 0; padding: 0; background-color: #0d1117;">
+
+    <div class="w-full h-full p-6 flex flex-col">
+
+        <!-- 課題と解決策の比較 -->
+        <div class="grid grid-cols-2 gap-6 mb-4 flex-1">
+
+            <!-- 課題 -->
+            <div class="rounded-xl p-4" style="background-color: #161b22; border: 2px solid #f85149;">
+                <h2 class="text-3xl font-bold mb-4 pb-2" style="color: #f85149; border-bottom: 2px solid #f85149;">課題</h2>
+
+                <div class="space-y-3">
+                    <div class="flex items-start" style="color: #f0f6fc;">
+                        <div class="text-2xl mr-3 mt-0.5">❌</div>
+                        <p class="text-lg leading-relaxed">既存記事と似た内容を書く</p>
+                    </div>
+
+                    <div class="flex items-start" style="color: #f0f6fc;">
+                        <div class="text-2xl mr-3 mt-0.5">❌</div>
+                        <p class="text-lg leading-relaxed">既存記事との整合性が大変</p>
+                    </div>
+
+                    <div class="flex items-start" style="color: #f0f6fc;">
+                        <div class="text-2xl mr-3 mt-0.5">❌</div>
+                        <p class="text-lg leading-relaxed">過去の記事タイトルや文体を忘却</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 解決策 -->
+            <div class="rounded-xl p-4" style="background-color: #161b22; border: 2px solid #3fb950;">
+                <h2 class="text-3xl font-bold mb-4 pb-2" style="color: #3fb950; border-bottom: 2px solid #3fb950;">解決策</h2>
+
+                <div class="rounded-lg p-3 mb-3" style="background-color: #21262d;">
+                    <h3 class="text-xl font-semibold mb-3 flex items-center" style="color: #3fb950;">
+                        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold mr-2" style="background-color: #3fb950; color: #0d1117;">✓</span>
+                        fetch-blog-html.ts
+                    </h3>
+                    <div class="space-y-2 text-base" style="color: #f0f6fc;">
+                        <div class="flex items-start">
+                            <span class="mr-2 text-lg" style="color: #3fb950;">→</span>
+                            <span>既存記事をローカルに保存</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mr-2 text-lg" style="color: #3fb950;">→</span>
+                            <span>HTML抽出・最適化</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mr-2 text-lg" style="color: #3fb950;">→</span>
+                            <span>トークン数50-60%削減</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mr-2 text-lg" style="color: #3fb950;">→</span>
+                            <span>記事執筆時に手動で参照</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 処理フロー -->
+        <div class="rounded-xl p-4" style="background-color: #161b22; border: 2px solid #58a6ff;">
+            <h3 class="text-2xl font-bold text-center mb-3 pb-2" style="color: #58a6ff; border-bottom: 2px solid #58a6ff;">RAGもどき処理フロー</h3>
+
+            <div class="flex items-center justify-between">
+                <!-- 入力 -->
+                <div class="flex-1 text-center px-2">
+                    <div class="rounded-lg p-3" style="background-color: #21262d; border: 2px solid #58a6ff;">
+                        <div class="text-sm font-semibold mb-1" style="color: #58a6ff;">入力</div>
+                        <div class="text-base leading-tight" style="color: #f0f6fc;">ブログ記事URL</div>
+                    </div>
+                </div>
+
+                <div class="text-2xl font-bold px-1" style="color: #58a6ff;">→</div>
+
+                <!-- 抽出 -->
+                <div class="flex-1 text-center px-2">
+                    <div class="rounded-lg p-3" style="background-color: #21262d; border: 2px solid #58a6ff;">
+                        <div class="text-sm font-semibold mb-1" style="color: #58a6ff;">抽出</div>
+                        <div class="text-sm leading-tight" style="color: #f0f6fc;">
+                            <div>HTML取得</div>
+                            <div>不要部分削除</div>
+                            <div>画像テキスト化</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-2xl font-bold px-1" style="color: #58a6ff;">→</div>
+
+                <!-- 保存 -->
+                <div class="flex-1 text-center px-2">
+                    <div class="rounded-lg p-3" style="background-color: #21262d; border: 2px solid #58a6ff;">
+                        <div class="text-sm font-semibold mb-1" style="color: #58a6ff;">保存</div>
+                        <div class="text-sm leading-tight" style="color: #f0f6fc;">
+                            <div>ローカルに</div>
+                            <div>.htmlファイル</div>
+                            <div>として保存</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-2xl font-bold px-1" style="color: #58a6ff;">→</div>
+
+                <!-- 活用 -->
+                <div class="flex-1 text-center px-2">
+                    <div class="rounded-lg p-3" style="background-color: #21262d; border: 2px solid #58a6ff;">
+                        <div class="text-sm font-semibold mb-1" style="color: #58a6ff;">活用</div>
+                        <div class="text-sm leading-tight" style="color: #f0f6fc;">
+                            <div>記事執筆時に</div>
+                            <div>Claude Codeで</div>
+                            <div>参照</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
