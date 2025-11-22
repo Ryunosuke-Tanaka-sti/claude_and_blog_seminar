@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>執筆フェーズを支援するツール群</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Noto Sans JP"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white flex items-center justify-center font-sans overflow-hidden" style="width: 1100px; height: 550px;">
+
+    <!-- メインコンテナ -->
+    <div class="w-full h-full p-8 flex flex-col">
+
+        <!-- 3つのツールカテゴリ -->
+        <div class="grid grid-cols-3 gap-6 mb-6 flex-1">
+
+            <!-- 図解生成ツール -->
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-400 rounded-xl p-6 flex flex-col">
+                <div class="text-center mb-4">
+                    <div class="text-5xl mb-2">🎨</div>
+                    <h3 class="text-2xl font-bold text-blue-900">図解生成ツール</h3>
+                </div>
+
+                <div class="space-y-3 flex-1">
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-blue-800">diagram-generator-svg</p>
+                        <p class="text-xs text-gray-600">SVG図解生成</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-blue-800">diagram-generator-html</p>
+                        <p class="text-xs text-gray-600">HTML図解生成</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-blue-800">svg-to-png / html-to-png</p>
+                        <p class="text-xs text-gray-600">PNG変換</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-blue-200 rounded-lg p-2 text-center">
+                    <p class="text-lg font-bold text-blue-900">60%削減</p>
+                    <p class="text-xs text-blue-700">図解作成時間</p>
+                </div>
+            </div>
+
+            <!-- レビューツール -->
+            <div class="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-400 rounded-xl p-6 flex flex-col">
+                <div class="text-center mb-4">
+                    <div class="text-5xl mb-2">✅</div>
+                    <h3 class="text-2xl font-bold text-green-900">レビューツール</h3>
+                </div>
+
+                <div class="space-y-3 flex-1">
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-green-800">technical-accuracy-reviewer</p>
+                        <p class="text-xs text-gray-600">技術的正確性</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-green-800">content-reviewer</p>
+                        <p class="text-xs text-gray-600">コンテンツ品質</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-green-800">blog-reviewer</p>
+                        <p class="text-xs text-gray-600">包括的評価+SEO</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-green-800">seo-title-generator</p>
+                        <p class="text-xs text-gray-600">タイトル生成</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-green-200 rounded-lg p-2 text-center">
+                    <p class="text-lg font-bold text-green-900">70%削減</p>
+                    <p class="text-xs text-green-700">レビュー時間</p>
+                </div>
+            </div>
+
+            <!-- 記事取得ツール -->
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-400 rounded-xl p-6 flex flex-col">
+                <div class="text-center mb-4">
+                    <div class="text-5xl mb-2">📚</div>
+                    <h3 class="text-2xl font-bold text-orange-900">記事取得ツール</h3>
+                </div>
+
+                <div class="space-y-3 flex-1">
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-orange-800">blog-scraper</p>
+                        <p class="text-xs text-gray-600">ブログスクレイピング</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <p class="text-sm font-semibold text-orange-800">cleanup-articles</p>
+                        <p class="text-xs text-gray-600">下書き削除</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-3 shadow-sm border-2 border-orange-300">
+                        <p class="text-sm font-semibold text-orange-800">RAGもどき</p>
+                        <p class="text-xs text-gray-600">既存記事参照</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-orange-200 rounded-lg p-2 text-center">
+                    <p class="text-lg font-bold text-orange-900">87%削減</p>
+                    <p class="text-xs text-orange-700">トークン数</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 統合メッセージ -->
+        <div class="bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl p-4 shadow-lg">
+            <div class="flex items-center justify-center space-x-4 text-white">
+                <div class="text-4xl">🤖</div>
+                <div>
+                    <h2 class="text-2xl font-bold">Claude Code Skills & Agents で効率化</h2>
+                    <p class="text-base">面倒な作業は自動化して、執筆に集中できる環境を構築</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

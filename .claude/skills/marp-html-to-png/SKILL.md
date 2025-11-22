@@ -29,13 +29,16 @@ HTML files should be saved to `application/marp/src/html/` with the following te
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>図解タイトル</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['"Hiragino Sans"', '"ヒラギノ角ゴシック"', '"Yu Gothic"', '"游ゴシック"', '"Noto Sans JP"', 'sans-serif']
+                        'sans': ['"Noto Sans JP"', 'sans-serif']
                     }
                 }
             }
@@ -44,11 +47,17 @@ HTML files should be saved to `application/marp/src/html/` with the following te
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 min-h-screen flex items-center justify-center font-sans overflow-hidden">
     <!-- Diagram content -->
+    <!-- IMPORTANT: DO NOT include diagram title in HTML - Marp slides will add titles -->
 </body>
 </html>
 ```
 
 **Naming Convention**: Use snake_case for HTML files (e.g., `fullscreen_comparison.html`, `pdca_cycle.html`)
+
+**IMPORTANT - No Titles in Diagrams**:
+- Do NOT include diagram titles (h1, h2, etc.) in the HTML content
+- Marp slides will add titles separately
+- Focus only on the visual content/diagram itself
 
 ### Step 2: Open HTML File in Browser
 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4フェーズワークフロー</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Noto Sans JP"', 'sans-serif']
+                    },
+                    colors: {
+                        'canyon-main': '#d4ed00',
+                        'canyon-accent': '#00bcd4',
+                        'canyon-secondary': '#333333',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center font-sans p-8" style="width: 1100px; height: 550px;">
+
+    <div class="w-full h-full flex flex-col justify-center">
+
+        <!-- フェーズフロー -->
+        <div class="flex items-center justify-between gap-2">
+
+            <!-- フェーズ1: 計画 -->
+            <div class="flex-1 bg-gradient-to-br from-canyon-main/20 to-canyon-main/10 border-2 border-canyon-main rounded-xl p-4 text-center transform hover:scale-105 transition-all">
+                <div class="text-4xl mb-2">📝</div>
+                <h3 class="text-2xl font-bold text-canyon-secondary mb-1">フェーズ1</h3>
+                <p class="text-xl font-semibold text-canyon-secondary mb-2">計画</p>
+                <p class="text-sm text-gray-600">/docs/features/</p>
+                <div class="mt-2 text-xs text-gray-500">
+                    <p>仕様書作成</p>
+                    <p>要件定義</p>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="text-3xl text-canyon-accent">→</div>
+
+            <!-- フェーズ2: 実装 -->
+            <div class="flex-1 bg-gradient-to-br from-canyon-accent/20 to-canyon-accent/10 border-2 border-canyon-accent rounded-xl p-4 text-center transform hover:scale-105 transition-all">
+                <div class="text-4xl mb-2">💻</div>
+                <h3 class="text-2xl font-bold text-canyon-secondary mb-1">フェーズ2</h3>
+                <p class="text-xl font-semibold text-canyon-secondary mb-2">実装</p>
+                <p class="text-sm text-gray-600">/application/</p>
+                <div class="mt-2 text-xs text-gray-500">
+                    <p>コード実装</p>
+                    <p>機能開発</p>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="text-3xl text-canyon-accent">→</div>
+
+            <!-- フェーズ3: 研究記録 -->
+            <div class="flex-1 bg-gradient-to-br from-orange-400/20 to-orange-400/10 border-2 border-orange-400 rounded-xl p-4 text-center transform hover:scale-105 transition-all">
+                <div class="text-4xl mb-2">🔬</div>
+                <h3 class="text-2xl font-bold text-canyon-secondary mb-1">フェーズ3</h3>
+                <p class="text-xl font-semibold text-canyon-secondary mb-2">研究記録</p>
+                <p class="text-sm text-gray-600">/docs/research/</p>
+                <div class="mt-2 text-xs text-gray-500">
+                    <p>検証結果</p>
+                    <p>意思決定記録</p>
+                </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="text-3xl text-canyon-accent">→</div>
+
+            <!-- フェーズ4: 記事化 -->
+            <div class="flex-1 bg-gradient-to-br from-purple-500/20 to-purple-500/10 border-2 border-purple-500 rounded-xl p-4 text-center transform hover:scale-105 transition-all">
+                <div class="text-4xl mb-2">✍️</div>
+                <h3 class="text-2xl font-bold text-canyon-secondary mb-1">フェーズ4</h3>
+                <p class="text-xl font-semibold text-canyon-secondary mb-2">記事化</p>
+                <p class="text-sm text-gray-600">/docs/article/</p>
+                <div class="mt-2 text-xs text-gray-500">
+                    <p>ブログ執筆</p>
+                    <p>知見の資産化</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 効果の強調 -->
+        <div class="mt-8 text-center">
+            <div class="inline-block bg-gradient-to-r from-canyon-main to-canyon-accent rounded-lg px-6 py-4">
+                <p class="text-2xl font-bold text-white">検証結果が自然に記事化される仕組み</p>
+            </div>
+        </div>
+
+        <!-- 従来との比較 -->
+        <div class="mt-6 grid grid-cols-2 gap-6 text-center">
+            <div class="bg-red-100 border-2 border-red-300 rounded-lg p-3">
+                <p class="text-lg font-semibold text-red-700">❌ 従来：実装後に「何書こう？」</p>
+            </div>
+            <div class="bg-green-100 border-2 border-green-300 rounded-lg p-3">
+                <p class="text-lg font-semibold text-green-700">✅ 4フェーズ：記録が自動的に蓄積</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

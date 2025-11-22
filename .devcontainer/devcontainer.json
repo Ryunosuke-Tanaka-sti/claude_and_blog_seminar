@@ -3,6 +3,9 @@
     "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
     "workspaceFolder": "/home/node/workspace",
     "remoteUser": "node",
+    "containerEnv": {
+        "TZ": "Asia/Tokyo"
+    },
     "forwardPorts": [
         4321
     ],
