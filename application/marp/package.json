@@ -12,7 +12,8 @@
     "build:voice": "marp src/voice_writing_seminar.md --html --theme ./theme/github-dark.css --output dist/voice_writing_seminar.html --allow-local-files --no-stdin",
     "build:blog-marp": "marp src/blog_to_marp_workflow.md --html --theme ./theme/github-dark.css --output dist/blog_to_marp_workflow.html --allow-local-files --no-stdin",
     "build:ai-env": "marp src/ai_development_environment_setup.md --html --theme ./theme/github-dark.css --output dist/ai_development_environment_setup.html --allow-local-files --no-stdin",
-    "build:others": "npm run build:blog-marp && npm run build:ai-env",
+    "build:writing": "marp src/verification_and_writing_workflow.md --html --theme ./theme/canyon-custom.css --output dist/verification_and_writing_workflow.html --allow-local-files --no-stdin",
+    "build:others": "npm run build:blog-marp && npm run build:ai-env && npm run build:writing",
     "copy:assets": "mkdir -p dist/assets && cp -r src/assets/* dist/assets/"
   },
   "devDependencies": {
