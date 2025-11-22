@@ -56,4 +56,14 @@ export const seminarSlides: SeminarSlide[] = [
     theme: 'github-dark',
     categories: ['AI開発', 'モノレポ', '自動生成パイプライン', '環境整備'],
   },
+  {
+    id: 'verification_and_writing_workflow',
+    title: 'AI協業開発：検証と執筆までをセットで行う環境',
+    url: '/claude_and_blog_seminar/slides/verification_and_writing_workflow.html',
+    description: 'モノレポ×4フェーズワークフローで知見を資産化。検証結果が自然に記事化される仕組みと、RAGもどきによる既存記事との整合性確保を解説します。',
+    thumbnail: '/claude_and_blog_seminar/slides/assets/thumbnail_writing.png',
+    targetAudience: ['技術ブロガー', 'AI協業開発に興味がある人', 'ドキュメント管理を効率化したい人'],
+    theme: 'canyon-custom',
+    categories: ['AI協業開発', 'モノレポ', '4フェーズワークフロー', 'ブログ執筆'],
+  },
 ];
